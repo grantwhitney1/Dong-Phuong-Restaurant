@@ -1,0 +1,12 @@
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\bin\Debug\net8.0\DongPhuong.Application.deps.json
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\bin\Debug\net8.0\DongPhuong.Application.dll
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\bin\Debug\net8.0\DongPhuong.Application.pdb
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\DongPhuong.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\DongPhuong.Application.AssemblyInfoInputs.cache
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\DongPhuong.Application.AssemblyInfo.cs
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\DongPhuong.Application.csproj.CoreCompileInputs.cache
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\DongPhuong.Application.sourcelink.json
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\DongPhuong.Application.dll
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\refint\DongPhuong.Application.dll
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\DongPhuong.Application.pdb
+D:\Repositories\Dong-Phuong-Bakery\DongPhuong\src\DongPhuong.Application\obj\Debug\net8.0\ref\DongPhuong.Application.dll
