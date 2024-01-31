@@ -98,8 +98,8 @@ D:\Repositories\Dong-Phuong-Bakery\DongPhuong\tests\Application.Tests\obj\Debug\
 D:\Repositories\Dong-Phuong-Bakery\DongPhuong\tests\Application.Tests\obj\Debug\net8.0\Application.Tests.pdb
 D:\Repositories\Dong-Phuong-Bakery\DongPhuong\tests\Application.Tests\obj\Debug\net8.0\Application.Tests.genruntimeconfig.cache
 D:\Repositories\Dong-Phuong-Bakery\DongPhuong\tests\Application.Tests\obj\Debug\net8.0\ref\Application.Tests.dll
-D:\Repositories\Dong-Phuong-Bakery\tests\Application.Tests\bin\Debug\net8.0\testhost.exe
 D:\Repositories\Dong-Phuong-Bakery\tests\Application.Tests\bin\Debug\net8.0\testhost.dll
+D:\Repositories\Dong-Phuong-Bakery\tests\Application.Tests\bin\Debug\net8.0\testhost.exe
 D:\Repositories\Dong-Phuong-Bakery\tests\Application.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 D:\Repositories\Dong-Phuong-Bakery\tests\Application.Tests\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
 D:\Repositories\Dong-Phuong-Bakery\tests\Application.Tests\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
