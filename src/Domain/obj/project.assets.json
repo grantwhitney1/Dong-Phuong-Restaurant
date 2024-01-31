@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Domain\\Domain.csproj",
+      "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Domain\\Domain.csproj",
+      "projectPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\grant\\.nuget\\packages\\",
-      "outputPath": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Domain\\obj\\",
+      "outputPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\grant\\AppData\\Roaming\\NuGet\\NuGet.Config"

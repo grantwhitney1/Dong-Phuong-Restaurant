@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NrcW7hxMGxtxJkxKEdSb3HV+n5/fcgkXRZhoMhpvJtkivdZ19/cZ3tVh2JBPhVxp3GY3ev8dRuAoFC4qFLqayw==",
+  "dgSpecHash": "YiLpP9/bxbVEHfnv58jChhv6qO2EHIZX2R/qwm4LqQXJCtvXJCL4GrhcQTLRDXdmjc0RselzOJugdz/W42F6QA==",
   "success": true,
-  "projectFilePath": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

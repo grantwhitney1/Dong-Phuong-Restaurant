@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Infrastructure\\Infrastructure.csproj": {}
+    "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\grant\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Infrastructure\\obj\\",
+        "outputPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\grant\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -5523,11 +5523,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Bakery\\tests\\Infrastructure.Tests\\Infrastructure.Tests.csproj",
+      "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Restaurant\\tests\\Infrastructure.Tests\\Infrastructure.Tests.csproj",
       "projectName": "Infrastructure.Tests",
-      "projectPath": "D:\\Repositories\\Dong-Phuong-Bakery\\tests\\Infrastructure.Tests\\Infrastructure.Tests.csproj",
+      "projectPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\tests\\Infrastructure.Tests\\Infrastructure.Tests.csproj",
       "packagesPath": "C:\\Users\\grant\\.nuget\\packages\\",
-      "outputPath": "D:\\Repositories\\Dong-Phuong-Bakery\\tests\\Infrastructure.Tests\\obj\\",
+      "outputPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\tests\\Infrastructure.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\grant\\AppData\\Roaming\\NuGet\\NuGet.Config"

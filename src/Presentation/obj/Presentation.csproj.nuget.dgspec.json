@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Presentation\\Presentation.csproj": {}
+    "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Presentation\\Presentation.csproj": {}
   },
   "projects": {
-    "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Presentation\\Presentation.csproj": {
+    "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Presentation\\Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Presentation\\Presentation.csproj",
+        "projectUniqueName": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Presentation\\Presentation.csproj",
         "projectName": "Presentation",
-        "projectPath": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Presentation\\Presentation.csproj",
+        "projectPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Presentation\\Presentation.csproj",
         "packagesPath": "C:\\Users\\grant\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositories\\Dong-Phuong-Bakery\\src\\Presentation\\obj\\",
+        "outputPath": "D:\\Repositories\\Dong-Phuong-Restaurant\\src\\Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\grant\\AppData\\Roaming\\NuGet\\NuGet.Config"
