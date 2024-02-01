@@ -30,7 +30,7 @@ jobs:
         working-directory: web
 
       - name: Zip build artifacts
-        run: zip -r build.zip build/
+        run: zip -r dist.zip dist/
         working-directory: web
 
       - name: Login to Azure
@@ -45,4 +45,4 @@ jobs:
         with:
           app-name: 'your-app-name'
           slot-name: 'Production'
-          package: web/build.zip
+          package: web/dist.zip
