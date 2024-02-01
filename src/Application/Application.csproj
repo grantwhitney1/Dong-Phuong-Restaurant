@@ -7,4 +7,9 @@
         <RootNamespace>DongPhuong.Application</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Commands\" />
+      <Folder Include="Dtos\" />
+      <Folder Include="Queries\" />
+    </ItemGroup>
 </Project>
