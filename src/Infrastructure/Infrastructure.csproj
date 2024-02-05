@@ -6,11 +6,9 @@
         <Nullable>enable</Nullable>
         <RootNamespace>DongPhuong.Infrastructure</RootNamespace>
     </PropertyGroup>
-
     <ItemGroup>
       <Folder Include="Data\" />
       <Folder Include="Repositories\" />
       <Folder Include="Services\" />
     </ItemGroup>
-
 </Project>

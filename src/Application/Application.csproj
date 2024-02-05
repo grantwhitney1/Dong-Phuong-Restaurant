@@ -12,5 +12,4 @@
       <Folder Include="Dtos\" />
       <Folder Include="Queries\" />
     </ItemGroup>
-
 </Project>
