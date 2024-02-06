@@ -1,10 +1,13 @@
-import {FC} from "react";
+import {Route, Routes} from "react-router-dom";
+import Home from "./pages/home";
+import NotFound from "./pages/not-found";
 
-const App: FC = () => {
+const App = () => {
   return (
-    <div>
-        <h1>Welcome to Dong Phuong Restaurant!</h1>
-    </div>
+    <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="*" element={<NotFound />}/>
+    </Routes>
   );
 }
 
