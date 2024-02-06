@@ -24,7 +24,8 @@ const PrimaryAppBar = () => {
                       variant="h6"
                       noWrap
                       component="div"
-                      sx={{ display: { xs: 'none', sm: 'block' } }}
+                      sx={{ display: { xs: 'none', sm: 'block', userSelect: 'none' } }}
+                      fontFamily="inherit"
                   >
                       Dong Phuong Restaurant
                   </Typography>
