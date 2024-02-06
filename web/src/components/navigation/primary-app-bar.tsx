@@ -1,6 +1,7 @@
-import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Badge, Box, IconButton, Toolbar, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const PrimaryAppBar = () => {
     return (
@@ -28,6 +29,14 @@ const PrimaryAppBar = () => {
                       Dong Phuong Restaurant
                   </Typography>
                   <Box sx={{ display: { xs: 'flex', marginLeft: 'auto' } }}>
+                      <IconButton
+                          size="large"
+                          color="inherit"
+                      >
+                          <Badge badgeContent={1} color="primary">
+                              <NotificationsIcon />
+                          </Badge>
+                      </IconButton>
                       <IconButton
                           size="large"
                           color="inherit"
