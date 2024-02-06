@@ -1,34 +1,16 @@
-import {styled} from '@mui/system';
-import {AppBar, Badge, Box, IconButton, Toolbar, Typography} from "@mui/material";
+import {Badge, IconButton, Toolbar} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import {
+  StyledAppBar,
+  StyledBox,
+  StyledBoxRightIcons,
+  StyledIconButton,
+  StyledTypography
+} from "../../styles/components/navigation/primary-app-bar";
 
 const PrimaryAppBar = () => {
-  const StyledBox = styled(Box)(() => ({
-    flexGrow: 1,
-  }));
-
-  const StyledAppBar = styled(AppBar)({
-    backgroundColor: "#8F1621",
-  });
-
-  const StyledIconButton = styled(IconButton)(({theme}) => ({
-    marginRight: theme.spacing(2),
-  }));
-
-  const StyledTypography = styled(Typography)(() => ({
-    sx: {display: {xs: 'none', sm: 'block'}},
-    userSelect: 'none',
-    fontFamily: 'inherit',
-    component: 'div'
-  }));
-
-  const StyledBoxRightIcons = styled(Box)(() => ({
-    sx: {display: {xs: 'flex'}},
-    marginLeft: 'auto',
-  }));
-
   return (
     <StyledBox>
       <StyledAppBar position="static">
