@@ -1,3 +1,4 @@
+
 import {StyledH1, StyledH3, StyledImg, StyledInnerBox, StyledOuterBox, StyledP} from "../styles/pages/home";
 
 const Home = () => {
