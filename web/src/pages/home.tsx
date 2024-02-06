@@ -56,7 +56,7 @@ const Home = () => {
             </h1>
             <h3
                 style={{
-                    fontFamily: "'Quicksand', sans-serif",
+                    fontFamily: "'Nunito Sans', sans-serif",
                     width: '85%',
                     margin: '1rem auto 1rem auto',
                     color: '#1c1c1c',
@@ -66,7 +66,7 @@ const Home = () => {
             </h3>
             <p
                 style={{
-                    fontFamily: "'Quicksand', sans-serif",
+                    fontFamily: "'Nunito Sans', sans-serif",
                     width: '85%',
                     textIndent: '2rem',
                     margin: '0.5rem auto 0.5rem auto',
