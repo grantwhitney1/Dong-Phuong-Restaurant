@@ -42,13 +42,15 @@ const Home = () => {
 
   const StyledImg = styled('img')(() => ({
     margin: '1.5rem',
-    marginTop: '3rem',
     boxShadow: '0 0 2rem rgba(0, 0, 0, 0.18)',
     borderRadius: '1rem'
   }));
 
   return (
     <StyledOuterBox>
+      <StyledH1>
+        Welcome to Dong Phuong Restaurant&apos;s Website
+      </StyledH1>
       <StyledInnerBox>
         <StyledImg
           src="https://www.dpbakery.com/wp-content/uploads/2022/05/order-online.png"
@@ -63,9 +65,6 @@ const Home = () => {
           height="auto"
         />
       </StyledInnerBox>
-      <StyledH1>
-        Welcome to Dong Phuong Restaurant&apos;s Website
-      </StyledH1>
       <StyledH3>
         This is the sample landing page. Here, we can see an example color scheme and font styling.
       </StyledH3>
