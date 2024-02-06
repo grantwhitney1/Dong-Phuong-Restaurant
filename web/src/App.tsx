@@ -5,13 +5,13 @@ import PrimaryAppBar from "./components/navigation/primary-app-bar";
 
 const App = () => {
   return (
-      <>
-          <PrimaryAppBar />
-          <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="*" element={<NotFound />}/>
-          </Routes>
-      </>
+    <>
+      <PrimaryAppBar/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </>
   );
 }
 
