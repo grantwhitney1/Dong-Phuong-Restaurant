@@ -1,8 +1,10 @@
-public class Drink
+namespace DongPhuongRestaurant.Domain.Entities
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Size { get; set; }
-    public decimal Price { get; set; }
+    public class Drink
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Size { get; set; }
+        public decimal Price { get; set; }
+    }
 }
-
