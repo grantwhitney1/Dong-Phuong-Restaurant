@@ -7,7 +7,6 @@
         <RootNamespace>DongPhuong.Domain</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-      <Folder Include="Entities\" />
       <Folder Include="Enums\" />
       <Folder Include="Interfaces\" />
     </ItemGroup>
@@ -21,5 +20,8 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Application\Application.csproj" />
     </ItemGroup>
 </Project>
