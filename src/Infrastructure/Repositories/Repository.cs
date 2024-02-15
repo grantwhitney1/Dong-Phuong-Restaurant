@@ -1,11 +1,12 @@
 using DongPhuong.Domain.Exceptions;
 using DongPhuong.Domain.Interfaces.Data;
 using DongPhuong.Domain.Interfaces.Repositories;
+using DongPhuong.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace DongPhuong.Infrastructure.Repositories;
 
-public class Repository(DbContext context) : IRepository
+public class Repository(DataContext context) : IRepository
 {
     public virtual IQueryable<TEntity> All<TEntity>() where TEntity : class, IEntity =>
         context.Set<TEntity>().AsQueryable();

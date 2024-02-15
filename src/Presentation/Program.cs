@@ -23,7 +23,7 @@ if (builder.Environment.IsDevelopment())
         options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
 }
 
-builder.Services.AddSingleton<IRepository, Repository>();
+builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
