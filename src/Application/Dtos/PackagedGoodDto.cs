@@ -12,8 +12,8 @@ public class PackagedGoodQueryDto : PackagedGoodCommandDto
 
 public class PackagedGoodCommandDto
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
     public decimal Weight { get; set; }
     public decimal Price { get; set; }
 }

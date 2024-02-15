@@ -4,5 +4,5 @@ namespace DongPhuong.Presentation.Dtos.Responses;
 
 public class PackagedGoodResponse
 {
-    public PackagedGoodQueryDto PackagedGoodQueryDto { get; set; }
+    public PackagedGoodQueryDto? PackagedGoodQueryDto { get; set; }
 }

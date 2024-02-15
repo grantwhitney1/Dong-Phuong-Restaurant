@@ -4,5 +4,5 @@ namespace DongPhuong.Presentation.Dtos.Requests;
 
 public class PackagedGoodRequest
 {
-    public PackagedGoodCommandDto PackagedGoodCommandDto { get; set; }
+    public PackagedGoodCommandDto? PackagedGoodCommandDto { get; set; }
 }
