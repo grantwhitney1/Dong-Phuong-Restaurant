@@ -7,10 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DongPhuong.Domain.Entities;
 
-public class PackagedGood : PackagedGoodDto, IEntity
-{
-    
-}
+public class PackagedGood : PackagedGoodDto, IEntity;
 
 public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<PackagedGood>
 {
@@ -33,9 +30,9 @@ public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<Packaged
             .HasMaxLength(maxBaseString);
 
         builder.Property(x => x.Price)
-            .HasPrecision(maxPrice, precisionPrice);
+            .HasPrecision(precisionPrice, maxPrice);
         
         builder.Property(x => x.Weight)
-            .HasPrecision(maxWeight, precisionWeight);
+            .HasPrecision(precisionWeight, maxWeight);
     }
 }
