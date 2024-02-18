@@ -7,18 +7,20 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
-
-var vaultUrl = builder.Configuration["VaultUrl"];
-var client = new SecretClient(new Uri(vaultUrl!), new DefaultAzureCredential());
-var cloudDbConnectionString = client.GetSecret("DbConnectionString");
-
 if (builder.Environment.IsDevelopment())
+{
+    var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(localDbConnectionString));
+}
 else if (builder.Environment.IsProduction())
+{
+    var vaultUrl = builder.Configuration["VaultUrl"];
+    var client = new SecretClient(new Uri(vaultUrl!), new DefaultAzureCredential());
+    var cloudDbConnectionString = client.GetSecret("DbConnectionString");
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
+}
 
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddEndpointsApiExplorer();
