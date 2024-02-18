@@ -20,18 +20,18 @@ public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<Packaged
         // precision
         const int precisionPrice = (int)Precision.Price;
         const int precisionWeight = (int)Precision.Weight;
-        
+
         builder.ToTable(nameof(PackagedGood).ToPlural(), Schemas.Domain);
 
         builder.Property(x => x.Name)
             .HasMaxLength(maxBaseString);
-        
+
         builder.Property(x => x.Description)
             .HasMaxLength(maxBaseString);
 
         builder.Property(x => x.Price)
             .HasPrecision(precisionPrice, maxPrice);
-        
+
         builder.Property(x => x.Weight)
             .HasPrecision(precisionWeight, maxWeight);
     }
