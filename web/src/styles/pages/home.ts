@@ -24,15 +24,13 @@ export const StyledH1 = styled('h1')(() => ({
   color: '#1c1c1c',
 }));
 
-export const StyledH3 = styled('h3')(() => ({
-  fontFamily: "'Nunito Sans', sans-serif",
+export const StyledH4 = styled('h4')(() => ({
   width: '85%',
   margin: '1rem auto 1rem auto',
   color: '#1c1c1c',
 }));
 
 export const StyledP = styled('p')(() => ({
-  fontFamily: "'Nunito Sans', sans-serif",
   width: '85%',
   textIndent: '2rem',
   margin: '0.5rem auto 0.5rem auto',
