@@ -36,7 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     using var scope = app.Services.CreateScope();
     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-    if (dataContext.Database.CanConnect())
+    if(dataContext.Database.CanConnect()) 
         await dataContext.Database.MigrateAsync();
 }
 
