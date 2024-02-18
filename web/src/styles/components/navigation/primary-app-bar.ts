@@ -3,6 +3,7 @@ import {AppBar, Box, IconButton, Typography} from "@mui/material";
 
 export const StyledBox = styled(Box)(() => ({
   flexGrow: 1,
+  fontFamily: 'Cormorant SC, serif'
 }));
 
 export const StyledAppBar = styled(AppBar)({
