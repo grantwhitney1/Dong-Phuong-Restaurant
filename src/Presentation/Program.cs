@@ -10,18 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
 
 var vaultUrl = builder.Configuration["VaultUrl"];
-var client = new SecretClient(vaultUri: new Uri(vaultUrl!), credential: new DefaultAzureCredential());
+var client = new SecretClient(new Uri(vaultUrl!), new DefaultAzureCredential());
 var cloudDbConnectionString = client.GetSecret("DbConnectionString");
 
 if (builder.Environment.IsDevelopment())
-{
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(localDbConnectionString));
-} else if (builder.Environment.IsProduction()) 
-{
+else if (builder.Environment.IsProduction())
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
-}
 
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddEndpointsApiExplorer();
@@ -37,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     using var scope = app.Services.CreateScope();
     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-    if(dataContext.Database.CanConnect()) 
+    if (dataContext.Database.CanConnect())
         await dataContext.Database.MigrateAsync();
 }
 

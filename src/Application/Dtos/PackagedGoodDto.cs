@@ -1,9 +1,6 @@
 namespace DongPhuong.Application.Dtos;
 
-public class PackagedGoodDto : PackagedGoodQueryDto
-{
-    
-}
+public class PackagedGoodDto : PackagedGoodQueryDto;
 
 public class PackagedGoodQueryDto : PackagedGoodCommandDto
 {

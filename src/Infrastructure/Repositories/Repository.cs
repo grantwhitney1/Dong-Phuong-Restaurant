@@ -8,12 +8,16 @@ namespace DongPhuong.Infrastructure.Repositories;
 
 public class Repository(DataContext context) : IRepository
 {
-    public virtual IQueryable<TEntity> All<TEntity>() where TEntity : class, IEntity =>
-        context.Set<TEntity>().AsQueryable();
+    public virtual IQueryable<TEntity> All<TEntity>() where TEntity : class, IEntity
+    {
+        return context.Set<TEntity>().AsQueryable();
+    }
 
-    public virtual async Task<TEntity> FindAsync<TEntity>(int id) where TEntity : class, IEntity =>
-        await context.Set<TEntity>()
+    public virtual async Task<TEntity> FindAsync<TEntity>(int id) where TEntity : class, IEntity
+    {
+        return await context.Set<TEntity>()
             .FirstOrDefaultAsync(x => x.Id == id) ?? throw new EntityNotFoundException();
+    }
 
     public virtual async Task RemoveAsync<TEntity>(int id) where TEntity : class, IEntity
     {
