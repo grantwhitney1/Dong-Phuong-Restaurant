@@ -1,5 +1,3 @@
-using DongPhuong.Domain.Interfaces.Entities.Base;
-
 namespace DongPhuong.Application.Dtos.Responses.Base;
 
 public abstract class BaseResponse
