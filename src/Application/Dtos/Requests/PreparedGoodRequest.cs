@@ -1,6 +1,4 @@
-﻿using DongPhuong.Application.Dtos;
-
-namespace DongPhuong.Presentation.Dtos.Requests;
+﻿namespace DongPhuong.Application.Dtos.Requests;
 
 public class PreparedGoodRequest
 {
