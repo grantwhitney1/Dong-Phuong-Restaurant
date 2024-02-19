@@ -1,9 +1,8 @@
 using DongPhuong.Application.Dtos;
 
-namespace DongPhuong.Presentation.Dtos.Requests
+namespace DongPhuong.Presentation.Dtos.Requests;
+
+public class DrinkRequest
 {
-    public class DrinkRequest
-    {
-        public DrinkCommandDto? DrinkCommandDto { get; set; }
-    }
+    public DrinkCommandDto? DrinkCommandDto { get; set; }
 }

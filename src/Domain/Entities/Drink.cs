@@ -1,10 +1,9 @@
-namespace DongPhuong.Domain.Entities
+namespace DongPhuong.Domain.Entities;
+
+public class Drink
 {
-    public class Drink
-    {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Size { get; set; }
-        public decimal Price { get; set; }
-    }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Size { get; set; }
+    public decimal Price { get; set; }
 }
