@@ -1,9 +1,8 @@
-﻿namespace DongPhuong.Application.Dtos;
+﻿using DongPhuong.Domain.Interfaces.Entities;
 
-public class PreparedGoodDto : PreparedGoodQueryDto
-{
-    
-}
+namespace DongPhuong.Application.Dtos;
+
+public class PreparedGoodDto : PreparedGoodQueryDto, IPreparedGoodDto;
 
 public class PreparedGoodQueryDto : PreparedGoodCommandDto
 {

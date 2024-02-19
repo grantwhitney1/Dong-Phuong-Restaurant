@@ -1,4 +1,4 @@
-using DongPhuong.Domain.Interfaces.Data;
+using DongPhuong.Domain.Interfaces.Entities.Base;
 
 namespace DongPhuong.Domain.Interfaces.Repositories;
 

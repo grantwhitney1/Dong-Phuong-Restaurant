@@ -1,13 +1,19 @@
-using DongPhuong.Application.Dtos;
 using DongPhuong.Domain.Enums;
 using DongPhuong.Domain.Extensions;
-using DongPhuong.Domain.Interfaces.Data;
+using DongPhuong.Domain.Interfaces.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DongPhuong.Domain.Entities;
 
-public class PackagedGood : PackagedGoodDto, IEntity;
+public class PackagedGood : IPackagedGood
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public decimal Weight { get; set; }
+    public decimal Price { get; set; }
+}
 
 public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<PackagedGood>
 {
