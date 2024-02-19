@@ -1,4 +1,4 @@
-import {StyledH1, StyledH3, StyledImg, StyledInnerBox, StyledOuterBox, StyledP} from "../styles/pages/home";
+import {StyledH1, StyledH4, StyledImg, StyledInnerBox, StyledOuterBox, StyledP} from "../styles/pages/home";
 
 const Home = () => {
   return (
@@ -20,9 +20,9 @@ const Home = () => {
           height="auto"
         />
       </StyledInnerBox>
-      <StyledH3>
+      <StyledH4>
         This is the sample landing page. Here, we can see an example color scheme and font styling.
-      </StyledH3>
+      </StyledH4>
       <StyledP>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
