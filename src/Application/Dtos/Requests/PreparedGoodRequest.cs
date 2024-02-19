@@ -1,6 +1,8 @@
-﻿namespace DongPhuong.Application.Dtos.Requests;
+﻿using DongPhuong.Application.Dtos.Requests.Base;
 
-public class PreparedGoodRequest
+namespace DongPhuong.Application.Dtos.Requests;
+
+public class PreparedGoodRequest : BaseRequest
 {
     public PreparedGoodCommandDto? PreparedGoodCommandDto { get; set; }
 }

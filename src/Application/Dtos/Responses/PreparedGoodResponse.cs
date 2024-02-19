@@ -1,6 +1,5 @@
-﻿namespace DongPhuong.Application.Dtos.Responses;
+﻿using DongPhuong.Application.Dtos.Responses.Base;
 
-public class PreparedGoodResponse
-{
-    public ICollection<PreparedGoodQueryDto>? PreparedGoodQueryDto { get; set; } = new List<PreparedGoodQueryDto>();
-}
+namespace DongPhuong.Application.Dtos.Responses;
+
+public class PreparedGoodResponse : BaseResponse;
