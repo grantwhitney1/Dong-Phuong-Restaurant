@@ -9,16 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
 
-var vaultUrl = builder.Configuration["VaultUrl"];
-var client = new SecretClient(vaultUri: new Uri(vaultUrl!), credential: new DefaultAzureCredential());
-var cloudDbConnectionString = client.GetSecret("DbConnectionString");
-
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(localDbConnectionString));
 } else if (builder.Environment.IsProduction()) 
-{
+{  
+    var vaultUrl = builder.Configuration["VaultUrl"];
+    var client = new SecretClient(vaultUri: new Uri(vaultUrl!), credential: new DefaultAzureCredential());
+    var cloudDbConnectionString = client.GetSecret("DbConnectionString");
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
 }
