@@ -1,8 +1,6 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using DongPhuong.Domain.Interfaces.Repositories;
 using DongPhuong.Infrastructure.Data;
-using DongPhuong.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +20,6 @@ else if (builder.Environment.IsProduction())
         options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
 }
 
-builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

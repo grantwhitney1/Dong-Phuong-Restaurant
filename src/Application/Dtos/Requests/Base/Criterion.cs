@@ -1,4 +1,4 @@
-namespace DongPhuong.Presentation.Dtos.Requests.Base;
+namespace DongPhuong.Application.Dtos.Requests.Base;
 
 public class Criterion
 {
