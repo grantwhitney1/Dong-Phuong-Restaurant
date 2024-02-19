@@ -1,6 +1,8 @@
+using DongPhuong.Domain.Interfaces.Entities;
+
 namespace DongPhuong.Application.Dtos;
 
-public class PackagedGoodDto : PackagedGoodQueryDto;
+public class PackagedGoodDto : PackagedGoodQueryDto, IPackagedGoodDto;
 
 public class PackagedGoodQueryDto : PackagedGoodCommandDto
 {

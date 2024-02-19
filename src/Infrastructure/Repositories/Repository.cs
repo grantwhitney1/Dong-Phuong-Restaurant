@@ -1,5 +1,5 @@
 using DongPhuong.Domain.Exceptions;
-using DongPhuong.Domain.Interfaces.Data;
+using DongPhuong.Domain.Interfaces.Entities.Base;
 using DongPhuong.Domain.Interfaces.Repositories;
 using DongPhuong.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
