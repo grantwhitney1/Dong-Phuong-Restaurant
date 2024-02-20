@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DongPhuong.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240220001910_IdentityInit")]
-    partial class IdentityInit
+    [Migration("20240220015847_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,16 +42,41 @@ namespace DongPhuong.Infrastructure.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(2, 10)
-                        .HasColumnType("decimal(2,10)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("Weight")
-                        .HasPrecision(2, 5)
-                        .HasColumnType("decimal(2,5)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("System.Linq.Enumerable+AppendPrepend1Iterator`1[System.Char]", "Domain");
+                    b.ToTable("PackagedGoods", "Domain");
+                });
+
+            modelBuilder.Entity("DongPhuong.Domain.Entities.PreparedGood", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal?>("Price")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PreparedGoods", "Domain");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

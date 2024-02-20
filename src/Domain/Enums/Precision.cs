@@ -2,6 +2,6 @@ namespace DongPhuong.Domain.Enums;
 
 public enum Precision
 {
-    Price = 2,
-    Weight = 2
+    Price = 10,
+    Weight = 5
 }
