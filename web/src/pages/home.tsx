@@ -3,9 +3,6 @@ import {StyledH1, StyledH4, StyledImg, StyledInnerBox, StyledOuterBox, StyledP} 
 const Home = () => {
   return (
     <StyledOuterBox>
-      <StyledH1>
-        Welcome to Dong Phuong Restaurant&apos;s Website
-      </StyledH1>
       <StyledInnerBox>
         <StyledImg
           src="https://www.dpbakery.com/wp-content/uploads/2022/05/order-online.png"
@@ -20,15 +17,19 @@ const Home = () => {
           height="auto"
         />
       </StyledInnerBox>
+      <StyledH1>
+        Welcome to Dong Phuong Vietnamese Restaurant
+      </StyledH1>
       <StyledH4>
         This is the sample landing page. Here, we can see an example color scheme and font styling.
       </StyledH4>
       <StyledP>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-        eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
+        Dong Phuong Restaurant offers a diverse menu that includes appetizers like fried shrimp & pork egg rolls and
+        shrimp & pork spring rolls, various rice vermicelli bowls with choices like grilled chicken, pork, beef, and
+        shrimp, vermicelli rolls, grilled dishes with pork, chicken, beef, shrimp, and tofu, salads, several dressing
+        options, an array of phở options including combination, brisket, eye of round, meatball, and shrimp, specialty
+        soups, beverages like chicory coffee, limeade, soy milk, and teas, along with tapioca drinks available in
+        various flavors such as avocado, banana, mango, and more, with the option for additional toppings.
       </StyledP>
     </StyledOuterBox>
   );

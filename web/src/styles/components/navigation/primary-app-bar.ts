@@ -1,13 +1,32 @@
 import {styled} from "@mui/system";
-import {AppBar, Box, IconButton, Typography} from "@mui/material";
+import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
 
 export const StyledBox = styled(Box)(() => ({
-  flexGrow: 1,
-  fontFamily: 'Cormorant SC, serif'
+  fontFamily: 'Cormorant SC, serif',
+  height: '20vh',
+  maxWidth: '100%',
+  position: 'sticky',
+  top: 0,
+  zIndex: 1100,
 }));
 
 export const StyledAppBar = styled(AppBar)({
-  backgroundColor: "#8F1621",
+  backgroundColor: 'transparent',
+  backgroundImage: 'url(/../../src/assets/components/navigation/primary-app-bar/primary-app-bar.png)',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'repeat-x',
+  backgroundPositionX: 'center',
+  boxShadow: 'none',
+  height: '100%',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  paddingBottom: '7vh',
+});
+
+export const StyledToolbar = styled(Toolbar)({
+  justifyContent: 'center',
 });
 
 export const StyledIconButton = styled(IconButton)(({theme}) => ({
@@ -18,10 +37,19 @@ export const StyledTypography = styled(Typography)(() => ({
   sx: {display: {xs: 'none', sm: 'block'}},
   userSelect: 'none',
   fontFamily: 'inherit',
-  component: 'div'
+  component: 'div',
+  textAlign: 'center',
+  flex: 1,
+}));
+
+export const StyledBoxLeftIcons = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'start',
+  flex: 1,
 }));
 
 export const StyledBoxRightIcons = styled(Box)(() => ({
-  sx: {display: {xs: 'flex'}},
-  marginLeft: 'auto',
+  display: 'flex',
+  justifyContent: 'end',
+  flex: 1,
 }));
