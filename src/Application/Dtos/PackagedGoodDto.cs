@@ -1,3 +1,5 @@
+using AutoMapper;
+using DongPhuong.Domain.Entities;
 using DongPhuong.Domain.Enums;
 using DongPhuong.Domain.Interfaces.Entities;
 using FluentValidation;
@@ -34,5 +36,22 @@ public class PackagedGoodDtoValidator : AbstractValidator<PackagedGoodDto>
 
         RuleFor(x => x.Weight)
             .GreaterThan(0);
+    }
+}
+
+public class PackagedGoodDtoMapping : Profile
+{
+    public PackagedGoodDtoMapping()
+    {
+        CreateMap<PackagedGoodDto, PackagedGood>()
+            .ReverseMap();
+        
+        CreateMap<PackagedGoodCommandDto, PackagedGood>()
+            .IncludeBase<PackagedGoodDto, PackagedGood>()
+            .ReverseMap();
+        
+        CreateMap<PackagedGoodQueryDto, PackagedGood>()
+            .IncludeBase<PackagedGoodDto, PackagedGood>()
+            .ReverseMap();
     }
 }
