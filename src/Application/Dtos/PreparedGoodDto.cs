@@ -1,4 +1,6 @@
-﻿using DongPhuong.Domain.Enums;
+﻿using AutoMapper;
+using DongPhuong.Domain.Entities;
+using DongPhuong.Domain.Enums;
 using DongPhuong.Domain.Interfaces.Entities;
 using FluentValidation;
 
@@ -30,5 +32,22 @@ public class PreparedGoodDtoValidator : AbstractValidator<PreparedGoodDto>
 
         RuleFor(x => x.Price)
             .GreaterThan(0);
+    }
+}
+
+public class PreparedGoodDtoMapping : Profile
+{
+    public PreparedGoodDtoMapping()
+    {
+        CreateMap<PreparedGoodDto, PreparedGood>()
+            .ReverseMap();
+        
+        CreateMap<PreparedGoodCommandDto, PreparedGood>()
+            .IncludeBase<PreparedGoodDto, PreparedGood>()
+            .ReverseMap();
+        
+        CreateMap<PreparedGoodQueryDto, PreparedGood>()
+            .IncludeBase<PreparedGoodDto, PreparedGood>()
+            .ReverseMap();
     }
 }
