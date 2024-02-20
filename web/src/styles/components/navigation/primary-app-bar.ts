@@ -1,5 +1,6 @@
 import {styled} from "@mui/system";
 import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
+import primaryAppBarImage from "../../../assets/components/navigation/primary-app-bar/primary-app-bar.png";
 
 export const StyledBox = styled(Box)(() => ({
   fontFamily: 'Cormorant SC, serif',
@@ -12,7 +13,7 @@ export const StyledBox = styled(Box)(() => ({
 
 export const StyledAppBar = styled(AppBar)({
   backgroundColor: 'transparent',
-  backgroundImage: 'url(/../../src/assets/components/navigation/primary-app-bar/primary-app-bar.png)',
+  backgroundImage: `url(${primaryAppBarImage})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'repeat-x',
   backgroundPositionX: 'center',
