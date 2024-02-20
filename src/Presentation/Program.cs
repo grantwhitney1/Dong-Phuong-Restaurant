@@ -1,6 +1,9 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using DongPhuong.Application.Dtos;
 using DongPhuong.Infrastructure.Data;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +30,8 @@ builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddValidatorsFromAssemblyContaining<PackagedGoodDtoValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 

@@ -21,11 +21,12 @@ public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<Packaged
     {
         // lengths
         const int maxBaseString = (int)Max.BaseString;
-        const int maxPrice = (int)Max.Price;
-        const int maxWeight = (int)Max.Weight;
         // precision
         const int precisionPrice = (int)Precision.Price;
         const int precisionWeight = (int)Precision.Weight;
+        // scale
+        const int scalePrice = (int)Scale.Price;
+        const int scaleWeight = (int)Scale.Weight;
 
         builder.ToTable(nameof(PackagedGood).ToPlural(), Schemas.Domain);
 
@@ -36,9 +37,9 @@ public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<Packaged
             .HasMaxLength(maxBaseString);
 
         builder.Property(x => x.Price)
-            .HasPrecision(precisionPrice, maxPrice);
+            .HasPrecision(precisionPrice, scalePrice);
 
         builder.Property(x => x.Weight)
-            .HasPrecision(precisionWeight, maxWeight);
+            .HasPrecision(precisionWeight, scaleWeight);
     }
 }
