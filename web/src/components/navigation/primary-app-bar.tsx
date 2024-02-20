@@ -1,12 +1,13 @@
-import {Badge, IconButton, Toolbar} from "@mui/material";
+import {Badge, IconButton} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
   StyledAppBar,
-  StyledBox,
+  StyledBox, StyledBoxLeftIcons,
   StyledBoxRightIcons,
   StyledIconButton,
+  StyledToolbar,
   StyledTypography
 } from "../../styles/components/navigation/primary-app-bar";
 
@@ -14,16 +15,18 @@ const PrimaryAppBar = () => {
   return (
     <StyledBox>
       <StyledAppBar position="static">
-        <Toolbar>
-          <StyledIconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon/>
-          </StyledIconButton>
-          <StyledTypography variant="h6" noWrap>
+        <StyledToolbar>
+          <StyledBoxLeftIcons>
+            <StyledIconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+            >
+              <MenuIcon/>
+            </StyledIconButton>
+          </StyledBoxLeftIcons>
+          <StyledTypography variant="h4" noWrap>
             Dong Phuong Restaurant
           </StyledTypography>
           <StyledBoxRightIcons>
@@ -36,7 +39,7 @@ const PrimaryAppBar = () => {
               <AccountCircleIcon/>
             </IconButton>
           </StyledBoxRightIcons>
-        </Toolbar>
+        </StyledToolbar>
       </StyledAppBar>
     </StyledBox>
   );
