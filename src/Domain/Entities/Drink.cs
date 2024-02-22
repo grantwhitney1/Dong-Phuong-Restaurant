@@ -25,7 +25,7 @@ public class DrinkEntityConfiguration : IEntityTypeConfiguration<Drink>
         // scale
         const int scalePrice = (int)Scale.Price;
 
-        builder.ToTable(nameof(PackagedGood).ToPlural(), Schemas.Domain);
+        builder.ToTable(nameof(Drink).ToPlural(), Schemas.Domain);
 
         builder.Property(x => x.Name)
             .HasMaxLength(maxBaseString);
