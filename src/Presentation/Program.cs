@@ -1,6 +1,14 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using DongPhuong.Application.Dtos.Features.PackagedGoods;
+using DongPhuong.Application.Handlers.Features.Base;
+using DongPhuong.Application.Handlers.Features.Drinks;
+using DongPhuong.Application.Handlers.Features.PackagedGoods;
+using DongPhuong.Application.Handlers.Features.PreparedGoods;
+using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Base;
+using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
+using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PackagedGoods;
+using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PreparedGoods;
 using DongPhuong.Infrastructure.Data;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -23,6 +31,16 @@ else if (builder.Environment.IsProduction())
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
 }
+
+builder.Services.AddSingleton<IBaseCommandHandler, BaseCommandHandler>();
+builder.Services.AddSingleton<IDrinksCommandHandler, DrinksCommandHandler>();
+builder.Services.AddSingleton<IPackagedGoodsCommandHandler, PackagedGoodsCommandHandler>();
+builder.Services.AddSingleton<IPreparedGoodsCommandHandler, PreparedGoodsCommandHandler>();
+
+builder.Services.AddSingleton<IBaseQueryHandler, BaseQueryHandler>();
+builder.Services.AddSingleton<IDrinksQueryHandler, DrinksQueryHandler>();
+builder.Services.AddSingleton<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
+builder.Services.AddSingleton<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
