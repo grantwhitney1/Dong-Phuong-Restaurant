@@ -7,7 +7,7 @@
         <RootNamespace>DongPhuong.Domain</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Interfaces\Services\"/>
+        <Folder Include="Interfaces\Domain\" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="13.0.1" />

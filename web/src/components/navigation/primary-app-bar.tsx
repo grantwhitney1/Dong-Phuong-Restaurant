@@ -10,8 +10,36 @@ import {
   StyledToolbar,
   StyledTypography
 } from "../../styles/components/navigation/primary-app-bar";
+import {useMutation, UseMutationOptions} from "@tanstack/react-query";
+import {Dispatch, SetStateAction, useState} from "react";
+
+type LoginData = {
+  name: string,
+  password: string
+}
+
+const useLogin = (loginData: UseMutationOptions) => {
+  const login = async (loginData: LoginData): Promise<LoginData> => {
+    const response = await fetch('url here', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(loginData)
+    })
+    return response.json();
+  }
+  return useMutation({
+    mutationFn: login,
+  });
+}
 
 const PrimaryAppBar = () => {
+  const [loginData, setLoginData]: [LoginData, Dispatch<SetStateAction<LoginData>>] = useState({
+    name: '',
+    password: ''
+  });
+
   return (
     <StyledBox>
       <StyledAppBar position="static">

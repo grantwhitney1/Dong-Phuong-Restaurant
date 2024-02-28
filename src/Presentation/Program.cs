@@ -1,6 +1,6 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using DongPhuong.Application.Dtos;
+using DongPhuong.Application.Dtos.Features.PackagedGoods;
 using DongPhuong.Infrastructure.Data;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -51,5 +51,18 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapIdentityApi<IdentityUser>();
 app.MapControllers();
+app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
+    {
+        try
+        {
+            await signInManager.SignOutAsync();
+            return Results.Ok();
+        }
+        catch
+        {
+            return Results.Unauthorized();
+        }
+    })
+    .RequireAuthorization();
 
 app.Run();
