@@ -1,4 +1,4 @@
-using DongPhuong.Domain.Interfaces.Entities.Features.Drinks;
+using DongPhuong.Domain.Interfaces.Domain.Entities;
 
 namespace DongPhuong.Domain.Entities.Features.Drinks;
 

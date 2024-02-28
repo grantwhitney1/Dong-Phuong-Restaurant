@@ -1,7 +1,7 @@
-using DongPhuong.Presentation.Controllers.Api.Features.Base;
+using DongPhuong.Presentation.Controllers.Api.Base;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DongPhuong.Presentation.Controllers.Api.Features.Drinks;
+namespace DongPhuong.Presentation.Controllers.Api;
 
 [Route("api/[controller]")]
 public class DrinksController : BaseApiController;

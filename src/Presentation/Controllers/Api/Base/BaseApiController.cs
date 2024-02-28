@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace DongPhuong.Presentation.Controllers.Api.Features.Base;
+namespace DongPhuong.Presentation.Controllers.Api.Base;
 
 [ApiController]
 public class BaseApiController : ControllerBase;

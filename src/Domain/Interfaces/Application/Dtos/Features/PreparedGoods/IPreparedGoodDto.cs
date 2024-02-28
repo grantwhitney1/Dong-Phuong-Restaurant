@@ -1,4 +1,4 @@
-namespace DongPhuong.Domain.Interfaces.Entities.Features.PreparedGoods;
+namespace DongPhuong.Domain.Interfaces.Application.Dtos.Features.PreparedGoods;
 
 public interface IPreparedGoodDto
 {

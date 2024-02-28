@@ -1,5 +1,5 @@
-using DongPhuong.Domain.Interfaces.Entities.Features.Base;
+using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
 
-namespace DongPhuong.Domain.Interfaces.Entities.Features.PackagedGoods;
+namespace DongPhuong.Domain.Interfaces.Application.Dtos.Features.PackagedGoods;
 
 public interface IPackagedGoodGetDto : IPackagedGoodDto, IEntity;

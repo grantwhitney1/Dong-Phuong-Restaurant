@@ -1,3 +1,5 @@
-namespace DongPhuong.Domain.Interfaces.Entities.Features.Drinks;
+using DongPhuong.Domain.Interfaces.Application.Dtos.Features.Drinks;
+
+namespace DongPhuong.Domain.Interfaces.Domain.Entities;
 
 public interface IDrink : IDrinkGetDto;

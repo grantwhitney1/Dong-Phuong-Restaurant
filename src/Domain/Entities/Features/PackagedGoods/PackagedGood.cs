@@ -1,4 +1,4 @@
-using DongPhuong.Domain.Interfaces.Entities.Features.PackagedGoods;
+using DongPhuong.Domain.Interfaces.Domain.Entities;
 
 namespace DongPhuong.Domain.Entities.Features.PackagedGoods;
 

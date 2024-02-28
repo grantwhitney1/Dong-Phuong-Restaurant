@@ -1,4 +1,4 @@
-namespace DongPhuong.Domain.Interfaces.Entities.Features.Base;
+namespace DongPhuong.Domain.Interfaces.Domain.Entities.Base;
 
 public interface IEntity
 {

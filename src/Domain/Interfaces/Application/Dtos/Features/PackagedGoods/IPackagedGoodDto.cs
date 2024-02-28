@@ -1,4 +1,4 @@
-namespace DongPhuong.Domain.Interfaces.Entities.Features.PackagedGoods;
+namespace DongPhuong.Domain.Interfaces.Application.Dtos.Features.PackagedGoods;
 
 public interface IPackagedGoodDto
 {
