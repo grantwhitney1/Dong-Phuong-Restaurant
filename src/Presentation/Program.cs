@@ -1,10 +1,10 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using DongPhuong.Application.Dtos.Features.PackagedGoods;
 using DongPhuong.Application.Handlers.Features.Base;
 using DongPhuong.Application.Handlers.Features.Drinks;
 using DongPhuong.Application.Handlers.Features.PackagedGoods;
 using DongPhuong.Application.Handlers.Features.PreparedGoods;
+using DongPhuong.Domain.Dtos.Features.PackagedGoods;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Base;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PackagedGoods;

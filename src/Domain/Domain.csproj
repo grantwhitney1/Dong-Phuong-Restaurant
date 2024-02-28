@@ -7,12 +7,6 @@
         <RootNamespace>DongPhuong.Domain</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Interfaces\Application\Requests\Features\PackagedGoods\" />
-        <Folder Include="Interfaces\Application\Requests\Features\PreparedGoods\" />
-        <Folder Include="Interfaces\Application\Responses\Features\Base\" />
-        <Folder Include="Interfaces\Application\Responses\Features\Drinks\" />
-        <Folder Include="Interfaces\Application\Responses\Features\PackagedGoods\" />
-        <Folder Include="Interfaces\Application\Responses\Features\PreparedGoods\" />
         <Folder Include="Interfaces\Domain\" />
     </ItemGroup>
     <ItemGroup>

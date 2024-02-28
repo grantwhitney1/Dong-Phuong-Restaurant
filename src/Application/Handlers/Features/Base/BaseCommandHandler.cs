@@ -1,21 +1,15 @@
+using AutoMapper;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Base;
-using DongPhuong.Domain.Interfaces.Application.Requests.Features.Base;
+using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
+using DongPhuong.Infrastructure.Data;
 
 namespace DongPhuong.Application.Handlers.Features.Base;
 
-public class BaseCommandHandler : IBaseCommandHandler
+public class BaseCommandHandler(DataContext dataContext, IMapper mapper) : IBaseCommandHandler
 {
-    public async Task<TEntity> Create<TEntity>(IBasePostRequest request)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<TEntity> Update<TEntity>(IBasePutRequest request)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task Delete<TEntity>(IBaseDeleteRequest request)
+    public async Task HandleAsync<TEntity, TDto>(TDto dto)
+        where TEntity : class, IEntity
+        where TDto : class
     {
         throw new NotImplementedException();
     }

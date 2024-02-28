@@ -1,10 +1,10 @@
-using DongPhuong.Domain.Interfaces.Application.Requests.Features.Base;
+using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
 
 namespace DongPhuong.Domain.Interfaces.Application.Handlers.Features.Base;
 
 public interface IBaseCommandHandler
 {
-    public Task<TEntity> Create<TEntity>(IBasePostRequest request);
-    public Task<TEntity> Update<TEntity>(IBasePutRequest request);
-    public Task Delete<TEntity>(IBaseDeleteRequest request);
+    public Task HandleAsync<TEntity, TDto>(TDto dto)
+        where TEntity : class, IEntity
+        where TDto : class;
 }

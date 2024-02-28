@@ -1,3 +1,3 @@
 namespace DongPhuong.Application.Requests.Features.Base;
 
-public class BasePostRequest : BasePutRequest;
+public class BasePostRequest;
