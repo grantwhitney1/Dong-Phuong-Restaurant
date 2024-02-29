@@ -11,7 +11,7 @@ namespace DongPhuong.Application.Handlers.Features.PreparedGoods;
 public class PreparedGoodsCommandHandler(IRepository<PreparedGood> repository) :
     CommandHandler<PreparedGood, PreparedGoodDto>(repository), IPreparedGoodsCommandHandler
 {
-    public async Task<IPutResponse<PreparedGood>> HandleAsync(IPutRequest<PreparedGood> request)
+    public async Task<IPutResponse<PreparedGoodDto>> HandleAsync(IPutRequest<PreparedGoodDto> request)
     {
         await Task.CompletedTask;
         throw new NotImplementedException();

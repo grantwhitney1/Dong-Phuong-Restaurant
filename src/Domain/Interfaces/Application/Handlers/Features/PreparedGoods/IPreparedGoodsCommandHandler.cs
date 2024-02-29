@@ -8,5 +8,5 @@ namespace DongPhuong.Domain.Interfaces.Application.Handlers.Features.PreparedGoo
 
 public interface IPreparedGoodsCommandHandler : ICommandHandler<PreparedGood, PreparedGoodDto>
 {
-    public Task<IPutResponse<PreparedGood>> HandleAsync(IPutRequest<PreparedGood> request);
+    public Task<IPutResponse<PreparedGoodDto>> HandleAsync(IPutRequest<PreparedGoodDto> request);
 }
