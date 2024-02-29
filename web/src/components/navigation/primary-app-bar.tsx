@@ -9,7 +9,7 @@ import {
   StyledIconButton,
   StyledToolbar,
   StyledTypography
-} from "../../styles/components/navigation/primary-app-bar";
+} from "../../styles/components/navigation/primary-app-bar.ts";
 import {useMutation, UseMutationOptions} from "@tanstack/react-query";
 import {Dispatch, SetStateAction, useState} from "react";
 
