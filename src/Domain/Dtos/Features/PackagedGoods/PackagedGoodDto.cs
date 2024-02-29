@@ -1,6 +1,8 @@
+using DongPhuong.Domain.Interfaces.Domain.Dtos.Base;
+
 namespace DongPhuong.Domain.Dtos.Features.PackagedGoods;
 
-public class PackagedGoodDto
+public class PackagedGoodDto : IDto
 {
     public string? Name { get; set; }
     public string? Description { get; set; }

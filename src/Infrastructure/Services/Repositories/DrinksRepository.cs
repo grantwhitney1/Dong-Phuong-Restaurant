@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DongPhuong.Infrastructure.Services.Repositories;
 
-public class DrinksRepository(DataContext dataContext, ILogger logger, IMapper mapper) :
+public class DrinksRepository(DataContext dataContext, ILogger<DrinksRepository> logger, IMapper mapper) :
     Repository<Drink>(dataContext, logger, mapper), IDrinksRepository
 {
     private readonly DataContext _dataContext = dataContext;

@@ -9,13 +9,7 @@ public class PackagedGoodDtoMapping : Profile
     {
         CreateMap<PackagedGoodDto, PackagedGood>()
             .ReverseMap();
-
-        CreateMap<PackagedGoodDto, PackagedGood>()
-            .IncludeBase<PackagedGoodDto, PackagedGood>()
-            .ReverseMap();
-
         CreateMap<PackagedGoodGetDto, PackagedGood>()
-            .IncludeBase<PackagedGoodDto, PackagedGood>()
             .ReverseMap();
     }
 }

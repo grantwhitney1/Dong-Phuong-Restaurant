@@ -9,13 +9,7 @@ public class PreparedGoodDtoMapping : Profile
     {
         CreateMap<PreparedGoodDto, PreparedGood>()
             .ReverseMap();
-
-        CreateMap<PreparedGoodDto, PreparedGood>()
-            .IncludeBase<PreparedGoodDto, PreparedGood>()
-            .ReverseMap();
-
         CreateMap<PreparedGoodGetDto, PreparedGood>()
-            .IncludeBase<PreparedGoodDto, PreparedGood>()
             .ReverseMap();
     }
 }

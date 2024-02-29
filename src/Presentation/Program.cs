@@ -1,15 +1,16 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using DongPhuong.Application.Handlers.Features.Base;
 using DongPhuong.Application.Handlers.Features.Drinks;
 using DongPhuong.Application.Handlers.Features.PackagedGoods;
 using DongPhuong.Application.Handlers.Features.PreparedGoods;
 using DongPhuong.Domain.Dtos.Features.PackagedGoods;
-using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Base;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PackagedGoods;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PreparedGoods;
+using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
+using DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories.Base;
 using DongPhuong.Infrastructure.Data;
+using DongPhuong.Infrastructure.Services.Repositories.Base;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
@@ -32,15 +33,18 @@ else if (builder.Environment.IsProduction())
         options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
 }
 
-builder.Services.AddSingleton<IBaseCommandHandler, BaseCommandHandler>();
-builder.Services.AddSingleton<IDrinksCommandHandler, DrinksCommandHandler>();
-builder.Services.AddSingleton<IPackagedGoodsCommandHandler, PackagedGoodsCommandHandler>();
-builder.Services.AddSingleton<IPreparedGoodsCommandHandler, PreparedGoodsCommandHandler>();
+builder.Services.AddAutoMapper(typeof(IEntity));
+builder.Services.AddLogging();
 
-builder.Services.AddSingleton<IBaseQueryHandler, BaseQueryHandler>();
-builder.Services.AddSingleton<IDrinksQueryHandler, DrinksQueryHandler>();
-builder.Services.AddSingleton<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
-builder.Services.AddSingleton<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddScoped<IDrinksCommandHandler, DrinksCommandHandler>();
+builder.Services.AddScoped<IPackagedGoodsCommandHandler, PackagedGoodsCommandHandler>();
+builder.Services.AddScoped<IPreparedGoodsCommandHandler, PreparedGoodsCommandHandler>();
+
+builder.Services.AddScoped<IDrinksQueryHandler, DrinksQueryHandler>();
+builder.Services.AddScoped<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
+builder.Services.AddScoped<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()

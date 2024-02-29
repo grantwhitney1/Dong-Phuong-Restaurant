@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DongPhuong.Infrastructure.Services.Repositories.Base;
 
-public class Repository<TEntity>(DataContext dataContext, ILogger logger, IMapper mapper) :
+public class Repository<TEntity>(DataContext dataContext, ILogger<Repository<TEntity>> logger, IMapper mapper) :
     IRepository<TEntity> where TEntity : class, IEntity
 {
     private readonly DbSet<TEntity> _entities = dataContext.Set<TEntity>();
@@ -40,7 +40,7 @@ public class Repository<TEntity>(DataContext dataContext, ILogger logger, IMappe
     public async Task<TEntity?> GetAsync(int id) =>
         await _entities.FirstOrDefaultAsync(x => x.Id == id);
 
-    public IQueryable<TEntity> GetAllAsync() =>
+    public IQueryable<TEntity> GetAll() =>
         _entities.AsQueryable();
 
     public async Task<TEntity?> DeleteAsync(int id)

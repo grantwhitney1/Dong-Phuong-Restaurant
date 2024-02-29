@@ -12,7 +12,7 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
     public void Create<TDto>(TDto dto) where TDto : class, IDto;
     
     public Task<TEntity?> GetAsync(int id);
-    public IQueryable<TEntity> GetAllAsync();
+    public IQueryable<TEntity> GetAll();
 
     public Task<TEntity?> DeleteAsync(int id);
 }
