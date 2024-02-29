@@ -12,6 +12,7 @@ import {
 } from "../../styles/components/navigation/primary-app-bar.ts";
 import {useMutation, UseMutationOptions} from "@tanstack/react-query";
 import {Dispatch, SetStateAction, useState} from "react";
+import {apiBaseUrl} from "../../utils/vite-env.ts";
 
 type LoginData = {
   name: string,
@@ -20,7 +21,7 @@ type LoginData = {
 
 const useLogin = (loginData: UseMutationOptions) => {
   const login = async (loginData: LoginData): Promise<LoginData> => {
-    const response = await fetch('url here', {
+    const response = await fetch(apiBaseUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
