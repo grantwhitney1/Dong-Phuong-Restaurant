@@ -10,7 +10,7 @@ import {
   StyledToolbar,
   StyledTypography
 } from "../../styles/components/navigation/primary-app-bar.ts";
-import {useMutation, UseMutationOptions} from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
 import {Dispatch, SetStateAction, useState} from "react";
 import {apiBaseUrl} from "../../utils/vite-env.ts";
 
@@ -19,7 +19,7 @@ type LoginData = {
   password: string
 }
 
-const useLogin = (loginData: UseMutationOptions) => {
+const useLogin = () => {
   const login = async (loginData: LoginData): Promise<LoginData> => {
     const response = await fetch(apiBaseUrl, {
       method: 'POST',
@@ -40,6 +40,7 @@ const PrimaryAppBar = () => {
     name: '',
     password: ''
   });
+  const { mutate, isError, error } = useLogin();
 
   return (
     <StyledBox>

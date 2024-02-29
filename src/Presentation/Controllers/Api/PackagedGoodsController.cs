@@ -6,13 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace DongPhuong.Presentation.Controllers.Api;
 
 [Route("api/[controller]")]
-public class PackagedGoodsController(IPackagedGoodsCommandHandler commandHandler, IPackagedGoodsQueryHandler queryHandler) : BaseApiController
+public class PackagedGoodsController(
+    IPackagedGoodsCommandHandler commandHandler,
+    IPackagedGoodsQueryHandler queryHandler) : BaseApiController
 {
     [HttpGet]
-    public async Task<IActionResult> GetAll() =>
-        Ok(await queryHandler.HandleAsync<PackagedGoodGetDto>());
-    
+    public async Task<IActionResult> GetAll()
+    {
+        return Ok(await queryHandler.HandleAsync<PackagedGoodGetDto>());
+    }
+
     [HttpGet("{id:int}")]
-    public async Task<IActionResult> Get(int id) =>
-        Ok(await queryHandler.HandleAsync<PackagedGoodGetDto>(id));
+    public async Task<IActionResult> Get([FromRoute] int id)
+    {
+        return Ok(await queryHandler.HandleAsync<PackagedGoodGetDto>(id));
+    }
 }

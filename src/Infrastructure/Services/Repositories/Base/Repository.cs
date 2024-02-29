@@ -13,8 +13,10 @@ public class Repository<TEntity>(DataContext dataContext, ILogger<Repository<TEn
 {
     private readonly DbSet<TEntity> _entities = dataContext.Set<TEntity>();
 
-    public virtual async Task BeforeSaveAsync() =>
+    public virtual async Task BeforeSaveAsync()
+    {
         await Task.CompletedTask;
+    }
 
     public virtual async Task SaveAsync()
     {
@@ -26,22 +28,30 @@ public class Repository<TEntity>(DataContext dataContext, ILogger<Repository<TEn
         }
         catch (Exception exception)
         {
-            logger.LogError(exception, "Source: {source}, Message: {message}", exception.Source , exception.Message);
+            logger.LogError(exception, "Source: {source}, Message: {message}", exception.Source, exception.Message);
             throw;
         }
     }
 
-    public virtual async Task AfterSaveAsync() =>
+    public virtual async Task AfterSaveAsync()
+    {
         await Task.CompletedTask;
+    }
 
-    public void Create<TDto>(TDto dto) where TDto : class, IDto =>
+    public void Create<TDto>(TDto dto) where TDto : class, IDto
+    {
         _entities.Add(mapper.Map<TEntity>(dto));
+    }
 
-    public async Task<TEntity?> GetAsync(int id) =>
-        await _entities.FirstOrDefaultAsync(x => x.Id == id);
+    public async Task<TEntity?> GetAsync(int id)
+    {
+        return await _entities.FirstOrDefaultAsync(x => x.Id == id);
+    }
 
-    public IQueryable<TEntity> GetAll() =>
-        _entities.AsQueryable();
+    public IQueryable<TEntity> GetAll()
+    {
+        return _entities.AsQueryable();
+    }
 
     public async Task<TEntity?> DeleteAsync(int id)
     {
