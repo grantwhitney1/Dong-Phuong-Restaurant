@@ -1,3 +1,4 @@
+using DongPhuong.Application.Requests.Features.Base;
 using DongPhuong.Domain.Dtos.Features.PreparedGoods;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PreparedGoods;
 using DongPhuong.Presentation.Controllers.Api.Base;
@@ -20,5 +21,23 @@ public class PreparedGoodsController(
     public async Task<IActionResult> Get([FromRoute] int id)
     {
         return Ok(await queryHandler.HandleAsync<PreparedGoodGetDto>(id));
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] PostRequest<PreparedGoodDto> request)
+    {
+        var response = await commandHandler.HandleAsync(request);
+        if (response.Errors.Any())
+            return BadRequest(response);
+        return Ok(response);
+    }
+    
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        var response = await commandHandler.HandleAsync(id);
+        if (response.Errors.Any())
+            return NotFound(response);
+        return Ok(response);
     }
 }

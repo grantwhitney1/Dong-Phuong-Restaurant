@@ -2,7 +2,7 @@ import {styled} from "@mui/system";
 import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
 import primaryAppBarImage from "../../../assets/components/navigation/primary-app-bar/primary-app-bar.png";
 
-export const StyledBox = styled(Box)(() => ({
+export const NavBarBox = styled(Box)(() => ({
   fontFamily: 'Cormorant SC, serif',
   height: '20vh',
   maxWidth: '100%',
@@ -11,7 +11,7 @@ export const StyledBox = styled(Box)(() => ({
   zIndex: 1100,
 }));
 
-export const StyledAppBar = styled(AppBar)({
+export const NavBarAppBar = styled(AppBar)({
   backgroundColor: 'transparent',
   backgroundImage: `url(${primaryAppBarImage})`,
   backgroundSize: 'cover',
@@ -26,15 +26,15 @@ export const StyledAppBar = styled(AppBar)({
   paddingBottom: '7vh',
 });
 
-export const StyledToolbar = styled(Toolbar)({
+export const NavBarToolbar = styled(Toolbar)({
   justifyContent: 'center',
 });
 
-export const StyledIconButton = styled(IconButton)(({theme}) => ({
+export const NavBarIconButton = styled(IconButton)(({theme}) => ({
   marginRight: theme.spacing(2),
 }));
 
-export const StyledTypography = styled(Typography)(() => ({
+export const NavBarTypography = styled(Typography)(() => ({
   sx: {display: {xs: 'none', sm: 'block'}},
   userSelect: 'none',
   fontFamily: 'inherit',
@@ -43,13 +43,13 @@ export const StyledTypography = styled(Typography)(() => ({
   flex: 1,
 }));
 
-export const StyledBoxLeftIcons = styled(Box)(() => ({
+export const NavBarBoxLeft = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'start',
   flex: 1,
 }));
 
-export const StyledBoxRightIcons = styled(Box)(() => ({
+export const NavBarBoxRight = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'end',
   flex: 1,

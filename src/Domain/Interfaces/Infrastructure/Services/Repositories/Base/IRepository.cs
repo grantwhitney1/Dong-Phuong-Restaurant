@@ -9,7 +9,7 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
     public Task SaveAsync();
     public Task AfterSaveAsync();
 
-    public void Create<TDto>(TDto dto) where TDto : class, IDto;
+    public void Create(IDto dto);
 
     public Task<TEntity?> GetAsync(int id);
     public IQueryable<TEntity> GetAll();

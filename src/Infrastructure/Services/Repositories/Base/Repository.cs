@@ -38,7 +38,7 @@ public class Repository<TEntity>(DataContext dataContext, ILogger<Repository<TEn
         await Task.CompletedTask;
     }
 
-    public void Create<TDto>(TDto dto) where TDto : class, IDto
+    public void Create(IDto dto)
     {
         _entities.Add(mapper.Map<TEntity>(dto));
     }

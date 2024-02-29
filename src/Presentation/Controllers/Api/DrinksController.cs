@@ -1,3 +1,4 @@
+using DongPhuong.Application.Requests.Features.Base;
 using DongPhuong.Domain.Dtos.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 using DongPhuong.Presentation.Controllers.Api.Base;
@@ -19,5 +20,23 @@ public class DrinksController(IDrinksCommandHandler commandHandler, IDrinksQuery
     public async Task<IActionResult> Get([FromRoute] int id)
     {
         return Ok(await queryHandler.HandleAsync<DrinkGetDto>(id));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] PostRequest<DrinkDto> request)
+    {
+        var response = await commandHandler.HandleAsync(request);
+        if (response.Errors.Any())
+            return BadRequest(response);
+        return Created();
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        var response = await commandHandler.HandleAsync(id);
+        if (response.Errors.Any())
+            return NotFound(response);
+        return Ok(response);
     }
 }

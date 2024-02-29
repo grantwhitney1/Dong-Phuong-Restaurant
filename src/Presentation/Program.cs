@@ -71,7 +71,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
-app.MapIdentityApi<IdentityUser>();
+app.UseCors(o =>
+{
+    o.AllowAnyHeader();
+    o.AllowAnyMethod();
+    o.AllowAnyOrigin();
+});
+app.MapIdentityApi<IdentityUser>()
+    .RequireCors();
 app.MapControllers();
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
     {

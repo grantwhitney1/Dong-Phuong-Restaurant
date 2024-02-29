@@ -1,6 +1,9 @@
 using DongPhuong.Domain.Interfaces.Application.Requests.Features.Base;
-using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
+using DongPhuong.Domain.Interfaces.Domain.Dtos.Base;
 
 namespace DongPhuong.Application.Requests.Features.Base;
 
-public class PostRequest<TEntity> : IPostRequest<TEntity> where TEntity : class, IEntity;
+public class PostRequest<TDto> : IPostRequest<TDto> where TDto : class, IDto
+{
+    public TDto? Dto { get; set; }
+}

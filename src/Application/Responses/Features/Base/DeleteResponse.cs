@@ -1,6 +1,6 @@
 using DongPhuong.Domain.Interfaces.Application.Responses.Features.Base;
-using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
+using DongPhuong.Domain.Interfaces.Domain.Dtos.Base;
 
 namespace DongPhuong.Application.Responses.Features.Base;
 
-public class DeleteResponse<TEntity> : IDeleteResponse<TEntity> where TEntity : class, IEntity;
+public class DeleteResponse<TDto> : Response, IDeleteResponse<TDto> where TDto : class, IDto;
