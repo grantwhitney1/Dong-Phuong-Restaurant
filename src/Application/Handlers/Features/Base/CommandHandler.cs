@@ -41,6 +41,7 @@ public class CommandHandler<TEntity, TDto>(IRepository<TEntity> repository) :
         var entity = await repository.DeleteAsync(id);
         if (entity is null)
             response.Errors = response.Errors.Append("Could not find the requested Entity.");
+        await repository.SaveAsync();
         return response;
     }
 }

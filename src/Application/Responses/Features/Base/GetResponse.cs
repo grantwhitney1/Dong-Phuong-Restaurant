@@ -4,7 +4,7 @@ using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
 
 namespace DongPhuong.Application.Responses.Features.Base;
 
-public class GetResponse<TEntity> : Response, IGetResponse<TEntity> where TEntity : class, IEntity
+public class GetResponse<TDto> : Response, IGetResponse<TDto> where TDto : class, IDto
 {
     public virtual IEnumerable<IDto> Data { get; set; } = new List<IDto>();
 }

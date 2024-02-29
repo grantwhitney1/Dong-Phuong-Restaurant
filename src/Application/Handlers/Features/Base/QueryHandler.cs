@@ -12,28 +12,28 @@ using Microsoft.EntityFrameworkCore;
 namespace DongPhuong.Application.Handlers.Features.Base;
 
 public class QueryHandler<TEntity>(IRepository<TEntity> repository, IMapper mapper)
-    : IQueryHandler<TEntity> where TEntity : class, IEntity
+    : IQueryHandler where TEntity : class, IEntity
 {
-    public async Task<IGetResponse<TEntity>> HandleAsync<TDto>(IGetRequest<TEntity> request) where TDto : class, IDto
+    public async Task<IGetResponse<TDto>> HandleAsync<TDto>(IGetRequest<TDto> request) where TDto : class, IDto
     {
         await Task.CompletedTask;
         throw new NotImplementedException();
     }
 
-    public async Task<IGetResponse<TEntity>> HandleAsync<TDto>(int id) where TDto : class, IDto
+    public async Task<IGetResponse<TDto>> HandleAsync<TDto>(int id) where TDto : class, IDto
     {
-        return new GetResponse<TEntity>
+        return new GetResponse<TDto>
         {
             Data = [await repository.GetAsync(id)]
         };
     }
 
-    public async Task<IGetResponse<TEntity>> HandleAsync<TDto>() where TDto : class, IDto
+    public async Task<IGetResponse<TDto>> HandleAsync<TDto>() where TDto : class, IDto
     {
-        return new GetResponse<TEntity>
+        return new GetResponse<TDto>
         {
             Data = await repository.GetAll()
-                .ProjectTo<TDto>(mapper.ConfigurationProvider)
+                .Select(x => mapper.Map<TDto>(x))
                 .ToListAsync()
         };
     }
