@@ -6,5 +6,5 @@ namespace DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories;
 
 public interface IPreparedGoodsRepository : IRepository<PreparedGood>
 {
-    public Task<PreparedGood?> UpdateAsync(int id, PreparedGoodDto dto);
+    public Task<PreparedGoodDto?> UpdateAsync(int id, PreparedGoodDto dto);
 }

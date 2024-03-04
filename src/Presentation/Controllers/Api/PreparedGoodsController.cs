@@ -32,6 +32,15 @@ public class PreparedGoodsController(
         return Ok(response);
     }
     
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PutRequest<PreparedGoodDto?> request)
+    {
+        var response = await commandHandler.HandleAsync(id, request);
+        if (response.Errors.Any())
+            return BadRequest(response);
+        return Ok(response);
+    }
+    
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {

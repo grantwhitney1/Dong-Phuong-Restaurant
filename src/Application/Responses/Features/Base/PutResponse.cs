@@ -3,7 +3,7 @@ using DongPhuong.Domain.Interfaces.Domain.Dtos.Base;
 
 namespace DongPhuong.Application.Responses.Features.Base;
 
-public class GetResponse<TDto> : Response, IGetResponse<TDto> where TDto : class, IDto
+public class PutResponse<TDto> : Response, IPutResponse<TDto> where TDto : class?, IDto?
 {
-    public virtual IEnumerable<object> Data { get; set; } = new List<object>();
+    public TDto? Dto { get; set; }
 }

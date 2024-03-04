@@ -8,8 +8,10 @@ using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PackagedGoods;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.PreparedGoods;
 using DongPhuong.Domain.Interfaces.Domain.Entities.Base;
+using DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories;
 using DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories.Base;
 using DongPhuong.Infrastructure.Data;
+using DongPhuong.Infrastructure.Services.Repositories;
 using DongPhuong.Infrastructure.Services.Repositories.Base;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -37,6 +39,10 @@ builder.Services.AddAutoMapper(typeof(IEntity));
 builder.Services.AddLogging();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddScoped<IDrinksRepository, DrinksRepository>();
+builder.Services.AddScoped<IPackagedGoodsRepository, PackagedGoodsRepository>();
+builder.Services.AddScoped<IPreparedGoodsRepository, PreparedGoodsRepository>();
 
 builder.Services.AddScoped<IDrinksCommandHandler, DrinksCommandHandler>();
 builder.Services.AddScoped<IPackagedGoodsCommandHandler, PackagedGoodsCommandHandler>();

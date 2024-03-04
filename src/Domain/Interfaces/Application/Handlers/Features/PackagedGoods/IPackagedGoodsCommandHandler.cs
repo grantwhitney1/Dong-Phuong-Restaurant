@@ -8,5 +8,5 @@ namespace DongPhuong.Domain.Interfaces.Application.Handlers.Features.PackagedGoo
 
 public interface IPackagedGoodsCommandHandler : ICommandHandler<PackagedGood, PackagedGoodDto>
 {
-    public Task<IPutResponse<PackagedGoodDto>> HandleAsync(IPutRequest<PackagedGoodDto> request);
+    public Task<IPutResponse<PackagedGoodDto?>> HandleAsync(int id, IPutRequest<PackagedGoodDto?> request);
 }

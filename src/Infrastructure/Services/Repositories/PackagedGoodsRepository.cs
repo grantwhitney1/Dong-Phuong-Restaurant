@@ -11,8 +11,17 @@ namespace DongPhuong.Infrastructure.Services.Repositories;
 public class PackagedGoodsRepository(DataContext dataContext, ILogger<PackagedGoodsRepository> logger, IMapper mapper) :
     Repository<PackagedGood>(dataContext, logger, mapper), IPackagedGoodsRepository
 {
-    public async Task<PackagedGood?> UpdateAsync(int id, PackagedGoodDto dto)
+    private readonly DataContext _dataContext = dataContext;
+    private readonly IMapper _mapper = mapper;
+
+    public async Task<PackagedGoodDto?> UpdateAsync(int id, PackagedGoodDto dto)
     {
-        throw new NotImplementedException();
+        var entity = await GetAsync(id);
+        if (entity is null)
+            return null;
+        _mapper.Map(dto, entity);
+        _dataContext.Update(entity);
+        await SaveAsync();
+        return dto;
     }
 }

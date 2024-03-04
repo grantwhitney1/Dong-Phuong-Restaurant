@@ -14,14 +14,14 @@ public class DrinksRepository(DataContext dataContext, ILogger<DrinksRepository>
     private readonly DataContext _dataContext = dataContext;
     private readonly IMapper _mapper = mapper;
 
-    public async Task<Drink?> UpdateAsync(int id, DrinkDto dto)
+    public async Task<DrinkDto?> UpdateAsync(int id, DrinkDto dto)
     {
         var entity = await GetAsync(id);
         if (entity is null)
-            return entity;
+            return null;
         _mapper.Map(dto, entity);
         _dataContext.Update(entity);
         await SaveAsync();
-        return entity;
+        return dto;
     }
 }

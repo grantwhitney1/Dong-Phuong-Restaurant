@@ -6,5 +6,5 @@ namespace DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories;
 
 public interface IDrinksRepository : IRepository<Drink>
 {
-    public Task<Drink?> UpdateAsync(int id, DrinkDto dto);
+    public Task<DrinkDto?> UpdateAsync(int id, DrinkDto dto);
 }

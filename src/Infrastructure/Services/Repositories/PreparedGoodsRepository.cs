@@ -11,8 +11,17 @@ namespace DongPhuong.Infrastructure.Services.Repositories;
 public class PreparedGoodsRepository(DataContext dataContext, ILogger<PreparedGoodsRepository> logger, IMapper mapper) :
     Repository<PreparedGood>(dataContext, logger, mapper), IPreparedGoodsRepository
 {
-    public async Task<PreparedGood?> UpdateAsync(int id, PreparedGoodDto dto)
+    private readonly IMapper _mapper = mapper;
+    private readonly DataContext _dataContext = dataContext;
+
+    public async Task<PreparedGoodDto?> UpdateAsync(int id, PreparedGoodDto dto)
     {
-        throw new NotImplementedException();
+        var entity = await GetAsync(id);
+        if (entity is null)
+            return null;
+        _mapper.Map(dto, entity);
+        _dataContext.Update(entity);
+        await SaveAsync();
+        return dto;
     }
 }

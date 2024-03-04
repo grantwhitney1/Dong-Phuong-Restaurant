@@ -8,5 +8,5 @@ namespace DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 
 public interface IDrinksCommandHandler : ICommandHandler<Drink, DrinkDto>
 {
-    public Task<IPutResponse<DrinkDto>> HandleAsync(IPutRequest<DrinkDto> request);
+    public Task<IPutResponse<DrinkDto?>> HandleAsync(int id, IPutRequest<DrinkDto?> request);
 }
