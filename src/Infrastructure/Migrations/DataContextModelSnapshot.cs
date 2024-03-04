@@ -22,7 +22,32 @@ namespace DongPhuong.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DongPhuong.Domain.Entities.PackagedGood", b =>
+            modelBuilder.Entity("DongPhuong.Domain.Entities.Features.Drinks.Drink", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal?>("Price")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<string>("Size")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Drinks", "Domain");
+                });
+
+            modelBuilder.Entity("DongPhuong.Domain.Entities.Features.PackagedGoods.PackagedGood", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,11 +63,11 @@ namespace DongPhuong.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal?>("Price")
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<decimal>("Weight")
+                    b.Property<decimal?>("Weight")
                         .HasPrecision(5, 2)
                         .HasColumnType("decimal(5,2)");
 
@@ -51,7 +76,7 @@ namespace DongPhuong.Infrastructure.Migrations
                     b.ToTable("PackagedGoods", "Domain");
                 });
 
-            modelBuilder.Entity("DongPhuong.Domain.Entities.PreparedGood", b =>
+            modelBuilder.Entity("DongPhuong.Domain.Entities.Features.PreparedGoods.PreparedGood", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -1,17 +1,20 @@
 import {Route, Routes} from "react-router-dom";
 import Home from "./pages/home";
 import NotFound from "./pages/not-found";
-import PrimaryAppBar from "./components/navigation/primary-app-bar";
+import NavBar from "./components/navigation/nav-bar.tsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <>
-      <PrimaryAppBar/>
+    <QueryClientProvider client={queryClient}>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
-    </>
+    </QueryClientProvider>
   );
 }
 
