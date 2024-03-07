@@ -9,8 +9,7 @@ import {
 } from "../../types/authentication/auth";
 import {apiBaseUrl} from "../../utils/vite-env.ts";
 
-const signIn = async (credentials: SignInForm) => {
-  const url = new URL(`${apiBaseUrl}/login?useCookies=true`);
+const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async (credentials: unknown, url: URL) => {
   const response = await fetch(url.toString(), {
     method: 'POST',
     headers: {
@@ -19,9 +18,18 @@ const signIn = async (credentials: SignInForm) => {
     body: JSON.stringify(credentials),
   });
 
-  if (!response.ok)
-    throw new Error('There was a problem receiving the network response.');
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 400)
+      throw new Error('The credentials given were not valid.');
+    else
+      throw new Error('There was a problem receiving the network response.');
+  }
   return response.json();
+};
+
+const signIn = async (credentials: SignInForm) => {
+  const url = new URL(`${apiBaseUrl}login?useCookies=true`);
+  return await jsonResponse(credentials, url);
 }
 
 export const useSignIn = () => {
@@ -29,37 +37,17 @@ export const useSignIn = () => {
 }
 
 const signup = async (credentials: SignupForm) => {
-  const url = new URL(`${apiBaseUrl}/register`);
-  const response = await fetch(url.toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-
-  if (!response.ok)
-    throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  const url = new URL(`${apiBaseUrl}register`);
+  return await jsonResponse(credentials, url);
 }
 
-export const useSignup = () => {
+export const useSignUp = () => {
   return useMutation({mutationFn: signup});
 }
 
 const forgotPassword = async (credentials: ForgotPasswordForm) => {
-  const url = new URL(`${apiBaseUrl}/forgotPassword`);
-  const response = await fetch(url.toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-
-  if (!response.ok)
-    throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  const url = new URL(`${apiBaseUrl}forgotPassword`);
+  return await jsonResponse(credentials, url);
 }
 
 export const useForgotPassword = () => {
@@ -67,18 +55,8 @@ export const useForgotPassword = () => {
 }
 
 const resetPassword = async (credentials: ResetPasswordForm) => {
-  const url = new URL(`${apiBaseUrl}/resetPassword`);
-  const response = await fetch(url.toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-
-  if (!response.ok)
-    throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  const url = new URL(`${apiBaseUrl}resetPassword`);
+  return await jsonResponse(credentials, url);
 }
 
 export const useResetPassword = () => {
@@ -86,18 +64,8 @@ export const useResetPassword = () => {
 }
 
 const manage2fa = async (credentials: Manage2faForm) => {
-  const url = new URL(`${apiBaseUrl}/manage/2fa`);
-  const response = await fetch(url.toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-
-  if (!response.ok)
-    throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  const url = new URL(`${apiBaseUrl}manage/2fa`);
+  return await jsonResponse(credentials, url);
 }
 
 export const useManage2fa = () => {
@@ -105,18 +73,8 @@ export const useManage2fa = () => {
 }
 
 const manageInfo = async (credentials: ManageInfoForm) => {
-  const url = new URL(`${apiBaseUrl}/manage/info`);
-  const response = await fetch(url.toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-
-  if (!response.ok)
-    throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  const url = new URL(`${apiBaseUrl}manage/info`);
+  return await jsonResponse(credentials, url);
 }
 
 export const useManageInfo = () => {
@@ -124,7 +82,7 @@ export const useManageInfo = () => {
 }
 
 const signOut = async () => {
-  const url = new URL(`${apiBaseUrl}/logout`);
+  const url = new URL(`${apiBaseUrl}logout`);
   const response = await fetch(url.toString(), {
     method: 'POST',
   });
@@ -139,7 +97,7 @@ export const useSignOut = () => {
 }
 
 const confirmEmail = async (userId: string, code: string, changedEmail?: string): Promise<ConfirmEmailResponse> => {
-  const url = new URL(`${apiBaseUrl}/confirmEmail`);
+  const url = new URL(`${apiBaseUrl}confirmEmail`);
   url.searchParams.append('userId', userId);
   url.searchParams.append('code', code);
   if (changedEmail) {
@@ -167,18 +125,8 @@ export const useConfirmEmail = (userId: string, code: string, changedEmail?: str
 }
 
 const getManageInfo = async (credentials: GetManageInfoForm): Promise<GetManageInfoForm> => {
-  const url = new URL(`${apiBaseUrl}/manageInfo`);
-  const response = await fetch(url.toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-
-  if (!response.ok)
-    throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  const url = new URL(`${apiBaseUrl}manageInfo`);
+  return await jsonResponse(credentials, url) as Promise<GetManageInfoForm>;
 }
 
 export const useGetManageInfo = (credentials: GetManageInfoForm) => {
