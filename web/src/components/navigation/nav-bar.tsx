@@ -25,7 +25,6 @@ const NavBar = () => {
 
   return (
     <NavBarBox>
-      <Button onClick={handleOpen}>Open modal</Button>
       <AuthModal onClose={handleClose} open={open}/>
       <NavBarAppBar position="static">
         <NavBarToolbar>
@@ -48,7 +47,7 @@ const NavBar = () => {
                 <NotificationsIcon/>
               </Badge>
             </IconButton>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" color="inherit" onClick={handleOpen}>
               <AccountCircleIcon/>
             </IconButton>
           </NavBarBoxRight>
