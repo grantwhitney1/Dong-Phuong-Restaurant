@@ -36,7 +36,7 @@ const SignUp = ({onClose: onClose}: {onClose: () => unknown}) => {
       noValidate
     >
       <Typography>
-        Sign In
+        Sign Up
       </Typography>
       <TextField
         required
