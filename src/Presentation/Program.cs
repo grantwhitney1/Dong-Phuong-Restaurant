@@ -24,7 +24,7 @@ if (builder.Environment.IsDevelopment())
 {
     var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
     builder.Services.AddDbContext<DataContext>(options =>
-        options.UseSqlServer(localDbConnectionString));
+        options.UseSqlServer(localDbConnectionString, b => b.MigrationsAssembly("Infrastructure")));
 }
 else if (builder.Environment.IsProduction())
 {
