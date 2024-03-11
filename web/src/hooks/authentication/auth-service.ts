@@ -14,7 +14,6 @@ const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     },
     body: JSON.stringify(credentials),
   });
@@ -112,6 +111,7 @@ const confirmEmail = async (userId: string, code: string, changedEmail?: string)
       'Access-Control-Allow-Origin': '*',
     },
   });
+
 
   if (!response.ok)
     throw new Error('There was a problem receiving the network response.');
