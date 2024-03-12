@@ -4,7 +4,7 @@
 
 html {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     font-family: 'Quicksand', sans-serif;
 }
@@ -14,6 +14,11 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-color: white;
+}
+
+#root {
+    margin: 0;
+    min-height: 100vh;
 }
 
 h1, h2, h3 {

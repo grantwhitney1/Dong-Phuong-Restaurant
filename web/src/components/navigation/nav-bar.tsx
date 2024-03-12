@@ -5,11 +5,11 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
   NavBarAppBar,
   NavBarBox,
-  NavBarBoxLeft,
-  NavBarBoxRight,
-  NavBarIconButton,
-  NavBarToolbar,
-  NavBarTypography
+  StyledBoxLeft,
+  StyledBoxRight,
+  StyledIconButton,
+  StyledToolbar,
+  StyledTypography
 } from "../../styles/components/navigation/nav-bar.ts";
 import AuthModal from "../authentication/auth-modal.tsx";
 import {useState} from "react";
@@ -28,21 +28,21 @@ const NavBar = () => {
     <NavBarBox>
       <AuthModal onClose={handleClose} open={open}/>
       <NavBarAppBar position="static">
-        <NavBarToolbar>
-          <NavBarBoxLeft>
-            <NavBarIconButton
+        <StyledToolbar>
+          <StyledBoxLeft>
+            <StyledIconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="open drawer"
             >
               <MenuIcon/>
-            </NavBarIconButton>
-          </NavBarBoxLeft>
-          <NavBarTypography variant="h4" noWrap>
+            </StyledIconButton>
+          </StyledBoxLeft>
+          <StyledTypography variant="h4" noWrap>
             Dong Phuong Restaurant
-          </NavBarTypography>
-          <NavBarBoxRight>
+          </StyledTypography>
+          <StyledBoxRight>
             <IconButton size="large" color="inherit">
               <Badge badgeContent={1} color="primary">
                 <NotificationsIcon/>
@@ -51,8 +51,8 @@ const NavBar = () => {
             <IconButton size="large" color="inherit" onClick={handleOpen}>
               <AccountCircleIcon/>
             </IconButton>
-          </NavBarBoxRight>
-        </NavBarToolbar>
+          </StyledBoxRight>
+        </StyledToolbar>
       </NavBarAppBar>
     </NavBarBox>
   );

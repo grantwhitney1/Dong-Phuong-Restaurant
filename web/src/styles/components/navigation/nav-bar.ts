@@ -26,15 +26,15 @@ export const NavBarAppBar = styled(AppBar)({
   paddingBottom: '7vh',
 });
 
-export const NavBarToolbar = styled(Toolbar)({
+export const StyledToolbar = styled(Toolbar)({
   justifyContent: 'center',
 });
 
-export const NavBarIconButton = styled(IconButton)(({theme}) => ({
+export const StyledIconButton = styled(IconButton)(({theme}) => ({
   marginRight: theme.spacing(2),
 }));
 
-export const NavBarTypography = styled(Typography)(() => ({
+export const StyledTypography = styled(Typography)(() => ({
   sx: {display: {xs: 'none', sm: 'block'}},
   userSelect: 'none',
   fontFamily: 'inherit',
@@ -43,13 +43,13 @@ export const NavBarTypography = styled(Typography)(() => ({
   flex: 1,
 }));
 
-export const NavBarBoxLeft = styled(Box)(() => ({
+export const StyledBoxLeft = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'start',
   flex: 1,
 }));
 
-export const NavBarBoxRight = styled(Box)(() => ({
+export const StyledBoxRight = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'end',
   flex: 1,
