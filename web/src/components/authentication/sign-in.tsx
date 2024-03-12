@@ -2,29 +2,29 @@ import {SetStateAction, useState} from "react";
 import {useSignIn} from "../../hooks/authentication/auth-service.ts";
 import {Box, Button, TextField, Typography} from "@mui/material";
 
-const SignIn = ({onClose: onClose}: {onClose: () => unknown}) => {
+const SignIn = ({onClose: onClose}: { onClose: () => unknown }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const signIn = useSignIn();
 
-  const handleEmailChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handleEmailChange = (event: { target: { value: SetStateAction<string> } }) => {
     setEmail(event.target.value);
   }
 
-  const handlePasswordChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handlePasswordChange = (event: { target: { value: SetStateAction<string> } }) => {
     setPassword(event.target.value);
   }
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    signIn.mutate({ email, password }, {
+    signIn.mutate({email, password}, {
       onSuccess: () => {
         onClose();
       },
     });
   };
 
-  return(
+  return (
     <Box
       component='form'
       onSubmit={handleSubmit}

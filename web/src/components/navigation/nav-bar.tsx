@@ -1,10 +1,11 @@
-import {Badge, Button, IconButton} from "@mui/material";
+import {Badge, IconButton} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
   NavBarAppBar,
-  NavBarBox, NavBarBoxLeft,
+  NavBarBox,
+  NavBarBoxLeft,
   NavBarBoxRight,
   NavBarIconButton,
   NavBarToolbar,

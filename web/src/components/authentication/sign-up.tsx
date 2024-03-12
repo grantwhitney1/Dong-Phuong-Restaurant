@@ -2,34 +2,34 @@ import {SetStateAction, useState} from "react";
 import {useSignUp} from "../../hooks/authentication/auth-service.ts";
 import {Box, Button, TextField, Typography} from "@mui/material";
 
-const SignUp = ({onClose: onClose}: {onClose: () => unknown}) => {
+const SignUp = ({onClose: onClose}: { onClose: () => unknown }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const signUp = useSignUp();
 
-  const handleEmailChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handleEmailChange = (event: { target: { value: SetStateAction<string> } }) => {
     setEmail(event.target.value);
   }
 
-  const handlePasswordChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handlePasswordChange = (event: { target: { value: SetStateAction<string> } }) => {
     setPassword(event.target.value);
   }
 
-  const handleConfirmPasswordChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handleConfirmPasswordChange = (event: { target: { value: SetStateAction<string> } }) => {
     setConfirmPassword(event.target.value);
   }
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    signUp.mutate({ email, password, confirmPassword }, {
+    signUp.mutate({email, password, confirmPassword}, {
       onSuccess: () => {
         onClose();
       },
     });
   };
 
-  return(
+  return (
     <Box
       component='form'
       onSubmit={handleSubmit}
@@ -74,7 +74,7 @@ const SignUp = ({onClose: onClose}: {onClose: () => unknown}) => {
         error={signUp.isError ?? false}
       />
       <Typography>
-        {signUp.error ? signUp.error.message : ''}
+        {signUp.error ? signUp.error.message + signUp.error.cause?.toString() + signUp.error.stack?.toString() : ''}
       </Typography>
       <Button
         type='submit'

@@ -2,7 +2,9 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import {
   ConfirmEmailResponse,
   ForgotPasswordForm,
-  Manage2faForm, ManageInfoForm, GetManageInfoForm,
+  GetManageInfoForm,
+  Manage2faForm,
+  ManageInfoForm,
   ResetPasswordForm,
   SignInForm,
   SignupForm
@@ -10,12 +12,13 @@ import {
 import {apiBaseUrl} from "../../utils/vite-env.ts";
 
 const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async (credentials: unknown, url: URL) => {
+  console.log(JSON.stringify(credentials));
   const response = await fetch(url.toString(), {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(credentials),
+    body: JSON.stringify(credentials)
   });
 
   if (!response.ok) {
@@ -24,7 +27,7 @@ const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async
     else
       throw new Error('There was a problem receiving the network response.');
   }
-  return response.json();
+  return response.bodyUsed ? response.json() : response.statusText;
 };
 
 const signIn = async (credentials: SignInForm) => {
@@ -103,7 +106,7 @@ const confirmEmail = async (userId: string, code: string, changedEmail?: string)
   if (changedEmail) {
     url.searchParams.append('changedEmail', changedEmail);
   }
-  
+
   const response = await fetch(url.toString(), {
     method: 'GET',
     headers: {

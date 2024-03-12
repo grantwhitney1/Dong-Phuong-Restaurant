@@ -6,7 +6,7 @@ import SignUp from "./sign-up.tsx";
 
 const AuthModal = (
   {open: open, onClose: onClose}:
-  {open: boolean, onClose: () => unknown}) => {
+    { open: boolean, onClose: () => unknown }) => {
   const [value, setValue] = useState('auth-modal-sign-in');
 
   const handleChange = (_event: SyntheticEvent, newValue: string) => {
