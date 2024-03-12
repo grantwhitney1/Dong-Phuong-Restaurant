@@ -14,7 +14,7 @@ const AuthModal = (
   }
 
   return (
-    <Modal open={open} onClose={onClose} sx={{backgroundColor: 'rgba(255,255,255,0.85)'}}>
+    <Modal disableScrollLock open={open} onClose={onClose} sx={{backgroundColor: 'rgba(255,255,255,0.85)'}}>
       <Box>
         <TabContext value={value}>
           <Box>

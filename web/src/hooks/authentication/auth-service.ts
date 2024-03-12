@@ -16,7 +16,8 @@ const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async
   const response = await fetch(url.toString(), {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     },
     body: JSON.stringify(credentials)
   });
@@ -92,7 +93,7 @@ const signOut = async () => {
 
   if (!response.ok)
     throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  return response.bodyUsed ? response.json() : response.statusText;
 }
 
 export const useSignOut = () => {
@@ -115,10 +116,9 @@ const confirmEmail = async (userId: string, code: string, changedEmail?: string)
     },
   });
 
-
   if (!response.ok)
     throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  return response.bodyUsed ? response.json() : response.statusText;
 }
 
 export const useConfirmEmail = (userId: string, code: string, changedEmail?: string) => {
