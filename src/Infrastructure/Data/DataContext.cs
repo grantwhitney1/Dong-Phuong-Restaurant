@@ -4,6 +4,7 @@ using DongPhuong.Domain.Entities.Features.PackagedGoods;
 using DongPhuong.Domain.Entities.Features.PreparedGoods;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using DongPhuong.Domain.Entities.Features.Drinks;
 
 namespace DongPhuong.Infrastructure.Data;
 
@@ -54,6 +55,35 @@ public class DataContext(DbContextOptions<DataContext> options) : IdentityDbCont
             new PreparedGood { Id = 38, Name = "salad chả giò", Description = "egg roll (bún)", Price = 10.00m },
             new PreparedGood { Id = 39, Name = "salad nem nướng", Description = "vietnamese sausage", Price = 11.00m },
             new PreparedGood { Id = 40, Name = "salad đậu hủ nướng", Description = "grilled tofu", Price = 10.00m }
+        );
+        modelBuilder.Entity<Drink>().HasData(
+            new Drink { Id = 1, Name = "Avocado Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 2, Name = "Banana Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 3, Name = "Cappucino Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 4, Name = "Coconut Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 5, Name = "Coffee Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 6, Name = "Green Apple Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 7, Name = "Honeydew Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 8, Name = "Jackfruit Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 9, Name = "Lychee Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 10, Name = "Mango Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 11, Name = "Matcha Green Tea Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 12, Name = "Milk Tea Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 13, Name = "Papaya Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 14, Name = "Passion Fruit Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 15, Name = "Peach Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 16, Name = "Strawberry Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 17, Name = "Taro Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 18, Name = "Thai Tea Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 19, Name = "Watermelon Tapioca", Size = "Medium", Price = 5.00m },
+            new Drink { Id = 20, Name = "Coke", Size = "Medium", Price = 3.00m },
+            new Drink { Id = 21, Name = "Sprite", Size = "Medium", Price = 3.00m },
+            new Drink { Id = 22, Name = "Dr. Pepper", Size = "Medium", Price = 3.00m },
+            new Drink { Id = 23, Name = "Root Beer", Size = "Medium", Price = 3.00m },
+            new Drink { Id = 24, Name = "Water", Size = "Medium", Price = 0.00m },
+            new Drink { Id = 25, Name = "Tea", Size = "Medium", Price = 3.00m },
+            new Drink { Id = 26, Name = "Lemonade", Size = "Medium", Price = 3.00m },
+            new Drink { Id = 27, Name = "Coffee", Size = "Medium", Price = 3.00m }
         );
     }
 }
