@@ -1,6 +1,7 @@
 import {SetStateAction, useState} from "react";
 import {useSignUp} from "../../hooks/authentication/auth-service.ts";
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
+import {StyledBox} from "../../styles/components/authentication/sign-up.ts";
 
 const SignUp = ({onClose: onClose}: { onClose: () => unknown }) => {
   const [email, setEmail] = useState('');
@@ -30,14 +31,10 @@ const SignUp = ({onClose: onClose}: { onClose: () => unknown }) => {
   };
 
   return (
-    <Box
+    <StyledBox
       component='form'
       onSubmit={handleSubmit}
-      noValidate
     >
-      <Typography>
-        Sign Up
-      </Typography>
       <TextField
         required
         id='sign-up-email'
@@ -82,7 +79,7 @@ const SignUp = ({onClose: onClose}: { onClose: () => unknown }) => {
       >
         Sign In
       </Button>
-    </Box>
+    </StyledBox>
   );
 }
 

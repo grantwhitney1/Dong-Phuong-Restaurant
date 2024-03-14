@@ -1,5 +1,6 @@
 import {styled} from "@mui/system";
 import {Box, Container, IconButton, Modal, Tab, Tabs} from "@mui/material";
+import {blue} from "@mui/material/colors";
 
 export const StyledModal = styled(Modal)({
   backgroundColor: 'transparent'
@@ -20,7 +21,7 @@ export const StyledBox = styled(Box)({
   minHeight: '50vh',
   margin: '0 25% 0 25%',
   borderRadius: '2rem',
-  border: '.25rem solid rgba(0, 0, 0, .1)',
+  border: `.125rem solid ${blue[600]}`,
   boxShadow: '.25rem .25rem 4rem rgba(0, 0, 0, .5)'
 });
 

@@ -1,6 +1,8 @@
 import {SetStateAction, useState} from "react";
 import {useSignIn} from "../../hooks/authentication/auth-service.ts";
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
+import {StyledBox, StyledOutlinedInput} from "../../styles/components/authentication/sign-in.ts";
+import {slotShouldForwardProp} from "@mui/material/styles/styled";
 
 const SignIn = ({onClose: onClose}: { onClose: () => unknown }) => {
   const [email, setEmail] = useState('');
@@ -25,14 +27,10 @@ const SignIn = ({onClose: onClose}: { onClose: () => unknown }) => {
   };
 
   return (
-    <Box
+    <StyledBox
       component='form'
       onSubmit={handleSubmit}
-      noValidate
     >
-      <Typography>
-        Sign In
-      </Typography>
       <TextField
         required
         id='sign-in-email'
@@ -65,7 +63,7 @@ const SignIn = ({onClose: onClose}: { onClose: () => unknown }) => {
       >
         Sign In
       </Button>
-    </Box>
+    </StyledBox>
   );
 }
 
