@@ -1,8 +1,7 @@
 import {SetStateAction, useState} from "react";
 import {useSignIn} from "../../hooks/authentication/auth-service.ts";
 import {Button, TextField, Typography} from "@mui/material";
-import {StyledBox, StyledOutlinedInput} from "../../styles/components/authentication/sign-in.ts";
-import {slotShouldForwardProp} from "@mui/material/styles/styled";
+import {StyledBox} from "../../styles/components/authentication/sign-in.ts";
 
 const SignIn = ({onClose: onClose}: { onClose: () => unknown }) => {
   const [email, setEmail] = useState('');
