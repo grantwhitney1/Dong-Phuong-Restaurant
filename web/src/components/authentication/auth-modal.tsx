@@ -1,17 +1,17 @@
 import {SyntheticEvent, useState} from "react";
-import {Box} from "@mui/material";
+import {Box, Tabs} from "@mui/material";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import {TabContext, TabPanel} from '@mui/lab';
-import SignIn from "./sign-in.tsx";
-import SignUp from "./sign-up.tsx";
+import {TabContext} from '@mui/lab';
+import SignIn from "./sign-in";
+import SignUp from "./sign-up";
 import {
   StyledBox,
   StyledContainer,
   StyledIconButton,
   StyledModal,
   StyledTab,
-  StyledTabs
-} from "../../styles/components/authentication/auth-modal.ts";
+  StyledTabPanel,
+} from "../../styles/components/authentication/auth-modal";
 
 const AuthModal = (
   {open: open, onClose: onClose}:
@@ -28,28 +28,28 @@ const AuthModal = (
         <StyledBox>
           <TabContext value={value}>
             <Box>
-              <StyledTabs value={value} onChange={handleChange}>
+              <Tabs value={value} onChange={handleChange}>
                 <StyledTab label='Sign In' value='auth-modal-sign-in'/>
                 <StyledTab label='Sign Up' value='auth-modal-sign-up'/>
                 <StyledIconButton onClick={onClose}>
                   <CloseRoundedIcon color='primary'/>
                 </StyledIconButton>
-              </StyledTabs>
+              </Tabs>
             </Box>
-            <TabPanel
+            <StyledTabPanel
               id='auth-modal-sign-in'
               value={value}
               hidden={'auth-modal-sign-in' !== value}
             >
               <SignIn onClose={onClose}/>
-            </TabPanel>
-            <TabPanel
+            </StyledTabPanel>
+            <StyledTabPanel
               id='auth-modal-sign-in'
               value={value}
               hidden={'auth-modal-sign-up' !== value}
             >
               <SignUp onClose={onClose}/>
-            </TabPanel>
+            </StyledTabPanel>
           </TabContext>
         </StyledBox>
       </StyledContainer>

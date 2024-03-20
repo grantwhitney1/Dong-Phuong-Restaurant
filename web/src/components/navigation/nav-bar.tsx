@@ -7,11 +7,11 @@ import {
   NavBarBox,
   StyledBoxLeft,
   StyledBoxRight,
+  StyledH1,
   StyledIconButton,
-  StyledToolbar,
-  StyledTypography
-} from "../../styles/components/navigation/nav-bar.ts";
-import AuthModal from "../authentication/auth-modal.tsx";
+  StyledToolbar
+} from "../../styles/components/navigation/nav-bar";
+import AuthModal from "../authentication/auth-modal";
 import {useState} from "react";
 
 const NavBar = () => {
@@ -39,9 +39,9 @@ const NavBar = () => {
               <MenuIcon/>
             </StyledIconButton>
           </StyledBoxLeft>
-          <StyledTypography variant="h4" noWrap>
+          <StyledH1>
             Dong Phuong Restaurant
-          </StyledTypography>
+          </StyledH1>
           <StyledBoxRight>
             <IconButton size="large" color="inherit">
               <Badge badgeContent={1} color="primary">

@@ -1,5 +1,5 @@
 import {styled} from "@mui/system";
-import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, IconButton, Toolbar} from "@mui/material";
 import primaryAppBarImage from "../../../assets/components/navigation/primary-app-bar/primary-app-bar.png";
 
 export const NavBarBox = styled(Box)(() => ({
@@ -34,12 +34,13 @@ export const StyledIconButton = styled(IconButton)(({theme}) => ({
   marginRight: theme.spacing(2),
 }));
 
-export const StyledTypography = styled(Typography)(() => ({
+export const StyledH1 = styled('h1')(() => ({
   sx: {display: {xs: 'none', sm: 'block'}},
   userSelect: 'none',
   fontFamily: 'inherit',
-  component: 'div',
   textAlign: 'center',
+  fontWeight: '600',
+  textWrap: 'nowrap',
   flex: 1,
 }));
 

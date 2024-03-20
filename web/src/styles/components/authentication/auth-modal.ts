@@ -1,6 +1,7 @@
 import {styled} from "@mui/system";
-import {Box, Container, IconButton, Modal, Tab, Tabs} from "@mui/material";
+import {Box, Container, IconButton, Modal, Tab} from "@mui/material";
 import {blue} from "@mui/material/colors";
+import {TabPanel} from "@mui/lab";
 
 export const StyledModal = styled(Modal)({
   backgroundColor: 'transparent'
@@ -25,8 +26,8 @@ export const StyledBox = styled(Box)({
   boxShadow: '.25rem .25rem 4rem rgba(0, 0, 0, .5)'
 });
 
-export const StyledTabs = styled(Tabs)({
-
+export const StyledTabPanel = styled(TabPanel)({
+  padding: '1rem 20% 1rem 20%',
 });
 
 export const StyledTab = styled(Tab)({
