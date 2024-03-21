@@ -9,11 +9,12 @@ import {
   SignInForm,
   SignupForm
 } from "../../types/authentication/auth";
-import {apiBaseUrl} from "../../utils/vite-env.ts";
+import {apiBaseUrl} from "../../utils/vite-env";
 
 const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async (credentials: unknown, url: URL) => {
   console.log(JSON.stringify(credentials));
   const response = await fetch(url.toString(), {
+    mode: 'no-cors',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -88,6 +89,7 @@ export const useManageInfo = () => {
 const signOut = async () => {
   const url = new URL(`${apiBaseUrl}logout`);
   const response = await fetch(url.toString(), {
+    mode: 'no-cors',
     method: 'POST',
   });
 
@@ -109,6 +111,7 @@ const confirmEmail = async (userId: string, code: string, changedEmail?: string)
   }
 
   const response = await fetch(url.toString(), {
+    mode: 'no-cors',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
