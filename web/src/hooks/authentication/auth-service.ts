@@ -24,7 +24,7 @@ const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async
   });
 
   if (!response.ok) {
-    if (response.status === 401 || response.status === 400)
+    if (response.status >= 400 && response.status < 500)
       throw new Error('The credentials given were not valid.');
     else
       throw new Error('There was a problem receiving the network response.');
