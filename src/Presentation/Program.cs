@@ -83,7 +83,8 @@ app.UseCors(o =>
     o.AllowAnyMethod();
     o.AllowAnyOrigin();
 });
-app.MapIdentityApi<IdentityUser>();
+app.MapIdentityApi<IdentityUser>()
+    .RequireCors();
 app.MapControllers();
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
     {
@@ -97,6 +98,7 @@ app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
             return Results.Unauthorized();
         }
     })
-    .RequireAuthorization();
+    .RequireAuthorization()
+    .RequireCors();
 
 app.Run();
