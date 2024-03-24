@@ -77,15 +77,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
-app.UseCors(o =>
-{
-    o.AllowAnyHeader();
-    o.AllowAnyMethod();
-    o.AllowAnyOrigin();
-});
+app.UseCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.MapIdentityApi<IdentityUser>()
-    .RequireCors();
-app.MapControllers();
+    .RequireCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+app.MapControllers().RequireCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
     {
         try
@@ -99,6 +94,6 @@ app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
         }
     })
     .RequireAuthorization()
-    .RequireCors();
+    .RequireCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.Run();
