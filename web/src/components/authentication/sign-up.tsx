@@ -31,7 +31,7 @@ const SignUp = ({onClose: onClose}: { onClose: () => unknown }) => {
 
   useEffect(() => {
     isError || signUp.isPending || signUp.isPaused ||
-    email === '' || password === '' ?
+    email === '' || password === '' || confirmPassword !== password ?
       setDisabled(true) : setDisabled(false);
   }, [isError, signUp, email, password]);
 
