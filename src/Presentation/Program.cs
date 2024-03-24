@@ -52,6 +52,13 @@ builder.Services.AddScoped<IDrinksQueryHandler, DrinksQueryHandler>();
 builder.Services.AddScoped<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
 builder.Services.AddScoped<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
 
+builder.Services.AddCors(options => options
+    .AddDefaultPolicy(policyBuilder => policyBuilder
+        .AllowAnyHeader()
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+    )
+);
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<DataContext>();
@@ -76,11 +83,24 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+app.UseCors(policyBuilder => policyBuilder
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowAnyOrigin()
+);
 app.MapIdentityApi<IdentityUser>()
-    .RequireCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-app.MapControllers().RequireCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+    .RequireCors(policyBuilder => policyBuilder
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowAnyOrigin()
+    );
+app.MapControllers().RequireCors(policyBuilder => policyBuilder
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowAnyOrigin()
+);
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
     {
         try
@@ -94,6 +114,10 @@ app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
         }
     })
     .RequireAuthorization()
-    .RequireCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+    .RequireCors(policyBuilder => policyBuilder
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowAnyOrigin()
+    );
 
 app.Run();
