@@ -70,11 +70,12 @@ builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseDeveloperExceptionPage();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseDeveloperExceptionPage();
     using var scope = app.Services.CreateScope();
     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
     if (dataContext.Database.CanConnect())
