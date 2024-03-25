@@ -9,4 +9,12 @@ public class PackagedGood : IEntity
     public string? Description { get; set; }
     public decimal? Weight { get; set; }
     public decimal? Price { get; set; }
+
+    public PackagedGood(string name, string description, decimal weight, decimal price)
+    {
+        Name = name;
+        Description = description;
+        Weight = weight;
+        Price = price;
+    }
 }
