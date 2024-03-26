@@ -56,10 +56,13 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_051D5ED13ED54279AD0F920E90F06D65 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_41F8013772AA4C5091C22D2FDBF03A0F }}
 
+      - name: List files in myapp
+        run: ls .
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: "dong-phuong-api"
           slot-name: "Production"
-          package: myapp
+          package: .
