@@ -28,18 +28,5 @@ public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<Packaged
 
         builder.Property(x => x.Weight)
             .HasPrecision(precisionWeight, scaleWeight);
-
-        builder.HasData(
-            new PackagedGood("Marinated Cooked and Frozen Roast Pork", "cooked and frozen pork roast", 5.00m, 18.00m),
-            new PackagedGood("Marinated Cooked and Frozen Chicken", "cooked and frozen chicken", 5.00m, 16.00m),
-            new PackagedGood("Marinated Cooked and Frozen Beef", "cooked and frozen marinated beef ", 5.00m, 18.00m),
-            new PackagedGood("Marinated Cooked and Frozen Pork Chops", "cooked and frozen pork chops", 5.00m, 22.00m),
-            new PackagedGood("Marinated Raw and Frozen Roast Pork", "raw and frozen pork roast", 5.00m, 16.00m),
-            new PackagedGood("Marinated Raw and Frozen Chicken", "raw and frozen chicken", 5.00m, 15.00m),
-            new PackagedGood("Marinated Raw and Frozen Beef", "raw and frozen beef", 5.00m, 15.00m),
-            new PackagedGood("Marinated Raw and Frozen Pork Chops", "raw and frozen pork chops", 5.00m, 18.00m),
-            new PackagedGood("Fish Sauce", "housemade fish sauce", 1.00m, 3.00m),
-            new PackagedGood("Peanut Sauce", "housemade peanut sauce", 1.00m, 3.00m)
-        );
     }
 }
