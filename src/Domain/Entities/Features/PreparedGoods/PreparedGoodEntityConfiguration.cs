@@ -13,7 +13,6 @@ public class PreparedGoodEntityConfiguration : IEntityTypeConfiguration<Prepared
         const int precisionPrice = (int)Precision.Price;
         const int scalePrice = (int)Scale.Price;
 
-
         builder.ToTable(nameof(PreparedGood).ToPlural(), Schemas.Domain);
 
         builder.Property(x => x.Name)

@@ -60,6 +60,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddValidatorsFromAssemblyContaining<PackagedGoodDtoValidator>();
 builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<DatabaseInitializer>();
 
 var app = builder.Build();
 
@@ -72,6 +73,8 @@ if (app.Environment.IsDevelopment())
     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
     if (dataContext.Database.CanConnect())
         await dataContext.Database.MigrateAsync();
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
+    await dbInitializer.SeedData();
 }
 
 app.UseHttpsRedirection();
