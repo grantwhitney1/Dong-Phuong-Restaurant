@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DongPhuong.Domain.Entities.Features.Drinks;  
-using DongPhuong.Domain.Entities.Features.PreparedGoods;  
-using DongPhuong.Domain.Entities.Features.PackagedGoods;  
-using DongPhuong.Domain.Enums;  
+using DongPhuong.Domain.Entities.Features.Drinks;
+using DongPhuong.Domain.Entities.Features.PreparedGoods;
+using DongPhuong.Domain.Entities.Features.PackagedGoods;
+using DongPhuong.Domain.Enums;
 using DongPhuong.Infrastructure.Data;
 
 namespace DongPhuong.Infrastructure.Data;
@@ -22,120 +22,50 @@ public class DatabaseInitializer
         if (!_context.Drinks.Any())
         {
             _context.Drinks.AddRange(
-                new Drink(DrinkNames.Avocado, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Avocado, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Avocado, DrinkSizes.Large, 7.00m),
-
+            new Drink(DrinkNames.Avocado, DrinkSizes.Medium, 5.00m),
             new Drink(DrinkNames.Banana, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Banana, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Banana, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Cappucino, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Cappucino, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Cappucino, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Coconut, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Coconut, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Coconut, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Coffee, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Coffee, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Coffee, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.GreenApple, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.GreenApple, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.GreenApple, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Honeydew, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Honeydew, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Honeydew, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Jackfruit, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Jackfruit, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Jackfruit, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Lychee, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Lychee, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Lychee, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Mango, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Mango, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Mango, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.MatchaGreenTea, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.MatchaGreenTea, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.MatchaGreenTea, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.MilkTea, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.MilkTea, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.MilkTea, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Papaya, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Papaya, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Papaya, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.PassionFruit, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.PassionFruit, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.PassionFruit, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Peach, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Peach, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Peach, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Strawberry, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Strawberry, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Strawberry, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Taro, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Taro, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Taro, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.ThaiTea, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.ThaiTea, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.ThaiTea, DrinkSizes.Large, 7.00m),
-
             new Drink(DrinkNames.Watermelon, DrinkSizes.Medium, 5.00m),
-            new Drink(DrinkNames.Watermelon, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Watermelon, DrinkSizes.Large, 7.00m),
-
-            new Drink(DrinkNames.Cola, DrinkSizes.Medium, 3.00m),
-            new Drink(DrinkNames.Cola, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Cola, DrinkSizes.Large, 4.00m),
-
-            new Drink(DrinkNames.Lemonade, DrinkSizes.Medium, 3.00m),
-            new Drink(DrinkNames.Lemonade, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Lemonade, DrinkSizes.Large, 4.00m),
-
-            new Drink(DrinkNames.RootBeer, DrinkSizes.Medium, 3.00m),
-            new Drink(DrinkNames.RootBeer, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.RootBeer, DrinkSizes.Large, 4.00m),
-
-            new Drink(DrinkNames.Coke, DrinkSizes.Medium, 3.00m),
-            new Drink(DrinkNames.Coke, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Coke, DrinkSizes.Large, 4.00m),
-
-            new Drink(DrinkNames.Sprite, DrinkSizes.Medium, 3.00m),
-            new Drink(DrinkNames.Sprite, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Sprite, DrinkSizes.Large, 4.00m),
-
-            new Drink(DrinkNames.DrPepper, DrinkSizes.Medium, 3.00m),
-            new Drink(DrinkNames.DrPepper, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.DrPepper, DrinkSizes.Large, 4.00m),
-
-            new Drink(DrinkNames.Tea, DrinkSizes.Medium, 3.00m),
-            new Drink(DrinkNames.Tea, DrinkSizes.Small, 2.00m),
-            new Drink(DrinkNames.Tea, DrinkSizes.Large, 4.00m),
-
-            new Drink(DrinkNames.Water, DrinkSizes.Medium, 0.00m),
-            new Drink(DrinkNames.Water, DrinkSizes.Small, 0.00m),
-            new Drink(DrinkNames.Water, DrinkSizes.Large, 0.00m)
+            new Drink(DrinkNames.RootBeer, DrinkSizes.Medium, 1.50m),
+            new Drink(DrinkNames.Coke, DrinkSizes.Medium, 1.50m),
+            new Drink(DrinkNames.DietCoke, DrinkSizes.Medium, 1.50m),
+            new Drink(DrinkNames.Sprite, DrinkSizes.Medium, 1.50m),
+            new Drink(DrinkNames.DrPepper, DrinkSizes.Medium, 1.50m),
+            new Drink(DrinkNames.Water, DrinkSizes.Medium, 1.00m),
+            new Drink(DrinkNames.HotCoffe, DrinkSizes.Medium, 3.00m),
+            new Drink(DrinkNames.IceCoffee, DrinkSizes.Medium, 3.00m),
+            new Drink(DrinkNames.IceMilkCoffee, DrinkSizes.Medium, 4.00m),
+            new Drink(DrinkNames.HotMilkCoffe, DrinkSizes.Medium, 3.00m),
+            new Drink(DrinkNames.LimeadeSoda, DrinkSizes.Medium, 3.00m),
+            new Drink(DrinkNames.Limeade, DrinkSizes.Medium, 2.00m),
+            new Drink(DrinkNames.EggSoda, DrinkSizes.Medium, 4.00m),
+            new Drink(DrinkNames.SoyBeanMilk, DrinkSizes.Medium, 1.75m),
+            new Drink(DrinkNames.SaltLimeade, DrinkSizes.Medium, 3.00m),
+            new Drink(DrinkNames.UnsweetIceTea, DrinkSizes.Medium, 1.75m),
+            new Drink(DrinkNames.HotTea, DrinkSizes.Medium, 1.00m),
+            new Drink(DrinkNames.CoconutJuice, DrinkSizes.Medium, 3.00m)
             );
         }
-    
+
         if (!_context.PreparedGoods.Any())
         {
             _context.PreparedGoods.AddRange(
-               new PreparedGood("chả giò", "4 fried shrimp and pork egg rolls", 5.00m),
+            new PreparedGood("chả giò", "4 fried shrimp and pork egg rolls", 5.00m),
             new PreparedGood("gỏi cuốn", "2 shrimp & pork spring rolls", 5.00m),
             new PreparedGood("bún gà nướng", "grilled chicken vermicelli", 11.00m),
             new PreparedGood("bún thịt nướng", "grilled pork vermicelli", 11.00m),
@@ -195,14 +125,14 @@ public class DatabaseInitializer
         if (!_context.PackagedGoods.Any())
         {
             _context.PackagedGoods.AddRange(
-                new PackagedGood("Marinated Cooked and Frozen Roast Pork", "cooked and frozen pork roast", 5.00m, 18.00m),
-                new PackagedGood("Marinated Cooked and Frozen Chicken", "cooked and frozen chicken", 5.00m, 16.00m),
-                new PackagedGood("Marinated Cooked and Frozen Beef", "cooked and frozen marinated beef ", 5.00m, 18.00m),
-                new PackagedGood("Marinated Cooked and Frozen Pork Chops", "cooked and frozen pork chops", 5.00m, 22.00m),
-                new PackagedGood("Marinated Raw and Frozen Roast Pork", "raw and frozen pork roast", 5.00m, 16.00m),
-                new PackagedGood("Marinated Raw and Frozen Chicken", "raw and frozen chicken", 5.00m, 15.00m),
-                new PackagedGood("Marinated Raw and Frozen Beef", "raw and frozen beef", 5.00m, 15.00m),
-                new PackagedGood("Marinated Raw and Frozen Pork Chops", "raw and frozen pork chops", 5.00m, 18.00m),
+                new PackagedGood("Marinated Cooked and Frozen Roast Pork", "Marinated, cooked and Frozen Pork Roast", 5.00m, 15.00m),
+                new PackagedGood("Marinated Cooked and Frozen Chicken", "Marinated, cooked and frozen chicken", 5.00m, 15.00m),
+                new PackagedGood("Marinated Cooked and Frozen Beef", "Marinated, cooked and frozen marinated beef ", 5.00m, 16.00m),
+                new PackagedGood("Marinated Cooked and Frozen Pork Chops", "Marinated, cooked and frozen pork chops", 5.00m, 15.00m),
+                new PackagedGood("Marinated Raw and Frozen Roast Pork", "Marinated and frozen pork roast", 5.00m, 12.00m),
+                new PackagedGood("Marinated Raw and Frozen Chicken", "Marinated and frozen chicken", 5.00m, 12.00m),
+                new PackagedGood("Marinated Raw and Frozen Beef", "Marinated and frozen beef", 5.00m, 14.00m),
+                new PackagedGood("Marinated Raw and Frozen Pork Chops", "Marinated and frozen pork chops", 5.00m, 15.00m),
                 new PackagedGood("Fish Sauce", "housemade fish sauce", 1.00m, 3.00m),
                 new PackagedGood("Peanut Sauce", "housemade peanut sauce", 1.00m, 3.00m)
             );

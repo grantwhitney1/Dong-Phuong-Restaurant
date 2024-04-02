@@ -2,33 +2,45 @@ namespace DongPhuong.Domain.Enums;
 
 public static class DrinkNames
 {
-    public static readonly string Avocado = "Avocado";
-    public static readonly string Banana = "Banana";
-    public static readonly string Cappucino = "Cappucino";
-    public static readonly string Coconut = "Coconut";
-    public static readonly string Coffee = "Coffee";
-    public static readonly string GreenApple = "GreenApple";
-    public static readonly string Honeydew = "Honeydew";
-    public static readonly string Jackfruit = "Jackfruit";
-    public static readonly string Lychee = "Lychee";
-    public static readonly string Mango = "Mango";
-    public static readonly string MatchaGreenTea = "MatchaGreenTea";
-    public static readonly string MilkTea = "MilkTea";
-    public static readonly string Papaya = "Papaya";
-    public static readonly string PassionFruit = "PassionFruit";
-    public static readonly string Peach = "Peach";
-    public static readonly string Strawberry = "Strawberry";
-    public static readonly string Taro = "Taro";
-    public static readonly string ThaiTea = "ThaiTea";
-    public static readonly string Watermelon = "Watermelon";
-    public static readonly string Cola = "Cola";
+    public static readonly string Avocado = "Avocado Tapioca";
+    public static readonly string Banana = "Banana Tapioca";
+    public static readonly string Cappucino = "Cappucino Tapioca";
+    public static readonly string Coconut = "Coconut Tapioca";
+    public static readonly string Coffee = "Coffee Tapioca";
+    public static readonly string GreenApple = "GreenApple Tapioca";
+    public static readonly string Honeydew = "Honeydew Tapioca";
+    public static readonly string Jackfruit = "Jackfruit Tapioca";
+    public static readonly string Lychee = "Lychee Tapioca";
+    public static readonly string Mango = "Mango Tapioca";
+    public static readonly string MatchaGreenTea = "MatchaGreenTea Tapioca";
+    public static readonly string MilkTea = "MilkTea Tapioca";
+    public static readonly string Papaya = "Papaya Tapioca";
+    public static readonly string PassionFruit = "PassionFruit Tapioca";
+    public static readonly string Peach = "Peach Tapioca";
+    public static readonly string Strawberry = "Strawberry Tapioca";
+    public static readonly string Taro = "Taro Tapioca";
+    public static readonly string ThaiTea = "ThaiTea Tapioca";
+    public static readonly string Watermelon = "Watermelon Tapioca";
     public static readonly string Lemonade = "Lemonade";
     public static readonly string RootBeer = "RootBeer";
     public static readonly string Coke = "Coke";
+    public static readonly string DietCoke = "Diet Coke";
     public static readonly string Sprite = "Sprite";
     public static readonly string DrPepper = "DrPepper";
-    public static readonly string Tea = "Tea";
-    public static readonly string Water = "Water";
+    public static readonly string Water = "Bottled Water";
+    public static readonly string HotCoffe = "Hot Black Chicory Coffee"; //
+    public static readonly string IceCoffee = "Ice Black Chicory Coffee";
+    public static readonly string HotMilkCoffe = "Hot Chicory Coffee With Milk";
+    public static readonly string IceMilkCoffee = "Ice Chicory Coffee With Milk";
+    public static readonly string LimeadeSoda = "Limade Club Soda";
+    public static readonly string Limeade = "Limeade";
+    public static readonly string SaltLimeade = "Salt-Preserved Limeade";
+    public static readonly string SoyBeanMilk = "Soy Bean Milk";
+    public static readonly string UnsweetIceTea = "Unsweet Iced Tea";
+    public static readonly string HotTea = "Hot Tea";
+    public static readonly string CoconutJuice = "Coconut Juice";
+    public static readonly string EggSoda = "Egg and Milk Soda";
+
 }
 
 public static class DrinkSizes
