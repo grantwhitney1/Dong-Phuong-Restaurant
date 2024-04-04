@@ -3,49 +3,67 @@ using DongPhuong.Domain.Dtos.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 using DongPhuong.Presentation.Controllers.Api.Base;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DongPhuong.Presentation.Controllers.Api;
-
-[Route("api/[controller]")]
-public class DrinksController(IDrinksCommandHandler commandHandler, IDrinksQueryHandler queryHandler)
-    : BaseApiController
+namespace DongPhuong.Presentation.Controllers.Api
 {
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
+    [Route("api/[controller]")]
+    public class DrinksController : BaseApiController
     {
-        return Ok(await queryHandler.HandleAsync<DrinkGetDto>());
-    }
+        private readonly IDrinksCommandHandler _commandHandler;
+        private readonly IDrinksQueryHandler _queryHandler;
 
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> Get([FromRoute] int id)
-    {
-        return Ok(await queryHandler.HandleAsync<DrinkGetDto>(id));
-    }
+        public DrinksController(IDrinksCommandHandler commandHandler, IDrinksQueryHandler queryHandler)
+        {
+            _commandHandler = commandHandler;
+            _queryHandler = queryHandler;
+        }
 
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] PostRequest<DrinkDto> request)
-    {
-        var response = await commandHandler.HandleAsync(request);
-        if (response.Errors.Any())
-            return BadRequest(response);
-        return Ok(response);
-    }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _queryHandler.HandleAsync<DrinkGetDto>());
+        }
 
-    [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PutRequest<DrinkDto?> request)
-    {
-        var response = await commandHandler.HandleAsync(id, request);
-        if (response.Errors.Any())
-            return BadRequest(response);
-        return Ok(response);
-    }
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> Get([FromRoute] int id)
+        {
+            return Ok(await _queryHandler.HandleAsync<DrinkGetDto>(id));
+        }
 
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete([FromRoute] int id)
-    {
-        var response = await commandHandler.HandleAsync(id);
-        if (response.Errors.Any())
-            return NotFound(response);
-        return Ok(response);
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] PostRequest<DrinkDto> request)
+        {
+            var response = await _commandHandler.HandleAsync(request);
+            if (response.Errors.Any())
+                return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PutRequest<DrinkDto?> request)
+        {
+            var response = await _commandHandler.HandleAsync(id, request);
+            if (response.Errors.Any())
+                return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var response = await _commandHandler.HandleAsync(id);
+            if (response.Errors.Any())
+                return NotFound(response);
+            return Ok(response);
+        }
+
+        [HttpGet("paged")]
+        public async Task<IActionResult> GetPaged([FromQuery] int pageNum = 1, [FromQuery] int pageSize = 10, [FromQuery] string filter = null)
+        {
+            var drinks = await _queryHandler.HandleGetDrinksPagedAsync(pageNum, pageSize, filter);
+            return Ok(drinks);
+        }
     }
 }
