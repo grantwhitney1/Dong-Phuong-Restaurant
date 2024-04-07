@@ -3,13 +3,10 @@ using DongPhuong.Application.Handlers.Features.Base;
 using DongPhuong.Domain.Entities.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories;
-using DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories.Base;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using DongPhuong.Domain.Dtos.Features.Drinks;
 
-namespace DongPhuong.Application.Handlers.Features.Drinks
-{
+namespace DongPhuong.Application.Handlers.Features.Drinks;
+
     public class DrinksQueryHandler : QueryHandler<Drink>, IDrinksQueryHandler
     {
         private readonly IMapper _mapper;
@@ -27,4 +24,3 @@ namespace DongPhuong.Application.Handlers.Features.Drinks
             return drinkDtos;
         }
     }
-}

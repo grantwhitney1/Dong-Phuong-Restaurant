@@ -6,12 +6,9 @@ using DongPhuong.Infrastructure.Data;
 using DongPhuong.Infrastructure.Services.Repositories.Base;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace DongPhuong.Infrastructure.Services.Repositories
-{
+namespace DongPhuong.Infrastructure.Services.Repositories;
+
     public class DrinksRepository : Repository<Drink>, IDrinksRepository
     {
         private readonly DataContext _dataContext;
@@ -58,4 +55,3 @@ namespace DongPhuong.Infrastructure.Services.Repositories
             return _mapper.Map<List<DrinkDto>>(entities);
         }
     }
-}

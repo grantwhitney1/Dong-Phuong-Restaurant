@@ -3,11 +3,9 @@ using DongPhuong.Domain.Dtos.Features.Drinks;
 using DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 using DongPhuong.Presentation.Controllers.Api.Base;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace DongPhuong.Presentation.Controllers.Api
-{
+namespace DongPhuong.Presentation.Controllers.Api;
+
     [Route("api/[controller]")]
     public class DrinksController : BaseApiController
     {
@@ -66,4 +64,3 @@ namespace DongPhuong.Presentation.Controllers.Api
             return Ok(drinks);
         }
     }
-}
