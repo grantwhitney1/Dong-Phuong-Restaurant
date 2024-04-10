@@ -20,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Environment.IsDevelopment()
     ? builder.Configuration.GetConnectionString("LocalDbConnectionString")
-    : Environment.GetEnvironmentVariable("DbConnectionString");
+    : Environment.GetEnvironmentVariable("SQLAZURECONNSTR_DbConnectionString");
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(connectionString));
