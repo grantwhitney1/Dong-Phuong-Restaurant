@@ -1,5 +1,3 @@
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
 using DongPhuong.Application.Handlers.Features.Drinks;
 using DongPhuong.Application.Handlers.Features.PackagedGoods;
 using DongPhuong.Application.Handlers.Features.PreparedGoods;
@@ -20,26 +18,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (builder.Environment.IsDevelopment())
-{
-    var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
-    builder.Services.AddDbContext<DataContext>(options =>
-        options.UseSqlServer(localDbConnectionString));
-}
-else if (builder.Environment.IsProduction())
-{
-    var vaultUrl = builder.Configuration["VaultUrl"];
-    var client = new SecretClient(new Uri(vaultUrl!), new DefaultAzureCredential());
-    var cloudDbConnectionString = client.GetSecret("DbConnectionString");
-    builder.Services.AddDbContext<DataContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
-}
+var connectionString = builder.Environment.IsProduction()
+    ? builder.Configuration.GetConnectionString("LocalDbConnectionString")
+    : Environment.GetEnvironmentVariable("DbConnectionString");
+
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddAutoMapper(typeof(IEntity));
 builder.Services.AddLogging();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
 builder.Services.AddScoped<IDrinksRepository, DrinksRepository>();
 builder.Services.AddScoped<IPackagedGoodsRepository, PackagedGoodsRepository>();
 builder.Services.AddScoped<IPreparedGoodsRepository, PreparedGoodsRepository>();
