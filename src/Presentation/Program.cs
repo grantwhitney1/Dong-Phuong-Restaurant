@@ -52,16 +52,13 @@ builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseDeveloperExceptionPage();
-    using var scope = app.Services.CreateScope();
-    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-    if (dataContext.Database.CanConnect())
-        await dataContext.Database.MigrateAsync();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseDeveloperExceptionPage();
+using var scope = app.Services.CreateScope();
+var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+if (dataContext.Database.CanConnect())
+    await dataContext.Database.MigrateAsync();
 
 app.UseHttpsRedirection();
 app.UseRouting();
