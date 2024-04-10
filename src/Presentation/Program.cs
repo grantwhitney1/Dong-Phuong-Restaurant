@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Environment.IsProduction()
+var connectionString = builder.Environment.IsDevelopment()
     ? builder.Configuration.GetConnectionString("LocalDbConnectionString")
     : Environment.GetEnvironmentVariable("DbConnectionString");
 
