@@ -41,6 +41,14 @@ builder.Services.AddScoped<IDrinksQueryHandler, DrinksQueryHandler>();
 builder.Services.AddScoped<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
 builder.Services.AddScoped<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
 
+builder.Services.Configure<CookiePolicyOptions>(o =>
+{
+    o.CheckConsentNeeded = _ => true;
+    o.MinimumSameSitePolicy = SameSiteMode.None;
+    o.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None;
+    o.Secure = CookieSecurePolicy.Always;
+});
+
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<DataContext>();
@@ -62,6 +70,7 @@ if (dataContext.Database.CanConnect())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCookiePolicy();
 app.UseAuthorization();
 app.UseCors(o =>
 {
