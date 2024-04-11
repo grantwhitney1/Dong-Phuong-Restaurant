@@ -13,7 +13,7 @@ const App = () => {
     if (!error && data) {
       useUserStore.getState().setUser({email: data.email, isAuthenticated: true});
     } else if (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   }, [isLoading, error, data]);
 
