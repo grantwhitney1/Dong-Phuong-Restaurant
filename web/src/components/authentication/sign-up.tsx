@@ -1,44 +1,59 @@
-import {SetStateAction, useState} from "react";
-import {useSignUp} from "../../hooks/authentication/auth-service.ts";
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {SetStateAction, useEffect, useState} from "react";
+import {useSignUp} from "../../hooks/authentication/auth-service";
+import {StyledButton, StyledForm, StyledTextField} from "../../styles/components/authentication/sign-up";
 
-const SignUp = ({onClose: onClose}: {onClose: () => unknown}) => {
+const SignUp = ({onClose: onClose}: { onClose: () => unknown }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [helperText, setHelperText] = useState('');
+  const [disabled, setDisabled] = useState(true);
+  const [isError, setIsError] = useState(false);
   const signUp = useSignUp();
 
-  const handleEmailChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handleEmailChange = (event: { target: { value: SetStateAction<string> } }) => {
     setEmail(event.target.value);
+    setIsError(false);
+    setHelperText('');
   }
 
-  const handlePasswordChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handlePasswordChange = (event: { target: { value: SetStateAction<string> } }) => {
     setPassword(event.target.value);
+    setIsError(false);
+    setHelperText('');
   }
 
-  const handleConfirmPasswordChange = (event: { target: { value: SetStateAction<string> }}) => {
+  const handleConfirmPasswordChange = (event: { target: { value: SetStateAction<string> } }) => {
     setConfirmPassword(event.target.value);
+    setIsError(false);
+    setHelperText('');
   }
+
+  useEffect(() => {
+    isError || signUp.isPending || signUp.isPaused ||
+    email === '' || password === '' || confirmPassword !== password ?
+      setDisabled(true) : setDisabled(false);
+  }, [isError, signUp, email, password]);
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    signUp.mutate({ email, password, confirmPassword }, {
+    signUp.mutate({email, password, confirmPassword}, {
       onSuccess: () => {
         onClose();
       },
+      onError: (error) => {
+        setHelperText(error.message);
+        setIsError(true);
+      }
     });
   };
 
-  return(
-    <Box
-      component='form'
+  return (
+    <StyledForm
       onSubmit={handleSubmit}
       noValidate
     >
-      <Typography>
-        Sign Up
-      </Typography>
-      <TextField
+      <StyledTextField
         required
         id='sign-up-email'
         label='Email Address'
@@ -47,9 +62,9 @@ const SignUp = ({onClose: onClose}: {onClose: () => unknown}) => {
         autoFocus
         value={email}
         onChange={handleEmailChange}
-        error={signUp.isError ?? false}
+        error={isError}
       />
-      <TextField
+      <StyledTextField
         required
         type='password'
         id='sign-up-password'
@@ -59,9 +74,9 @@ const SignUp = ({onClose: onClose}: {onClose: () => unknown}) => {
         autoFocus
         value={password}
         onChange={handlePasswordChange}
-        error={signUp.isError ?? false}
+        error={isError}
       />
-      <TextField
+      <StyledTextField
         required
         type='password'
         id='sign-up-confirm-password'
@@ -71,18 +86,16 @@ const SignUp = ({onClose: onClose}: {onClose: () => unknown}) => {
         autoFocus
         value={confirmPassword}
         onChange={handleConfirmPasswordChange}
-        error={signUp.isError ?? false}
+        error={isError}
+        helperText={helperText}
       />
-      <Typography>
-        {signUp.error ? signUp.error.message : ''}
-      </Typography>
-      <Button
+      <StyledButton
         type='submit'
-        disabled={signUp.isPending || signUp.isPaused}
+        disabled={disabled}
       >
         Sign In
-      </Button>
-    </Box>
+      </StyledButton>
+    </StyledForm>
   );
 }
 

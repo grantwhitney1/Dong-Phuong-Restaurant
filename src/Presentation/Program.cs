@@ -41,9 +41,8 @@ builder.Services.AddScoped<IDrinksQueryHandler, DrinksQueryHandler>();
 builder.Services.AddScoped<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
 builder.Services.AddScoped<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
 
-builder.Services.Configure<CookiePolicyOptions>(o =>
+builder.Services.AddCookiePolicy(o =>
 {
-    o.CheckConsentNeeded = _ => true;
     o.MinimumSameSitePolicy = SameSiteMode.None;
     o.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None;
     o.Secure = CookieSecurePolicy.Always;
@@ -84,17 +83,16 @@ app.UseCors(o =>
 app.MapIdentityApi<IdentityUser>();
 app.MapControllers();
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
+{
+    try
     {
-        try
-        {
-            await signInManager.SignOutAsync();
-            return Results.Ok();
-        }
-        catch
-        {
-            return Results.Unauthorized();
-        }
-    })
-    .RequireAuthorization();
+        await signInManager.SignOutAsync();
+        return Results.Ok();
+    }
+    catch
+    {
+        return Results.Unauthorized();
+    }
+});
 
 app.Run();

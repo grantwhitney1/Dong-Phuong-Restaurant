@@ -1,57 +1,99 @@
-import {Badge, Button, IconButton} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import {Button, IconButton, Menu, MenuItem} from "@mui/material";
 import {
   NavBarAppBar,
-  NavBarBox, NavBarBoxLeft,
-  NavBarBoxRight,
-  NavBarIconButton,
-  NavBarToolbar,
-  NavBarTypography
-} from "../../styles/components/navigation/nav-bar.ts";
-import AuthModal from "../authentication/auth-modal.tsx";
-import {useState} from "react";
+  NavBarBox,
+  StyledBoxLeft,
+  StyledBoxRight,
+  StyledH1,
+  StyledToolbar
+} from "../../styles/components/navigation/nav-bar";
+import AuthModal from "../authentication/auth-modal";
+import React, {useState} from "react";
+import {useUserStore} from "../../../store";
+import {useLogout} from "../../hooks/authentication/auth-service";
 
 const NavBar = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
+  const user = useUserStore(state => state.user);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [tabsValue, setTabsValue] = useState('auth-modal-sign-in');
+  const {mutate} = useLogout();
+
+  const handleOpenSignInAuthModal = () => {
+    setTabsValue('auth-modal-sign-in');
+    setAuthModalOpen(true);
+  };
+
+  const handleOpenSignUpAuthModal = () => {
+    setTabsValue('auth-modal-sign-up');
+    setAuthModalOpen(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setAuthModalOpen(false);
+  };
+
+  const handleOpenAuthMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseAuthMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    mutate();
+    setAnchorEl(null);
   }
 
-  const handleClose = () => {
-    setOpen(false);
-  }
 
   return (
     <NavBarBox>
-      <AuthModal onClose={handleClose} open={open}/>
+      <AuthModal tabsValue={tabsValue} setTabsValue={setTabsValue} onClose={handleCloseAuthModal} open={authModalOpen}/>
       <NavBarAppBar position="static">
-        <NavBarToolbar>
-          <NavBarBoxLeft>
-            <NavBarIconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-            >
-              <MenuIcon/>
-            </NavBarIconButton>
-          </NavBarBoxLeft>
-          <NavBarTypography variant="h4" noWrap>
+        <StyledToolbar>
+          <StyledBoxLeft>
+          </StyledBoxLeft>
+          <StyledH1>
             Dong Phuong Restaurant
-          </NavBarTypography>
-          <NavBarBoxRight>
-            <IconButton size="large" color="inherit">
-              <Badge badgeContent={1} color="primary">
-                <NotificationsIcon/>
-              </Badge>
-            </IconButton>
-            <IconButton size="large" color="inherit" onClick={handleOpen}>
-              <AccountCircleIcon/>
-            </IconButton>
-          </NavBarBoxRight>
-        </NavBarToolbar>
+          </StyledH1>
+          <StyledBoxRight>
+            {
+              !user.isAuthenticated ?
+                <>
+                  <Button
+                    style={{marginLeft: '0.25rem', marginRight: '0.25rem'}}
+                    color="inherit"
+                    onClick={handleOpenSignInAuthModal}
+                  >
+                    Sign In
+                  </Button>
+                  <Button
+                    style={{marginLeft: '0.25rem', marginRight: '0.25rem'}}
+                    color="inherit"
+                    onClick={handleOpenSignUpAuthModal}
+                  >
+                    Sign Up
+                  </Button>
+                </> :
+                <>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleCloseAuthMenu}
+                  >
+                    <MenuItem onClick={handleLogout}>
+                      Sign Out
+                    </MenuItem>
+                  </Menu>
+                  <IconButton onClick={handleOpenAuthMenu} size="large" color="inherit">
+                    <AccountCircleIcon/>
+                  </IconButton>
+                </>
+            }
+          </StyledBoxRight>
+        </StyledToolbar>
       </NavBarAppBar>
     </NavBarBox>
   );
