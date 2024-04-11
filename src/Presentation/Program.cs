@@ -68,7 +68,9 @@ app.UseCors(o =>
     o.AllowCredentials();
     o.AllowAnyHeader();
     o.AllowAnyMethod();
-    o.AllowAnyOrigin();
+    o.WithOrigins([
+        "http://localhost:3000", "https://localhost:3000", "https://polite-pebble-03902a710.4.azurestaticapps.net/"
+    ]);
 });
 app.MapIdentityApi<IdentityUser>();
 app.MapControllers();
