@@ -65,6 +65,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseCors(o =>
 {
+    o.AllowCredentials();
     o.AllowAnyHeader();
     o.AllowAnyMethod();
     o.AllowAnyOrigin();
