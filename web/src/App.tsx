@@ -7,11 +7,10 @@ import {useGetManageInfo} from "./hooks/authentication/auth-service";
 import {useEffect} from "react";
 
 const App = () => {
-  const user = useUserStore(state => state.user);
   const {isLoading, error, data} = useGetManageInfo();
 
   useEffect(() => {
-    if (!isLoading && !error && data && data.email) {
+    if (!error && data) {
       useUserStore.getState().setUser({email: data.email, isAuthenticated: true});
     } else if (error) {
       alert(error.message);
@@ -20,7 +19,7 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user}/>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="*" element={<NotFound/>}/>

@@ -1,5 +1,3 @@
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
 using DongPhuong.Application.Handlers.Features.Drinks;
 using DongPhuong.Application.Handlers.Features.PackagedGoods;
 using DongPhuong.Application.Handlers.Features.PreparedGoods;
@@ -20,26 +18,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (builder.Environment.IsDevelopment())
-{
-    var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
-    builder.Services.AddDbContext<DataContext>(options =>
-        options.UseSqlServer(localDbConnectionString));
-}
-else if (builder.Environment.IsProduction())
-{
-    var vaultUrl = builder.Configuration["VaultUrl"];
-    var client = new SecretClient(new Uri(vaultUrl!), new DefaultAzureCredential());
-    var cloudDbConnectionString = client.GetSecret("DbConnectionString");
-    builder.Services.AddDbContext<DataContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
-}
+var connectionString = builder.Environment.IsDevelopment()
+    ? builder.Configuration.GetConnectionString("LocalDbConnectionString")
+    : Environment.GetEnvironmentVariable("SQLAZURECONNSTR_DbConnectionString");
+
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddAutoMapper(typeof(IEntity));
 builder.Services.AddLogging();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
 builder.Services.AddScoped<IDrinksRepository, DrinksRepository>();
 builder.Services.AddScoped<IPackagedGoodsRepository, PackagedGoodsRepository>();
 builder.Services.AddScoped<IPreparedGoodsRepository, PreparedGoodsRepository>();
@@ -52,13 +41,12 @@ builder.Services.AddScoped<IDrinksQueryHandler, DrinksQueryHandler>();
 builder.Services.AddScoped<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
 builder.Services.AddScoped<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
 
-builder.Services.AddCors(options => options
-    .AddDefaultPolicy(policyBuilder => policyBuilder
-        .AllowAnyHeader()
-        .AllowAnyOrigin()
-        .AllowAnyMethod()
-    )
-);
+builder.Services.AddCookiePolicy(o =>
+{
+    o.MinimumSameSitePolicy = SameSiteMode.None;
+    o.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None;
+    o.Secure = CookieSecurePolicy.Always;
+});
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<DataContext>();
@@ -73,53 +61,37 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseDeveloperExceptionPage();
-
-if (app.Environment.IsDevelopment())
-{
-    using var scope = app.Services.CreateScope();
-    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-    if (dataContext.Database.CanConnect())
-        await dataContext.Database.MigrateAsync();
-}
+using var scope = app.Services.CreateScope();
+var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+if (dataContext.Database.CanConnect())
+    await dataContext.Database.MigrateAsync();
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseAuthentication();
+app.UseCookiePolicy();
 app.UseAuthorization();
-app.UseCors(policyBuilder => policyBuilder
-    .AllowAnyHeader()
-    .AllowAnyMethod()
-    .AllowAnyOrigin()
-);
-app.MapIdentityApi<IdentityUser>()
-    .RequireCors(policyBuilder => policyBuilder
-        .AllowCredentials()
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowAnyOrigin()
-    );
-app.MapControllers().RequireCors(policyBuilder => policyBuilder
-    .AllowAnyHeader()
-    .AllowAnyMethod()
-    .AllowAnyOrigin()
-);
+app.UseCors(o =>
+{
+    o.AllowCredentials();
+    o.AllowAnyHeader();
+    o.AllowAnyMethod();
+    o.WithOrigins([
+        "http://localhost:3000", "https://localhost:3000", "https://polite-pebble-03902a710.4.azurestaticapps.net"
+    ]);
+});
+app.MapIdentityApi<IdentityUser>();
+app.MapControllers();
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
+{
+    try
     {
-        try
-        {
-            await signInManager.SignOutAsync();
-            return Results.Ok();
-        }
-        catch
-        {
-            return Results.Unauthorized();
-        }
-    })
-    .RequireAuthorization()
-    .RequireCors(policyBuilder => policyBuilder
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowAnyOrigin()
-    );
+        await signInManager.SignOutAsync();
+        return Results.Ok();
+    }
+    catch
+    {
+        return Results.Unauthorized();
+    }
+});
 
 app.Run();

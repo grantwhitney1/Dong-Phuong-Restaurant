@@ -10,8 +10,10 @@ import {
 } from "../../styles/components/navigation/nav-bar";
 import AuthModal from "../authentication/auth-modal";
 import {useState} from "react";
+import {useUserStore} from "../../../store";
 
-const NavBar = ({user}: { user: { email: string, isAuthenticated: boolean } }) => {
+const NavBar = () => {
+  const user = useUserStore(state => state.user);
   const [open, setOpen] = useState(false);
   const [tabsValue, setTabsValue] = useState('auth-modal-sign-in');
 

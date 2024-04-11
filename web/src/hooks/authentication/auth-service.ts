@@ -159,7 +159,8 @@ const getManageInfo = async (): Promise<GetManageInfoResponse> => {
 
   if (!response.ok && response.status !== 401)
     throw new Error('There was a problem receiving the network response.');
-  return response.bodyUsed ? response.json() : response.statusText;
+
+  return response.json();
 }
 
 export const useGetManageInfo = () => {
