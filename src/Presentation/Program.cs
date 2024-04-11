@@ -93,6 +93,7 @@ app.UseCors(policyBuilder => policyBuilder
 );
 app.MapIdentityApi<IdentityUser>()
     .RequireCors(policyBuilder => policyBuilder
+        .AllowCredentials()
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowAnyOrigin()
