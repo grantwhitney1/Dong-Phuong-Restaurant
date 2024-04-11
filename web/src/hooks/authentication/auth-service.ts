@@ -92,7 +92,7 @@ export const useManageInfo = () => {
   return useMutation({mutationFn: manageInfo});
 }
 
-const signOut = async () => {
+const logout = async () => {
   const url = new URL(`${apiBaseUrl}logout`);
   const response = await fetch(url.toString(), {
     mode: 'cors',
@@ -112,8 +112,8 @@ const signOut = async () => {
   return response.bodyUsed ? response.json() : response.statusText;
 }
 
-export const useSignOut = () => {
-  return useMutation({mutationFn: signOut});
+export const useLogout = () => {
+  return useMutation({mutationFn: logout});
 }
 
 const confirmEmail = async (userId: string, code: string, changedEmail?: string): Promise<ConfirmEmailResponse> => {

@@ -1,5 +1,5 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import {Button, IconButton} from "@mui/material";
+import {Button, IconButton, Menu, MenuItem} from "@mui/material";
 import {
   NavBarAppBar,
   NavBarBox,
@@ -9,31 +9,48 @@ import {
   StyledToolbar
 } from "../../styles/components/navigation/nav-bar";
 import AuthModal from "../authentication/auth-modal";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useUserStore} from "../../../store";
+import {useLogout} from "../../hooks/authentication/auth-service";
 
 const NavBar = () => {
   const user = useUserStore(state => state.user);
-  const [open, setOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [tabsValue, setTabsValue] = useState('auth-modal-sign-in');
+  const {mutate} = useLogout();
 
-  const handleOpenSignIn = () => {
+  const handleOpenSignInAuthModal = () => {
     setTabsValue('auth-modal-sign-in');
-    setOpen(true);
-  }
+    setAuthModalOpen(true);
+  };
 
-  const handleOpenSignUp = () => {
+  const handleOpenSignUpAuthModal = () => {
     setTabsValue('auth-modal-sign-up');
-    setOpen(true);
+    setAuthModalOpen(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setAuthModalOpen(false);
+  };
+
+  const handleOpenAuthMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseAuthMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    mutate();
+    setAnchorEl(null);
   }
 
-  const handleClose = () => {
-    setOpen(false);
-  }
 
   return (
     <NavBarBox>
-      <AuthModal tabsValue={tabsValue} setTabsValue={setTabsValue} onClose={handleClose} open={open}/>
+      <AuthModal tabsValue={tabsValue} setTabsValue={setTabsValue} onClose={handleCloseAuthModal} open={authModalOpen}/>
       <NavBarAppBar position="static">
         <StyledToolbar>
           <StyledBoxLeft>
@@ -48,21 +65,32 @@ const NavBar = () => {
                   <Button
                     style={{marginLeft: '0.25rem', marginRight: '0.25rem'}}
                     color="inherit"
-                    onClick={handleOpenSignIn}
+                    onClick={handleOpenSignInAuthModal}
                   >
                     Sign In
                   </Button>
                   <Button
                     style={{marginLeft: '0.25rem', marginRight: '0.25rem'}}
                     color="inherit"
-                    onClick={handleOpenSignUp}
+                    onClick={handleOpenSignUpAuthModal}
                   >
                     Sign Up
                   </Button>
                 </> :
-                <IconButton size="large" color="inherit">
-                  <AccountCircleIcon/>
-                </IconButton>
+                <>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleCloseAuthMenu}
+                  >
+                    <MenuItem onClick={handleLogout}>
+                      Sign Out
+                    </MenuItem>
+                  </Menu>
+                  <IconButton onClick={handleOpenAuthMenu} size="large" color="inherit">
+                    <AccountCircleIcon/>
+                  </IconButton>
+                </>
             }
           </StyledBoxRight>
         </StyledToolbar>
