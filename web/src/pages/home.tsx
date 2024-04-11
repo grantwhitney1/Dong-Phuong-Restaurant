@@ -5,6 +5,14 @@ import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import RamenDiningIcon from '@mui/icons-material/RamenDining';
 import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
+import ImageOne from "../../public/img/1.jpg";
+import ImageTwo from "../../public/img/2.jpg";
+import ImageThree from "../../public/img/3.jpg";
+import ImageFour from "../../public/img/4.jpg";
+import ImageFive from "../../public/img/5.jpg";
+import ImageSix from "../../public/img/6.jpg";
+import ImageSeven from "../../public/img/7.jpg";
+
 import React from "react";
 
 const Home = () => {
@@ -35,18 +43,62 @@ const Home = () => {
           margin: '0 auto'
         }}
       >
-        {
-          [1, 2, 3, 4, 5, 6, 7].map((item, index) => (
-            <div key={index} style={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: 'auto',
-              justifyContent: 'center'
-            }}>
-              <img height={512} style={{alignSelf: 'center'}} src={`../../public/img/${item}.jpg`}/>
-            </div>
-          ))
-        }
+        <div key={1} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'auto',
+          justifyContent: 'center'
+        }}>
+          <img height={512} style={{alignSelf: 'center'}} src={ImageOne}/>
+        </div>
+        <div key={2} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'auto',
+          justifyContent: 'center'
+        }}>
+          <img height={512} style={{alignSelf: 'center'}} src={ImageTwo}/>
+        </div>
+        <div key={3} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'auto',
+          justifyContent: 'center'
+        }}>
+          <img height={512} style={{alignSelf: 'center'}} src={ImageThree}/>
+        </div>
+        <div key={4} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'auto',
+          justifyContent: 'center'
+        }}>
+          <img height={512} style={{alignSelf: 'center'}} src={ImageFour}/>
+        </div>
+        <div key={5} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'auto',
+          justifyContent: 'center'
+        }}>
+          <img height={512} style={{alignSelf: 'center'}} src={ImageFive}/>
+        </div>
+        <div key={6} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'auto',
+          justifyContent: 'center'
+        }}>
+          <img height={512} style={{alignSelf: 'center'}} src={ImageSix}/>
+        </div>
+        <div key={7} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'auto',
+          justifyContent: 'center'
+        }}>
+          <img height={512} style={{alignSelf: 'center'}} src={ImageSeven}/>
+        </div>
       </Carousel>
       <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
       <Typography
