@@ -69,7 +69,7 @@ app.UseCors(o =>
     o.AllowAnyHeader();
     o.AllowAnyMethod();
     o.WithOrigins([
-        "http://localhost:3000", "https://localhost:3000", "https://polite-pebble-03902a710.4.azurestaticapps.net/"
+        "http://localhost:3000", "https://localhost:3000", "https://polite-pebble-03902a710.4.azurestaticapps.net"
     ]);
 });
 app.MapIdentityApi<IdentityUser>();
