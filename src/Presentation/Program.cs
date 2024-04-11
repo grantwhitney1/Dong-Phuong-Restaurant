@@ -47,6 +47,7 @@ builder.Services.AddCookiePolicy(o =>
     o.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None;
     o.Secure = CookieSecurePolicy.Always;
 });
+
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<DataContext>();
