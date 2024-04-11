@@ -150,13 +150,11 @@ export const useConfirmEmail = (userId: string, code: string, changedEmail?: str
 const getManageInfo = async (): Promise<GetManageInfoResponse> => {
   const url = new URL(`${apiBaseUrl}manage/info`);
   const response = await fetch(url.toString(), {
-    mode: 'cors',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     },
-    credentials: 'include'
+    credentials: 'include',
   });
 
   if (!response.ok && response.status !== 401)
