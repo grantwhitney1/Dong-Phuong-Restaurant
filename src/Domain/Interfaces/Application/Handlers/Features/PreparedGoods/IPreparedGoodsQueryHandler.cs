@@ -5,5 +5,5 @@ namespace DongPhuong.Domain.Interfaces.Application.Handlers.Features.PreparedGoo
 
 public interface IPreparedGoodsQueryHandler : IQueryHandler
 {
-    Task<IEnumerable<PreparedGoodDto>> HandleGetPreparedGoodsPagedAsync(int pageNum, int pageSize, string filter);
+    Task<IEnumerable<PreparedGoodDto>> HandleGetPreparedGoodsPagedAsync(int pageNum, int pageSize, string? filter);
 }

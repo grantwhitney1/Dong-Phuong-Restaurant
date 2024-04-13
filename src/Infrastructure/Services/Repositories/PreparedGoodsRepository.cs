@@ -25,7 +25,7 @@ public class PreparedGoodsRepository(DataContext dataContext, ILogger<PreparedGo
         await SaveAsync();
         return dto;
     }
-    public async Task<IEnumerable<PreparedGoodDto>> GetAllPreparedGoodsAsync(int pageNum = 1, int pageSize = 10, string filter = null)
+    public async Task<IEnumerable<PreparedGoodDto>> GetAllPreparedGoodsAsync(int pageNum = 1, int pageSize = 10, string? filter = null)
     {
         pageNum = pageNum < 1 ? 1 : pageNum;
         pageSize = pageSize < 1 ? 1 : pageSize;

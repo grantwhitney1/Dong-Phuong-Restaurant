@@ -33,7 +33,7 @@ namespace DongPhuong.Infrastructure.Services.Repositories;
             return dto;
         }
 
-        public async Task<IEnumerable<DrinkDto>> GetAllDrinksAsync(int pageNum = 1, int pageSize = 10, string filter = null)
+        public async Task<IEnumerable<DrinkDto>> GetAllDrinksAsync(int pageNum = 1, int pageSize = 10, string? filter = null)
         {
             pageNum = pageNum < 1 ? 1 : pageNum;
             pageSize = pageSize < 1 ? 1 : pageSize;

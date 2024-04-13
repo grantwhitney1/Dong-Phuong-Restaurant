@@ -7,5 +7,5 @@ namespace DongPhuong.Domain.Interfaces.Application.Handlers.Features.Drinks;
 
     public interface IDrinksQueryHandler : IQueryHandler
     {
-        Task<IEnumerable<DrinkDto>> HandleGetDrinksPagedAsync(int pageNum, int pageSize, string filter);
+        Task<IEnumerable<DrinkDto>> HandleGetDrinksPagedAsync(int pageNum, int pageSize, string? filter);
     }

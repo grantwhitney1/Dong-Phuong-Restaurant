@@ -25,7 +25,7 @@ public class PackagedGoodsRepository(DataContext dataContext, ILogger<PackagedGo
         await SaveAsync();
         return dto;
     }
-    public async Task<IEnumerable<PackagedGoodDto>> GetAllPackagedGoodsAsync(int pageNum = 1, int pageSize = 10, string filter = null)
+    public async Task<IEnumerable<PackagedGoodDto>> GetAllPackagedGoodsAsync(int pageNum = 1, int pageSize = 10, string? filter = null)
     {
         pageNum = pageNum < 1 ? 1 : pageNum;
         pageSize = pageSize < 1 ? 1 : pageSize;

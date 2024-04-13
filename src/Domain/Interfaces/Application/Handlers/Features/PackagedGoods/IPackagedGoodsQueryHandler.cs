@@ -5,5 +5,5 @@ namespace DongPhuong.Domain.Interfaces.Application.Handlers.Features.PackagedGoo
 
 public interface IPackagedGoodsQueryHandler : IQueryHandler
 {
-Task<IEnumerable<PackagedGoodDto>> HandleGetPackagedGoodsPagedAsync(int pageNum, int pageSize, string filter);
+Task<IEnumerable<PackagedGoodDto>> HandleGetPackagedGoodsPagedAsync(int pageNum, int pageSize, string? filter);
 }

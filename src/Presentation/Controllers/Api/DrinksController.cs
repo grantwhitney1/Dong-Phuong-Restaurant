@@ -58,7 +58,7 @@ namespace DongPhuong.Presentation.Controllers.Api;
         }
 
         [HttpGet("paged")]
-        public async Task<IActionResult> GetPaged([FromQuery] int pageNum = 1, [FromQuery] int pageSize = 10, [FromQuery] string filter = null)
+        public async Task<IActionResult> GetPaged([FromQuery] int pageNum = 1, [FromQuery] int pageSize = 10, [FromQuery] string? filter = null)
         {
             var drinks = await _queryHandler.HandleGetDrinksPagedAsync(pageNum, pageSize, filter);
             return Ok(drinks);

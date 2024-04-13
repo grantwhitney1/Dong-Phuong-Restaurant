@@ -50,7 +50,7 @@ public class PackagedGoodsController(
         return Ok(response);
     }
     [HttpGet("paged")]
-    public async Task<IActionResult> GetPaged([FromQuery] int pageNum = 1, [FromQuery] int pageSize = 10, [FromQuery] string filter = null)
+    public async Task<IActionResult> GetPaged([FromQuery] int pageNum = 1, [FromQuery] int pageSize = 10, [FromQuery] string? filter = null)
     {
         var packagedGoods = await queryHandler.HandleGetPackagedGoodsPagedAsync(pageNum, pageSize, filter);
         return Ok(packagedGoods);

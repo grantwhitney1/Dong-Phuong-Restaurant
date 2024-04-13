@@ -7,5 +7,5 @@ namespace DongPhuong.Domain.Interfaces.Infrastructure.Services.Repositories;
     public interface IDrinksRepository : IRepository<Drink>
     {
         Task<DrinkDto?> UpdateAsync(int id, DrinkDto dto);
-        Task<IEnumerable<DrinkDto>> GetAllDrinksAsync(int pageNum = 1, int pageSize = 10, string filter = null);
+        Task<IEnumerable<DrinkDto>> GetAllDrinksAsync(int pageNum = 1, int pageSize = 10, string? filter = null);
     }
