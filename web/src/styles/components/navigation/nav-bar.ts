@@ -1,6 +1,7 @@
 import {styled} from "@mui/system";
 import {AppBar, Box, IconButton, Toolbar} from "@mui/material";
 import primaryAppBarImage from "../../../assets/components/navigation/primary-app-bar/primary-app-bar.png";
+import {grey} from "@mui/material/colors";
 
 export const NavBarBox = styled(Box)(() => ({
   fontFamily: 'Cormorant SC, serif',
@@ -36,6 +37,7 @@ export const StyledIconButton = styled(IconButton)(({theme}) => ({
 
 export const StyledH1 = styled('h1')(() => ({
   sx: {display: {xs: 'none', sm: 'block'}},
+  color: grey[50],
   userSelect: 'none',
   fontFamily: 'inherit',
   textAlign: 'center',

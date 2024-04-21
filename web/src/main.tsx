@@ -2,7 +2,7 @@ import {createRoot} from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 import {createTheme, ThemeProvider} from '@mui/material';
-import {blue} from '@mui/material/colors'
+import {red} from '@mui/material/colors'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 const container = document.getElementById('root');
@@ -12,7 +12,7 @@ const queryClient = new QueryClient();
 
 const theme = createTheme({
   palette: {
-    primary: blue
+    primary: red,
   }
 });
 

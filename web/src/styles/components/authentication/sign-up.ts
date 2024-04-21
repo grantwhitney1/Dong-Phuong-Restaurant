@@ -1,6 +1,6 @@
 import {Button, OutlinedInput, TextField} from "@mui/material";
 import {styled} from "@mui/system";
-import {blue} from "@mui/material/colors";
+import {red} from "@mui/material/colors";
 
 export const StyledForm = styled('form')({
   display: 'flex',
@@ -17,8 +17,8 @@ export const StyledTextField = styled(TextField)({
 
 export const StyledButton = styled(Button)({
   margin: '2rem',
-  backgroundColor: `${blue[50]}80`,
+  backgroundColor: `${red[50]}80`,
   '&:hover': {
-    backgroundColor: `${blue[50]}`
+    backgroundColor: `${red[50]}`
   }
 });

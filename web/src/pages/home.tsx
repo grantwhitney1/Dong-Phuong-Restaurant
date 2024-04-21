@@ -5,15 +5,16 @@ import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import RamenDiningIcon from '@mui/icons-material/RamenDining';
 import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
-import ImageOne from "../../public/img/1.jpg";
-import ImageTwo from "../../public/img/2.jpg";
-import ImageThree from "../../public/img/3.jpg";
-import ImageFour from "../../public/img/4.jpg";
-import ImageFive from "../../public/img/5.jpg";
-import ImageSix from "../../public/img/6.jpg";
-import ImageSeven from "../../public/img/7.jpg";
+import ImageOne from "/img/1.jpg";
+import ImageTwo from "/img/2.jpg";
+import ImageThree from "/img/3.jpg";
+import ImageFour from "/img/4.jpg";
+import ImageFive from "/img/5.jpg";
+import ImageSix from "/img/6.jpg";
+import ImageSeven from "/img/7.jpg";
 
 import React from "react";
+import {red} from "@mui/material/colors";
 
 const Home = () => {
   const [value, setValue] = React.useState(0);
@@ -38,8 +39,13 @@ const Home = () => {
         autoPlay
         stopAutoPlayOnHover
         navButtonsAlwaysVisible
+        navButtonsProps={{
+          style: {
+            backgroundColor: red[500],
+          }
+        }}
         sx={{
-          width: '50%',
+          width: '66%',
           margin: '0 auto'
         }}
       >
@@ -100,12 +106,12 @@ const Home = () => {
           <img height={512} style={{alignSelf: 'center'}} src={ImageSeven}/>
         </div>
       </Carousel>
-      <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
       <Typography
         variant="h4"
         fontFamily="Cormorant SC, serif"
         fontWeight="800"
         textAlign="center"
+        marginTop="4rem"
       >
         Try Our Exotic, Traditional Vietnamese Cuisine
       </Typography>
@@ -123,12 +129,12 @@ const Home = () => {
         <Tab icon={<RamenDiningIcon/>} label="SOUPS"/>
         <Tab icon={<EmojiFoodBeverageIcon/>} label="BEVERAGES"/>
       </Tabs>
-      <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
       <div style={{
         display: 'flex',
         flexDirection: 'row',
         width: '100vw',
         justifyContent: 'center',
+        marginTop: '4rem'
       }}>
         <Button variant="contained" sx={{marginRight: '2rem'}}>
           See Full Menu
@@ -137,12 +143,12 @@ const Home = () => {
           Place an Online Order
         </Button>
       </div>
-      <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
       <Typography
         variant="h4"
         fontFamily="Cormorant SC, serif"
         fontWeight="800"
         textAlign="center"
+        marginTop="4rem"
       >
         {"A Taste of New Orleans' Diverse Taste and Culture"}
       </Typography>
