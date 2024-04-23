@@ -15,12 +15,18 @@ import ImageSeven from "/img/7.jpg";
 
 import React from "react";
 import {red} from "@mui/material/colors";
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+
+  const handleOrderButtonClick = () => {
+    navigate("/order");
   };
 
   return (
@@ -139,7 +145,7 @@ const Home = () => {
         <Button variant="contained" sx={{marginRight: '2rem'}}>
           See Full Menu
         </Button>
-        <Button variant="contained" sx={{marginLeft: '2rem'}}>
+        <Button variant="contained" sx={{marginLeft: '2rem'}} onClick={handleOrderButtonClick}>
           Place an Online Order
         </Button>
       </div>

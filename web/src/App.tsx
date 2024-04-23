@@ -5,6 +5,7 @@ import NavBar from "./components/navigation/nav-bar";
 import {useUserStore} from "../store";
 import {useGetManageInfo} from "./hooks/authentication/auth-service";
 import {useEffect} from "react";
+import Order from "./pages/order";
 
 const App = () => {
   const {isLoading, error, data} = useGetManageInfo();
@@ -22,6 +23,7 @@ const App = () => {
       <NavBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/order" element={<Order/>}/> 
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </>
