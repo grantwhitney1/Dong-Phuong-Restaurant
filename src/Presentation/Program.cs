@@ -60,13 +60,18 @@ builder.Services.AddScoped<DatabaseInitializer>();
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
-app.UseDeveloperExceptionPage();
-using var scope = app.Services.CreateScope();
-var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-if (dataContext.Database.CanConnect())
-    await dataContext.Database.MigrateAsync();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+    using var scope = app.Services.CreateScope();
+    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+    if (dataContext.Database.CanConnect())
+        await dataContext.Database.MigrateAsync();
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
+    await dbInitializer.SeedData();
+}
 
 app.UseHttpsRedirection();
 app.UseRouting();

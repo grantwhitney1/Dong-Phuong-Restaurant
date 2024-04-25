@@ -49,4 +49,10 @@ public class PreparedGoodsController(
             return NotFound(response);
         return Ok(response);
     }
+    [HttpGet("paged")]
+    public async Task<IActionResult> GetPaged([FromQuery] int pageNum = 1, [FromQuery] int pageSize = 10, [FromQuery] string? filter = null)
+    {
+        var preparedGoods = await queryHandler.HandleGetPreparedGoodsPagedAsync(pageNum, pageSize, filter);
+        return Ok(preparedGoods);
+    }
 }
