@@ -56,6 +56,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddValidatorsFromAssemblyContaining<PackagedGoodDtoValidator>();
 builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<DatabaseInitializer>();
 
 var app = builder.Build();
 
