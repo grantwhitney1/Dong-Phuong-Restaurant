@@ -2,21 +2,25 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import {
   ConfirmEmailResponse,
   ForgotPasswordForm,
-  Manage2faForm, ManageInfoForm, GetManageInfoForm,
+  GetManageInfoResponse,
+  Manage2faForm,
+  ManageInfoForm,
   ResetPasswordForm,
   SignInForm,
   SignupForm
 } from "../../types/authentication/auth";
-import {apiBaseUrl} from "../../utils/vite-env.ts";
+import {apiBaseUrl} from "../../utils/vite-env";
+import {useUserStore} from "../../../store";
 
-const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async (credentials: unknown, url: URL) => {
+const authenticationResponse: (credentials: unknown, url: URL) => Promise<unknown> = async (credentials, url: URL) => {
   const response = await fetch(url.toString(), {
+    mode: 'cors',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     },
-    body: JSON.stringify(credentials),
+    body: JSON.stringify(credentials)
   });
 
   if (!response.ok) {
@@ -25,12 +29,18 @@ const jsonResponse: (credentials: unknown, url: URL) => Promise<unknown> = async
     else
       throw new Error('There was a problem receiving the network response.');
   }
-  return response.json();
+
+  if (typeof credentials === 'object' && credentials !== null && 'email' in credentials) {
+    const validCredentials = credentials as { email: string };
+    useUserStore.getState().setUser({email: validCredentials.email, isAuthenticated: true});
+  }
+
+  return response.bodyUsed ? response.json() : response.statusText;
 };
 
 const signIn = async (credentials: SignInForm) => {
   const url = new URL(`${apiBaseUrl}login?useCookies=true`);
-  return await jsonResponse(credentials, url);
+  return await authenticationResponse(credentials, url);
 }
 
 export const useSignIn = () => {
@@ -39,7 +49,7 @@ export const useSignIn = () => {
 
 const signup = async (credentials: SignupForm) => {
   const url = new URL(`${apiBaseUrl}register`);
-  return await jsonResponse(credentials, url);
+  return await authenticationResponse(credentials, url);
 }
 
 export const useSignUp = () => {
@@ -48,7 +58,7 @@ export const useSignUp = () => {
 
 const forgotPassword = async (credentials: ForgotPasswordForm) => {
   const url = new URL(`${apiBaseUrl}forgotPassword`);
-  return await jsonResponse(credentials, url);
+  return await authenticationResponse(credentials, url);
 }
 
 export const useForgotPassword = () => {
@@ -57,7 +67,7 @@ export const useForgotPassword = () => {
 
 const resetPassword = async (credentials: ResetPasswordForm) => {
   const url = new URL(`${apiBaseUrl}resetPassword`);
-  return await jsonResponse(credentials, url);
+  return await authenticationResponse(credentials, url);
 }
 
 export const useResetPassword = () => {
@@ -66,7 +76,7 @@ export const useResetPassword = () => {
 
 const manage2fa = async (credentials: Manage2faForm) => {
   const url = new URL(`${apiBaseUrl}manage/2fa`);
-  return await jsonResponse(credentials, url);
+  return await authenticationResponse(credentials, url);
 }
 
 export const useManage2fa = () => {
@@ -75,26 +85,35 @@ export const useManage2fa = () => {
 
 const manageInfo = async (credentials: ManageInfoForm) => {
   const url = new URL(`${apiBaseUrl}manage/info`);
-  return await jsonResponse(credentials, url);
+  return await authenticationResponse(credentials, url);
 }
 
 export const useManageInfo = () => {
   return useMutation({mutationFn: manageInfo});
 }
 
-const signOut = async () => {
+const logout = async () => {
   const url = new URL(`${apiBaseUrl}logout`);
   const response = await fetch(url.toString(), {
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+    credentials: 'include',
     method: 'POST',
   });
 
   if (!response.ok)
     throw new Error('There was a problem receiving the network response.');
-  return response.json();
+
+  useUserStore.getState().setUser({email: '', isAuthenticated: false});
+
+  return response.bodyUsed ? response.json() : response.statusText;
 }
 
-export const useSignOut = () => {
-  return useMutation({mutationFn: signOut});
+export const useLogout = () => {
+  return useMutation({mutationFn: logout});
 }
 
 const confirmEmail = async (userId: string, code: string, changedEmail?: string): Promise<ConfirmEmailResponse> => {
@@ -104,18 +123,20 @@ const confirmEmail = async (userId: string, code: string, changedEmail?: string)
   if (changedEmail) {
     url.searchParams.append('changedEmail', changedEmail);
   }
-  
+
   const response = await fetch(url.toString(), {
+    mode: 'cors',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     },
+    credentials: 'include'
   });
 
   if (!response.ok)
     throw new Error('There was a problem receiving the network response.');
-  return response.json();
+  return response.bodyUsed ? response.json() : response.statusText;
 }
 
 export const useConfirmEmail = (userId: string, code: string, changedEmail?: string) => {
@@ -126,15 +147,25 @@ export const useConfirmEmail = (userId: string, code: string, changedEmail?: str
   });
 }
 
-const getManageInfo = async (credentials: GetManageInfoForm): Promise<GetManageInfoForm> => {
-  const url = new URL(`${apiBaseUrl}manageInfo`);
-  return await jsonResponse(credentials, url) as Promise<GetManageInfoForm>;
+const getManageInfo = async (): Promise<GetManageInfoResponse> => {
+  const url = new URL(`${apiBaseUrl}manage/info`);
+  const response = await fetch(url.toString(), {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+
+  if (!response.ok && response.status !== 401)
+    throw new Error('There was a problem receiving the network response.');
+
+  return response.json();
 }
 
-export const useGetManageInfo = (credentials: GetManageInfoForm) => {
-  return useQuery<GetManageInfoForm, Error>({
-    queryKey: ['manageInfo', credentials],
-    queryFn: () => getManageInfo(credentials),
-    enabled: !!credentials,
+export const useGetManageInfo = () => {
+  return useQuery<GetManageInfoResponse, Error>({
+    queryKey: ['manageInfo'],
+    queryFn: () => getManageInfo(),
   });
 }
