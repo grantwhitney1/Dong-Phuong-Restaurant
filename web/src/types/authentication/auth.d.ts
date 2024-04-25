@@ -39,7 +39,7 @@ export interface ConfirmEmailResponse {
   changedEmail: string
 }
 
-export interface GetManageInfoForm {
+export interface GetManageInfoResponse {
   email: string,
   isEmailConfirmed: boolean,
 }
