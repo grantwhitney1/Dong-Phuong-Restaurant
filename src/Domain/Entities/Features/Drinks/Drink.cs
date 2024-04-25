@@ -8,4 +8,14 @@ public class Drink : IEntity
     public string? Name { get; set; }
     public string? Size { get; set; }
     public decimal? Price { get; set; }
+    
+    public Drink()
+    { }
+
+    public Drink(string name, string size, decimal price)
+    {
+        Name = name;
+        Size = size;
+        Price = price;
+    }
 }
