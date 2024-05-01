@@ -18,7 +18,7 @@ const authenticationResponse: (credentials: unknown, url: URL) => Promise<unknow
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://localhost:3000',
     },
     body: JSON.stringify(credentials)
   });
@@ -98,7 +98,7 @@ const logout = async () => {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://localhost:3000',
     },
     credentials: 'include',
     method: 'POST',
@@ -129,7 +129,7 @@ const confirmEmail = async (userId: string, code: string, changedEmail?: string)
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://localhost:3000',
     },
     credentials: 'include'
   });
