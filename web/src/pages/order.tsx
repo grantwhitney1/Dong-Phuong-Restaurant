@@ -1,42 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import GoodCard from '../components/good-card';
 
-type PreparedGood = {
+type Good = {
   id: number;
   name: string;
   description: string;
   price: number;
 };
 
-const Order: React.FC = () => {
-  const [goods, setGoods] = useState<PreparedGood[]>([]);
-  const [loading, setLoading] = useState(true);
+type GoodCategories = {
+  preparedGoods: Good[];
+  drinks: Good[];
+  packagedGoods: Good[];
+};
 
+const Order: React.FC = () => {
+  const [goods, setGoods] = useState<GoodCategories>({ preparedGoods: [], drinks: [], packagedGoods: [] });
+  const [filteredGoods, setFilteredGoods] = useState<GoodCategories>({ preparedGoods: [], drinks: [], packagedGoods: [] });
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<keyof GoodCategories>('preparedGoods');
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const cardContainerStyle = {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '20px',
+    padding: '20px'
+  };
+  
   useEffect(() => {
-    const fetchGoods = async () => {
+    const fetchGoods = async (endpoint: string, category: keyof GoodCategories) => {
       try {
-        const response = await fetch("https://localhost:7217/api/PreparedGoods", {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-    
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-    
+        const response = await fetch(`https://localhost:7217/api/${endpoint}`, { method: "GET", headers: { "Content-Type": "application/json" } });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const dataObject = await response.json();
-        const goods: PreparedGood[] = dataObject.data;  // Here 'data' is the property holding the actual goods array.
-    
-        console.log(goods);  // Optional: just to check if data is loaded correctly.
-        setGoods(goods);
-        setLoading(false);
-        
+        const categoryGoods: Good[] = dataObject.data;
+        setGoods(prevState => ({...prevState, [category]: categoryGoods}));
       } catch (error) {
-        console.error("An error occurred while fetching goods:", error);
+        console.error(`An error occurred while fetching ${category}:`, error);
       }
     };
-    
-    fetchGoods();
+    fetchGoods('PreparedGoods', 'preparedGoods');
+    fetchGoods('Drinks', 'drinks');
+    fetchGoods('PackagedGoods', 'packagedGoods');
   }, []);
+
+  useEffect(() => {
+    setSearchTerm('');
+    const allGoodsLoaded = Object.values(goods).every(categoryGoods => categoryGoods.length > 0);
+    setFilteredGoods(goods);
+    setLoading(!allGoodsLoaded);
+  }, [goods]);
+
+  const handleTabClick = (category: keyof GoodCategories) => setActiveTab(category);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const search = e.target.value.toLowerCase();
+    setSearchTerm(search);
+    
+    const filtered = Object.keys(goods).reduce((acc, category) => {
+        acc[category as keyof GoodCategories] = goods[category as keyof GoodCategories].filter(good =>
+          good.name.toLowerCase().includes(search) || 
+          good.description?.toLowerCase().includes(search)
+        );
+        return acc;
+      }, {} as GoodCategories);
+  
+      console.log(filtered);
+      setFilteredGoods(filtered);
+  };
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -45,13 +77,17 @@ const Order: React.FC = () => {
   return (
     <>
       <h1>Order</h1>
-      {goods.map((good: PreparedGood) => (
-        <div key={good.id}>
-          <h2>{good.name}</h2>
-          <p>{good.description}</p>
-          <h3>Price: {good.price}</h3>
-        </div>
-      ))}
+      <input type="text" value={searchTerm} placeholder="Search..." onChange={handleSearch} />
+      <div>
+        {Object.keys(goods).map((category) => (
+          <button onClick={() => handleTabClick(category as keyof GoodCategories)} key={category}>{category}</button>
+        ))}
+      </div>
+      <div style={cardContainerStyle}>
+        {filteredGoods[activeTab].map((good: Good) => (
+          <GoodCard key={good.id} good={good} />
+        ))}
+      </div>
     </>
   );
 };
