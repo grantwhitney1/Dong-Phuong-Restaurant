@@ -20,6 +20,9 @@ public class PackagedGoodEntityConfiguration : IEntityTypeConfiguration<Packaged
         builder.Property(x => x.Name)
             .HasMaxLength(maxBaseString);
 
+        builder.Property(x => x.Category)
+            .HasMaxLength(maxBaseString);
+
         builder.Property(x => x.Description)
             .HasMaxLength(maxBaseString);
 

@@ -129,22 +129,22 @@ public class DatabaseInitializer
         if (!_context.PackagedGoods.Any())
         {
             _context.PackagedGoods.AddRange(
-                new PackagedGood("Marinated Cooked and Frozen Roast Pork", "Marinated, cooked and Frozen Pork Roast",
+                new PackagedGood("Roast Pork", "Frozen, Pre-Cooked Meats", "Marinated, cooked and Frozen Pork Roast",
                     5.00m, 15.00m),
-                new PackagedGood("Marinated Cooked and Frozen Chicken", "Marinated, cooked and frozen chicken", 5.00m,
+                new PackagedGood("Chicken", "Frozen, Pre-Cooked Meats", "Marinated, cooked and frozen chicken", 5.00m,
                     15.00m),
-                new PackagedGood("Marinated Cooked and Frozen Beef", "Marinated, cooked and frozen marinated beef ",
+                new PackagedGood("Beef", "Frozen, Pre-Cooked Meats", "Marinated, cooked and frozen marinated beef ",
                     5.00m, 16.00m),
-                new PackagedGood("Marinated Cooked and Frozen Pork Chops", "Marinated, cooked and frozen pork chops",
+                new PackagedGood("Pork Chops", "Frozen, Pre-Cooked Meats", "Marinated, cooked and frozen pork chops",
                     5.00m, 15.00m),
-                new PackagedGood("Marinated Raw and Frozen Roast Pork", "Marinated and frozen pork roast", 5.00m,
+                new PackagedGood("Roast Pork", "Frozen, Raw Meats", "Marinated and frozen pork roast", 5.00m,
                     12.00m),
-                new PackagedGood("Marinated Raw and Frozen Chicken", "Marinated and frozen chicken", 5.00m, 12.00m),
-                new PackagedGood("Marinated Raw and Frozen Beef", "Marinated and frozen beef", 5.00m, 14.00m),
-                new PackagedGood("Marinated Raw and Frozen Pork Chops", "Marinated and frozen pork chops", 5.00m,
+                new PackagedGood("Chicken", "Frozen, Raw Meats", "Marinated and frozen chicken", 5.00m, 12.00m),
+                new PackagedGood("Beef", "Frozen, Raw Meats", "Marinated and frozen beef", 5.00m, 14.00m),
+                new PackagedGood("Pork Chops", "Frozen, Raw Meats", "Marinated and frozen pork chops", 5.00m,
                     15.00m),
-                new PackagedGood("Fish Sauce", "housemade fish sauce", 1.00m, 3.00m),
-                new PackagedGood("Peanut Sauce", "housemade peanut sauce", 1.00m, 3.00m)
+                new PackagedGood("Fish Sauce", "Sauce Containers", "House-made fish sauce", 1.00m, 3.00m),
+                new PackagedGood("Peanut Sauce", "Sauce Containers", "House-made peanut sauce", 1.00m, 3.00m)
             );
         }
 

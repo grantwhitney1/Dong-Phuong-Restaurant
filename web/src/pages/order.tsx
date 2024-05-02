@@ -23,7 +23,9 @@ type GoodCategories = {
   Specialties: Good[];
   Beverages: Good[];
   "Tapioca Beverages": Good[];
-  "Packaged Goods": Good[];
+  "Frozen, Pre-Cooked Meats": Good[];
+  "Frozen, Raw Meats": Good[];
+  "Sauce Containers": Good[];
 };
 
 const Order: React.FC = () => {
@@ -37,7 +39,9 @@ const Order: React.FC = () => {
     Specialties: [],
     Beverages: [],
     "Tapioca Beverages": [],
-    "Packaged Goods": [],
+    "Frozen, Pre-Cooked Meats": [],
+    "Frozen, Raw Meats": [],
+    "Sauce Containers": [],
   });
 
   const [activeTab, setActiveTab] = useState<keyof GoodCategories>('Appetizers');
@@ -66,7 +70,9 @@ const Order: React.FC = () => {
       await fetchGoods('PreparedGoods', 'Specialties');
       await fetchGoods('Drinks', 'Beverages');
       await fetchGoods('Drinks', 'Tapioca Beverages');
-      await fetchGoods('PackagedGoods', 'Packaged Goods');
+      await fetchGoods('PackagedGoods', 'Frozen, Pre-Cooked Meats');
+      await fetchGoods('PackagedGoods', 'Frozen, Raw Meats');
+      await fetchGoods('PackagedGoods', 'Sauce Containers');
     })()
   }, []);
 
