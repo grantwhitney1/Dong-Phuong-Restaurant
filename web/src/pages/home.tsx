@@ -19,6 +19,61 @@ import React, {FC} from "react";
 import {blue, green, grey, red} from "@mui/material/colors";
 import {TabContext, TabPanel} from "@mui/lab";
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
+import {styled} from "@mui/material/styles";
+
+const StyledTypography = styled(Typography)(({theme}) => ({
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  color: 'white',
+  width: '100%',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  fontFamily: "Quicksand, sans-serif",
+  margin: theme.spacing(0, 'auto'),
+  textAlign: "center"
+}));
+
+const StyledCard = styled(Card)({
+  margin: '.5rem 0 .5rem 0'
+});
+
+const StyledMoreVertIcon = styled(MoreVertIcon)({
+  margin: '1rem auto 0',
+  fontSize: '4rem',
+  color: grey['400'],
+});
+
+const StyledButton = styled(Button)(({theme}) => ({
+  marginRight: theme.spacing(2),
+  marginLeft: theme.spacing(2)
+}));
+
+const StyledTabs = styled(Tabs)({
+  margin: '0 auto',
+  maxWidth: '66vw'
+});
+
+const StyledBox = styled(Box)({
+  margin: '0 auto 0 auto',
+  maxWidth: '66vw'
+});
+
+const StyledDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  marginBottom: '2rem',
+});
+
+const StyledFacebookIcon = styled(FacebookIcon)({
+  fontSize: '4rem',
+  color: blue.A200,
+  transition: 'all 250ms ease-in-out',
+  '&:hover': {
+    filter: 'brightness(0.8)',
+    color: blue.A400,
+    cursor: 'pointer',
+  }
+});
 
 interface MenuItemProps {
   item: {
@@ -109,7 +164,7 @@ const categoryIcons: Record<string, ReactJSXElement> = {
 };
 
 const MenuItem: FC<MenuItemProps> = ({item}) => (
-  <Card sx={{margin: '.5rem 0 .5rem 0'}}>
+  <StyledCard>
     <CardActionArea>
       <CardContent>
         <Typography variant="h5" component="div">
@@ -123,7 +178,7 @@ const MenuItem: FC<MenuItemProps> = ({item}) => (
         </Typography>
       </CardContent>
     </CardActionArea>
-  </Card>
+  </StyledCard>
 );
 
 const MenuCategory: FC<MenuCategoryProps> = ({category, items}) => (
@@ -132,13 +187,7 @@ const MenuCategory: FC<MenuCategoryProps> = ({category, items}) => (
       {items.map((item, index) => (
         <MenuItem item={item} key={index}/>
       ))}
-      <MoreVertIcon
-        sx={{
-          margin: '1rem auto 0',
-          fontSize: '4rem',
-          color: grey['400'],
-        }}
-      />
+      <StyledMoreVertIcon/>
     </Stack>
   </TabPanel>
 );
@@ -171,59 +220,38 @@ const Home = () => {
             backgroundColor: red[500],
           }
         }}
-        sx={{
-          width: '66%',
-          margin: '0 auto'
-        }}
+        sx={{maxWidth: '66vw', margin: '0 auto'}}
       >
-        <div key={1} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'auto',
-          justifyContent: 'center'
-        }}>
-          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageOne}/>
-        </div>
-        <div key={2} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'auto',
-          justifyContent: 'center'
-        }}>
-          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageTwo}/>
-        </div>
-        <div key={3} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'auto',
-          justifyContent: 'center'
-        }}>
-          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageThree}/>
-        </div>
-        <div key={4} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'auto',
-          justifyContent: 'center'
-        }}>
-          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageFour}/>
-        </div>
-        <div key={5} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'auto',
-          justifyContent: 'center'
-        }}>
-          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageFive}/>
-        </div>
-        <div key={6} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'auto',
-          justifyContent: 'center'
-        }}>
-          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageSix}/>
-        </div>
+        <StyledBox>
+          <StyledDiv>
+            <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageOne}/>
+          </StyledDiv>
+        </StyledBox>
+        <StyledBox>
+          <StyledDiv>
+            <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageTwo}/>
+          </StyledDiv>
+        </StyledBox>
+        <StyledBox>
+          <StyledDiv>
+            <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageThree}/>
+          </StyledDiv>
+        </StyledBox>
+        <StyledBox>
+          <StyledDiv>
+            <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageFour}/>
+          </StyledDiv>
+        </StyledBox>
+        <StyledBox>
+          <StyledDiv>
+            <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageFive}/>
+          </StyledDiv>
+        </StyledBox>
+        <StyledBox>
+          <StyledDiv>
+            <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageSix}/>
+          </StyledDiv>
+        </StyledBox>
       </Carousel>
       <Typography
         variant="h4"
@@ -236,37 +264,30 @@ const Home = () => {
       </Typography>
       <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
       <TabContext value={value}>
-        <Tabs
+        <StyledTabs
           centered
           variant="fullWidth"
           value={value}
           onChange={handleChange}
-          sx={{margin: '0 auto', maxWidth: '66vw'}}
         >
           {Object.keys(menuItems).map((category) => (
             <Tab key={category} value={category} icon={categoryIcons[category]} label={category}/>
           ))}
-        </Tabs>
-        <Box sx={{margin: '0 auto 0 auto', maxWidth: '66vw'}}>
+        </StyledTabs>
+        <StyledBox>
           {Object.keys(menuItems).map((category) => (
             <MenuCategory key={category} category={category} items={menuItems[category]}/>
           ))}
-        </Box>
+        </StyledBox>
       </TabContext>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100vw',
-        justifyContent: 'center',
-        marginTop: '4rem'
-      }}>
-        <Button variant="contained" sx={{marginRight: '2rem'}}>
+      <StyledDiv>
+        <StyledButton variant="contained">
           See Full Menu
-        </Button>
-        <Button variant="contained" sx={{marginLeft: '2rem'}}>
+        </StyledButton>
+        <StyledButton variant="contained">
           Place an Online Order
-        </Button>
-      </div>
+        </StyledButton>
+      </StyledDiv>
       <Typography
         variant="h4"
         fontFamily="Cormorant SC, serif"
@@ -277,14 +298,7 @@ const Home = () => {
         {"A Taste of New Orleans' Diverse Taste and Culture"}
       </Typography>
       <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        width: '75vw',
-        justifyContent: 'center',
-        margin: '4rem auto',
-        alignItems: 'stretch',
-      }}>
+      <StyledDiv sx={{maxWidth: '66vw', margin: '0 auto'}}>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -297,34 +311,12 @@ const Home = () => {
             }}
             src={ImageSeven}
           />
-          <Typography
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              color: 'white',
-              width: '100%',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-            }}
-            fontFamily="Quicksand, sans-serif"
-            margin="0 auto"
-            textAlign="center"
-          >
+          <StyledTypography>
             14207 Chef Menteur Hwy New Orleans, LA 70129
-          </Typography>
-          <Typography
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              color: 'white',
-              width: '100%',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-            }}
-            fontFamily="Quicksand, sans-serif"
-            margin="0 auto"
-            textAlign="center"
-          >
+          </StyledTypography>
+          <StyledTypography>
             (504) 254-0296
-          </Typography>
+          </StyledTypography>
         </div>
         <Box
           display="flex"
@@ -338,7 +330,8 @@ const Home = () => {
             textAlign="justify"
             sx={{textIndent: '2rem'}}
           >
-            In a city where restaurants often rise and fall, a bakery founded by South Vietnamese refugees in the early
+            In a city where restaurants often rise and fall, a bakery founded by South Vietnamese refugees in the
+            early
             1980s succeeded in elevating New Orleans’s reputation as one of the best food cities in the world — and
             placed
             the ingenuity and resilience of its Vietnamese community firmly in the spotlight.
@@ -356,31 +349,13 @@ const Home = () => {
             family contributed to its explosive popularity, one recipe at a time.
           </Typography>
         </Box>
-      </div>
+      </StyledDiv>
       <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginBottom: '2rem',
-        }}
-      >
+      <StyledDiv>
         <a href="https://www.facebook.com/DPyumtum/">
-          <FacebookIcon
-            sx={{
-              fontSize: '4rem',
-              color: blue.A200,
-              transition: 'all 250ms ease-in-out',
-              '&:hover': {
-                filter: 'brightness(0.8)',
-                color: blue.A400,
-                cursor: 'pointer',
-              }
-            }}
-          />
+          <StyledFacebookIcon/>
         </a>
-      </div>
+      </StyledDiv>
     </Box>
   );
 }
