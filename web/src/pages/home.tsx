@@ -5,6 +5,7 @@ import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import RamenDiningIcon from '@mui/icons-material/RamenDining';
 import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import ImageOne from "/img/1.jpg";
 import ImageTwo from "/img/2.jpg";
 import ImageThree from "/img/3.jpg";
@@ -14,7 +15,7 @@ import ImageSix from "/img/6.jpg";
 import ImageSeven from "/img/7.jpg";
 
 import React from "react";
-import {red} from "@mui/material/colors";
+import {blue, red} from "@mui/material/colors";
 
 const Home = () => {
   const [value, setValue] = React.useState(0);
@@ -97,14 +98,6 @@ const Home = () => {
         }}>
           <img height={512} style={{alignSelf: 'center'}} src={ImageSix}/>
         </div>
-        <div key={7} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'auto',
-          justifyContent: 'center'
-        }}>
-          <img height={512} style={{alignSelf: 'center'}} src={ImageSeven}/>
-        </div>
       </Carousel>
       <Typography
         variant="h4"
@@ -153,6 +146,110 @@ const Home = () => {
         {"A Taste of New Orleans' Diverse Taste and Culture"}
       </Typography>
       <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        width: '75vw',
+        justifyContent: 'center',
+        margin: '4rem auto',
+        alignItems: 'stretch',
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '50%',
+        }}>
+          <img
+            alt="Dong Phuong Bakery"
+            style={{
+              objectFit: 'contain',
+            }}
+            src={ImageSeven}
+          />
+          <Typography
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              color: 'white',
+              width: '100%',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+            }}
+            fontFamily="Quicksand, sans-serif"
+            margin="0 auto"
+            textAlign="center"
+          >
+            14207 Chef Menteur Hwy New Orleans, LA 70129
+          </Typography>
+          <Typography
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              color: 'white',
+              width: '100%',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+            }}
+            fontFamily="Quicksand, sans-serif"
+            margin="0 auto"
+            textAlign="center"
+          >
+            (504) 254-0296
+          </Typography>
+        </div>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+        >
+          <Typography
+            fontFamily="Quicksand, sans-serif"
+            fontWeight="500"
+            marginLeft="4rem"
+            textAlign="justify"
+            sx={{textIndent: '2rem'}}
+          >
+            In a city where restaurants often rise and fall, a bakery founded by South Vietnamese refugees in the early
+            1980s succeeded in elevating New Orleans’s reputation as one of the best food cities in the world — and
+            placed
+            the ingenuity and resilience of its Vietnamese community firmly in the spotlight.
+          </Typography>
+          <Typography
+            fontFamily="Quicksand, sans-serif"
+            fontWeight="500"
+            marginLeft="4rem"
+            marginTop="2rem"
+            textAlign="justify"
+            sx={{textIndent: '2rem'}}
+          >
+            Dong Phuong, as New Orleanians know it now, was built over four decades by three generations of a single
+            family. Although the business first started as a haven for the Vietnamese community, members of the Tran
+            family contributed to its explosive popularity, one recipe at a time.
+          </Typography>
+        </Box>
+      </div>
+      <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginBottom: '2rem',
+        }}
+      >
+        <a href="https://www.facebook.com/DPyumtum/">
+          <FacebookIcon
+            sx={{
+              fontSize: '4rem',
+              color: blue.A200,
+              transition: 'all 250ms ease-in-out',
+              '&:hover': {
+                filter: 'brightness(0.8)',
+                color: blue.A400,
+                cursor: 'pointer',
+              }
+            }}
+          />
+        </a>
+      </div>
     </Box>
   );
 }
