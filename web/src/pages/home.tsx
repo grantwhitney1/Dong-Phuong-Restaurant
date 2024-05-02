@@ -1,4 +1,4 @@
-import {Box, Button, Divider, Tab, Tabs, Typography} from "@mui/material";
+import {Box, Button, Card, CardActionArea, CardContent, Divider, Stack, Tab, Tabs, Typography} from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import TapasIcon from '@mui/icons-material/Tapas';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
@@ -6,6 +6,7 @@ import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import RamenDiningIcon from '@mui/icons-material/RamenDining';
 import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ImageOne from "/img/1.jpg";
 import ImageTwo from "/img/2.jpg";
 import ImageThree from "/img/3.jpg";
@@ -15,12 +16,76 @@ import ImageSix from "/img/6.jpg";
 import ImageSeven from "/img/7.jpg";
 
 import React from "react";
-import {blue, red} from "@mui/material/colors";
+import {blue, green, grey, red} from "@mui/material/colors";
+import {TabContext, TabPanel} from "@mui/lab";
+
+const appetizers = [
+  {
+    name: 'Chả Giò',
+    description: 'Four fried shrimp & pork egg rolls',
+    price: 5,
+  },
+  {
+    name: 'Gỏi Cuốn',
+    description: 'Two shrimp & pork egg rolls',
+    price: 5,
+  },
+];
+
+const riceBowls = [
+  {
+    name: 'Cơm Suon Nướng',
+    description: 'Grilled pork chop over rice',
+    price: 5,
+  },
+  {
+    name: 'Cơm Thịt Nướng',
+    description: 'Grilled pork over rice',
+    price: 5,
+  },
+];
+
+const rolls = [
+  {
+    name: 'Bún Gà Nướng',
+    description: 'Grilled chicken over vermicelli',
+    price: 5,
+  },
+  {
+    name: 'Bún Tôm Nướng',
+    description: 'Grilled shrimp over vermicelli',
+    price: 5,
+  },
+];
+
+const soups = [
+  {
+    name: 'Phở Bò Viên',
+    description: 'Beef meatball noodle soup',
+    price: 5,
+  },
+  {
+    name: 'Phở Tôm',
+    description: 'Shrimp noodle soup',
+    price: 5,
+  },
+];
+
+const beverages = [
+  {
+    name: 'Avocado Tapioca',
+    price: 5,
+  },
+  {
+    name: 'Banana Tapioca',
+    price: 5,
+  },
+];
 
 const Home = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState("APPETIZERS");
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
@@ -56,7 +121,7 @@ const Home = () => {
           width: 'auto',
           justifyContent: 'center'
         }}>
-          <img height={512} style={{alignSelf: 'center'}} src={ImageOne}/>
+          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageOne}/>
         </div>
         <div key={2} style={{
           display: 'flex',
@@ -64,7 +129,7 @@ const Home = () => {
           width: 'auto',
           justifyContent: 'center'
         }}>
-          <img height={512} style={{alignSelf: 'center'}} src={ImageTwo}/>
+          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageTwo}/>
         </div>
         <div key={3} style={{
           display: 'flex',
@@ -72,7 +137,7 @@ const Home = () => {
           width: 'auto',
           justifyContent: 'center'
         }}>
-          <img height={512} style={{alignSelf: 'center'}} src={ImageThree}/>
+          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageThree}/>
         </div>
         <div key={4} style={{
           display: 'flex',
@@ -80,7 +145,7 @@ const Home = () => {
           width: 'auto',
           justifyContent: 'center'
         }}>
-          <img height={512} style={{alignSelf: 'center'}} src={ImageFour}/>
+          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageFour}/>
         </div>
         <div key={5} style={{
           display: 'flex',
@@ -88,7 +153,7 @@ const Home = () => {
           width: 'auto',
           justifyContent: 'center'
         }}>
-          <img height={512} style={{alignSelf: 'center'}} src={ImageFive}/>
+          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageFive}/>
         </div>
         <div key={6} style={{
           display: 'flex',
@@ -96,7 +161,7 @@ const Home = () => {
           width: 'auto',
           justifyContent: 'center'
         }}>
-          <img height={512} style={{alignSelf: 'center'}} src={ImageSix}/>
+          <img alt="Vietnamese Dish" height={512} style={{alignSelf: 'center'}} src={ImageSix}/>
         </div>
       </Carousel>
       <Typography
@@ -109,19 +174,160 @@ const Home = () => {
         Try Our Exotic, Traditional Vietnamese Cuisine
       </Typography>
       <Divider sx={{margin: '2rem auto 2rem auto', maxWidth: '90vw'}} variant="middle"/>
-      <Tabs
-        centered
-        variant="fullWidth"
-        value={value}
-        onChange={handleChange}
-        sx={{margin: '0 auto', maxWidth: '66vw'}}
-      >
-        <Tab icon={<TapasIcon/>} label="APPETIZERS"/>
-        <Tab icon={<RiceBowlIcon/>} label="RICE BOWLS"/>
-        <Tab icon={<BakeryDiningIcon/>} label="ROLLS"/>
-        <Tab icon={<RamenDiningIcon/>} label="SOUPS"/>
-        <Tab icon={<EmojiFoodBeverageIcon/>} label="BEVERAGES"/>
-      </Tabs>
+      <TabContext value={value}>
+        <Tabs
+          centered
+          variant="fullWidth"
+          value={value}
+          onChange={handleChange}
+          sx={{margin: '0 auto', maxWidth: '66vw'}}
+        >
+          <Tab value="APPETIZERS" icon={<TapasIcon/>} label="APPETIZERS"/>
+          <Tab value="RICE BOWLS" icon={<RiceBowlIcon/>} label="RICE BOWLS"/>
+          <Tab value="ROLLS" icon={<BakeryDiningIcon/>} label="ROLLS"/>
+          <Tab value="SOUPS" icon={<RamenDiningIcon/>} label="SOUPS"/>
+          <Tab value="BEVERAGES" icon={<EmojiFoodBeverageIcon/>} label="BEVERAGES"/>
+        </Tabs>
+        <Box sx={{margin: '0 auto 0 auto', maxWidth: '66vw'}}>
+          <TabPanel value="APPETIZERS">
+            <Stack>
+              {appetizers.map((appetizer, index) => (
+                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography variant="h5" component="div">
+                        {appetizer.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {appetizer.description}
+                      </Typography>
+                      <Typography variant="body2" color={green['900']}>
+                        ${appetizer.price}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+              <MoreVertIcon
+                sx={{
+                  margin: '1rem auto 0',
+                  fontSize: '4rem',
+                  color: grey['400'],
+                }}
+              />
+            </Stack>
+          </TabPanel>
+          <TabPanel value="RICE BOWLS">
+            <Stack>
+              {riceBowls.map((riceBowl, index) => (
+                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography variant="h5" component="div">
+                        {riceBowl.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {riceBowl.description}
+                      </Typography>
+                      <Typography variant="body2" color={green['900']}>
+                        ${riceBowl.price}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+              <MoreVertIcon
+                sx={{
+                  margin: '1rem auto 0',
+                  fontSize: '4rem',
+                  color: grey['400'],
+                }}
+              />
+            </Stack>
+          </TabPanel>
+          <TabPanel value="ROLLS">
+            <Stack>
+              {rolls.map((roll, index) => (
+                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography variant="h5" component="div">
+                        {roll.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {roll.description}
+                      </Typography>
+                      <Typography variant="body2" color={green['900']}>
+                        ${roll.price}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+              <MoreVertIcon
+                sx={{
+                  margin: '1rem auto 0',
+                  fontSize: '4rem',
+                  color: grey['400'],
+                }}
+              />
+            </Stack>
+          </TabPanel>
+          <TabPanel value="SOUPS">
+            <Stack>
+              {soups.map((soup, index) => (
+                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography variant="h5" component="div">
+                        {soup.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {soup.description}
+                      </Typography>
+                      <Typography variant="body2" color={green['900']}>
+                        ${soup.price}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+              <MoreVertIcon
+                sx={{
+                  margin: '1rem auto 0',
+                  fontSize: '4rem',
+                  color: grey['400'],
+                }}
+              />
+            </Stack>
+          </TabPanel>
+          <TabPanel value="BEVERAGES">
+            <Stack>
+              {beverages.map((beverage, index) => (
+                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography variant="h5" component="div">
+                        {beverage.name}
+                      </Typography>
+                      <Typography variant="body2" color={green['900']}>
+                        ${beverage.price}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+              <MoreVertIcon
+                sx={{
+                  margin: '1rem auto 0',
+                  fontSize: '4rem',
+                  color: grey['400'],
+                }}
+              />
+            </Stack>
+          </TabPanel>
+        </Box>
+      </TabContext>
       <div style={{
         display: 'flex',
         flexDirection: 'row',
