@@ -18,7 +18,8 @@ import {blue, green, grey, red} from "@mui/material/colors";
 import {TabContext, TabPanel} from "@mui/lab";
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 import {styled} from "@mui/material/styles";
-import {FC, SyntheticEvent, useState} from "react";
+import {FC, SyntheticEvent, useCallback, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const StyledTypography = styled(Typography)(({theme}) => ({
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -192,11 +193,17 @@ const MenuCategory: FC<MenuCategoryProps> = ({category, items}) => (
 );
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [value, setValue] = useState("APPETIZERS");
 
-  const handleChange = (_event: SyntheticEvent, newValue: string) => {
+  const handleChange = useCallback((_event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
-  };
+  }, [setValue]);
+
+  const handleOnClick = useCallback(() => {
+    navigate("/order");
+  }, [navigate]);
 
   return (
     <Box>
@@ -280,10 +287,16 @@ const Home = () => {
         </StyledBox>
       </TabContext>
       <StyledDiv>
-        <StyledButton variant="contained">
-          See Full Menu
-        </StyledButton>
-        <StyledButton variant="contained">
+        <a
+          href="https://www.dpbakery.com/wp-content/uploads/2022/03/Dong-Phuong-2021-Menu.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <StyledButton variant="contained">
+            See Full Menu
+          </StyledButton>
+        </a>
+        <StyledButton onClick={handleOnClick} variant="contained">
           Place an Online Order
         </StyledButton>
       </StyledDiv>
