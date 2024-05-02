@@ -53,6 +53,10 @@ const NavBar = () => {
     navigate("/order");
   }, [navigate]);
 
+  const handleHomeOnClick = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
+
   return (
     <NavBarBox>
       <AuthModal tabsValue={tabsValue} setTabsValue={setTabsValue} onClose={handleCloseAuthModal} open={authModalOpen}/>
@@ -106,7 +110,14 @@ const NavBar = () => {
               </Button>
             </a>
           </StyledBoxLeft>
-          <StyledH1>
+          <StyledH1
+            onClick={handleHomeOnClick}
+            sx={{
+              '&:hover': {
+                cursor: 'pointer',
+              }
+            }}
+          >
             Dong Phuong Restaurant
           </StyledH1>
           <StyledBoxRight>

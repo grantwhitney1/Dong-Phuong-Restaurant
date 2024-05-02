@@ -18,6 +18,10 @@ public class DrinkEntityConfiguration : IEntityTypeConfiguration<Drink>
         builder.Property(x => x.Name)
             .HasMaxLength(maxBaseString);
 
+        builder.Property(x => x.Category)
+            .HasMaxLength(maxBaseString)
+            .IsRequired();
+
         builder.Property(x => x.Size)
             .HasMaxLength(maxBaseString);
 

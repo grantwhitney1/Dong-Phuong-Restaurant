@@ -1,93 +1,102 @@
-import React, { useEffect, useState } from 'react';
-import GoodCard from '../components/good-card';
+import React, {SyntheticEvent, useCallback, useEffect, useState} from 'react';
+import {Tab} from "@mui/material";
+import {TabContext, TabPanel} from "@mui/lab";
+import {apiBaseUrl} from "../utils/vite-env";
+import {MenuItem, StyledBox, StyledTabs} from "./home";
 
 type Good = {
   id: number;
   name: string;
+  category: string;
   description: string;
   price: number;
 };
 
+
 type GoodCategories = {
-  preparedGoods: Good[];
-  drinks: Good[];
-  packagedGoods: Good[];
+  Appetizers: Good[];
+  Rolls: Good[];
+  "Rice Bowls": Good[];
+  "Served Over Rice": Good[];
+  Salads: Good[];
+  Soups: Good[];
+  Specialties: Good[];
+  Beverages: Good[];
+  "Tapioca Beverages": Good[];
+  "Packaged Goods": Good[];
 };
 
 const Order: React.FC = () => {
-  const [goods, setGoods] = useState<GoodCategories>({ preparedGoods: [], drinks: [], packagedGoods: [] });
-  const [filteredGoods, setFilteredGoods] = useState<GoodCategories>({ preparedGoods: [], drinks: [], packagedGoods: [] });
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<keyof GoodCategories>('preparedGoods');
-  const [searchTerm, setSearchTerm] = useState("");
+  const [goods, setGoods] = useState<Record<string, Good[]>>({
+    Appetizers: [],
+    Rolls: [],
+    "Rice Bowls": [],
+    "Served Over Rice": [],
+    Salads: [],
+    Soups: [],
+    Specialties: [],
+    Beverages: [],
+    "Tapioca Beverages": [],
+    "Packaged Goods": [],
+  });
 
-  const cardContainerStyle = {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '20px',
-    padding: '20px'
-  };
-  
+  const [activeTab, setActiveTab] = useState<keyof GoodCategories>('Appetizers');
+
   useEffect(() => {
-    const fetchGoods = async (endpoint: string, category: keyof GoodCategories) => {
+    const fetchGoods = async (endpoint: string, category: string) => {
       try {
-        const response = await fetch(`https://localhost:7217/api/${endpoint}`, { method: "GET", headers: { "Content-Type": "application/json" } });
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const response = await fetch(`${apiBaseUrl}api/${endpoint}`, {
+          method: "GET",
+          headers: {"Content-Type": "application/json"}
+        });
         const dataObject = await response.json();
-        const categoryGoods: Good[] = dataObject.data;
+        const categoryGoods: Good[] = dataObject.data.filter((x: Good) => x.category === category);
         setGoods(prevState => ({...prevState, [category]: categoryGoods}));
       } catch (error) {
         console.error(`An error occurred while fetching ${category}:`, error);
       }
     };
-    fetchGoods('PreparedGoods', 'preparedGoods');
-    fetchGoods('Drinks', 'drinks');
-    fetchGoods('PackagedGoods', 'packagedGoods');
+    (async () => {
+      await fetchGoods('PreparedGoods', 'Appetizers');
+      await fetchGoods('PreparedGoods', 'Rolls');
+      await fetchGoods('PreparedGoods', 'Rice Bowls');
+      await fetchGoods('PreparedGoods', 'Served Over Rice');
+      await fetchGoods('PreparedGoods', 'Salads');
+      await fetchGoods('PreparedGoods', 'Soups');
+      await fetchGoods('PreparedGoods', 'Specialties');
+      await fetchGoods('Drinks', 'Beverages');
+      await fetchGoods('Drinks', 'Tapioca Beverages');
+      await fetchGoods('PackagedGoods', 'Packaged Goods');
+    })()
   }, []);
 
-  useEffect(() => {
-    setSearchTerm('');
-    const allGoodsLoaded = Object.values(goods).every(categoryGoods => categoryGoods.length > 0);
-    setFilteredGoods(goods);
-    setLoading(!allGoodsLoaded);
-  }, [goods]);
-
-  const handleTabClick = (category: keyof GoodCategories) => setActiveTab(category);
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const search = e.target.value.toLowerCase();
-    setSearchTerm(search);
-    
-    const filtered = Object.keys(goods).reduce((acc, category) => {
-        acc[category as keyof GoodCategories] = goods[category as keyof GoodCategories].filter(good =>
-          good.name.toLowerCase().includes(search) || 
-          good.description?.toLowerCase().includes(search)
-        );
-        return acc;
-      }, {} as GoodCategories);
-  
-      console.log(filtered);
-      setFilteredGoods(filtered);
-  };
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
+  const handleTabClick = useCallback((_event: SyntheticEvent, newValue: keyof (GoodCategories)) => {
+    setActiveTab(newValue);
+  }, [setActiveTab]);
 
   return (
     <>
-      <h1>Order</h1>
-      <input type="text" value={searchTerm} placeholder="Search..." onChange={handleSearch} />
-      <div>
-        {Object.keys(goods).map((category) => (
-          <button onClick={() => handleTabClick(category as keyof GoodCategories)} key={category}>{category}</button>
-        ))}
-      </div>
-      <div style={cardContainerStyle}>
-        {filteredGoods[activeTab].map((good: Good) => (
-          <GoodCard key={good.id} good={good} />
-        ))}
-      </div>
+      <TabContext value={activeTab}>
+        <StyledTabs
+          centered
+          variant="scrollable"
+          value={activeTab}
+          onChange={handleTabClick}
+        >
+          {Object.keys(goods).map((category) => (
+            <Tab key={category} value={category} label={category}/>
+          ))}
+        </StyledTabs>
+        <StyledBox>
+          {Object.keys(goods).map((category: string) => (
+            <TabPanel key={category} value={category}>
+              {goods[category].map((item: Good) => (
+                <MenuItem key={item.id} item={item}/>
+              ))}
+            </TabPanel>
+          ))}
+        </StyledBox>
+      </TabContext>
     </>
   );
 };

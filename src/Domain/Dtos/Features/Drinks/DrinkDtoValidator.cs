@@ -10,6 +10,10 @@ public class DrinkDtoValidator : AbstractValidator<DrinkDto>
         RuleFor(x => x.Name)
             .MaximumLength((int)Max.BaseString);
 
+        RuleFor(x => x.Category)
+            .MaximumLength((int)Max.BaseString)
+            .Must(x => DrinkCategories.Categories.Contains(x));
+
         RuleFor(x => x.Size)
             .NotEmpty()
             .MaximumLength((int)Max.BaseString);

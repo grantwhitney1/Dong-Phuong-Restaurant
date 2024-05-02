@@ -47,12 +47,12 @@ const StyledButton = styled(Button)(({theme}) => ({
   marginLeft: theme.spacing(2)
 }));
 
-const StyledTabs = styled(Tabs)({
+export const StyledTabs = styled(Tabs)({
   margin: '0 auto',
   maxWidth: '66vw'
 });
 
-const StyledBox = styled(Box)({
+export const StyledBox = styled(Box)({
   margin: '0 auto 0 auto',
   maxWidth: '66vw'
 });
@@ -155,7 +155,7 @@ const menuItems: Record<string, Array<{ name: string; description: string; price
   ],
 };
 
-const categoryIcons: Record<string, ReactJSXElement> = {
+export const categoryIcons: Record<string, ReactJSXElement> = {
   "APPETIZERS": <TapasIcon/>,
   "RICE BOWLS": <RiceBowlIcon/>,
   "ROLLS": <BakeryDiningIcon/>,
@@ -163,7 +163,7 @@ const categoryIcons: Record<string, ReactJSXElement> = {
   "BEVERAGES": <EmojiFoodBeverageIcon/>,
 };
 
-const MenuItem: FC<MenuItemProps> = ({item}) => (
+export const MenuItem: FC<MenuItemProps> = ({item}) => (
   <StyledCard>
     <CardActionArea>
       <CardContent>
