@@ -142,12 +142,12 @@ const Home = () => {
         justifyContent: 'center',
         marginTop: '4rem'
       }}>
-        <Button variant="contained" sx={{marginRight: '2rem'}}>
-          See Full Menu
-        </Button>
-        <Button variant="contained" sx={{marginLeft: '2rem'}} onClick={handleOrderButtonClick}>
-          Place an Online Order
-        </Button>
+      <Button variant="contained" sx={{marginRight: '2rem'}} onClick={() => window.open('https://www.dpbakery.com/wp-content/uploads/2022/03/Dong-Phuong-2021-Menu.pdf', '_blank')}>
+        See Full Menu
+      </Button>
+      <Button variant="contained" sx={{marginLeft: '2rem'}} onClick={handleOrderButtonClick}>
+        Place an Online Order
+      </Button>
       </div>
       <Typography
         variant="h4"
