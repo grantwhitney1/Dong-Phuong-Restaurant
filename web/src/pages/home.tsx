@@ -15,72 +15,133 @@ import ImageFive from "/img/5.jpg";
 import ImageSix from "/img/6.jpg";
 import ImageSeven from "/img/7.jpg";
 
-import React from "react";
+import React, {FC} from "react";
 import {blue, green, grey, red} from "@mui/material/colors";
 import {TabContext, TabPanel} from "@mui/lab";
+import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 
-const appetizers = [
-  {
-    name: 'Chả Giò',
-    description: 'Four fried shrimp & pork egg rolls',
-    price: 5,
-  },
-  {
-    name: 'Gỏi Cuốn',
-    description: 'Two shrimp & pork egg rolls',
-    price: 5,
-  },
-];
+interface MenuItemProps {
+  item: {
+    name: string;
+    description: string;
+    price: number;
+  };
+}
 
-const riceBowls = [
-  {
-    name: 'Cơm Suon Nướng',
-    description: 'Grilled pork chop over rice',
-    price: 5,
-  },
-  {
-    name: 'Cơm Thịt Nướng',
-    description: 'Grilled pork over rice',
-    price: 5,
-  },
-];
+interface MenuCategoryProps {
+  category: string;
+  items: Array<{
+    name: string;
+    description: string;
+    price: number;
+  }>;
+}
 
-const rolls = [
-  {
-    name: 'Bún Gà Nướng',
-    description: 'Grilled chicken over vermicelli',
-    price: 5,
-  },
-  {
-    name: 'Bún Tôm Nướng',
-    description: 'Grilled shrimp over vermicelli',
-    price: 5,
-  },
-];
+const menuItems: Record<string, Array<{ name: string; description: string; price: number }>> = {
+  "APPETIZERS": [
+    {
+      name: 'Chả Giò',
+      description: 'Four fried shrimp & pork egg rolls',
+      price: 5,
+    },
+    {
+      name: 'Gỏi Cuốn',
+      description: 'Two shrimp & pork egg rolls',
+      price: 5,
+    },
+  ],
+  "RICE BOWLS": [
+    {
+      name: 'Cơm Suon Nướng',
+      description: 'Grilled pork chop over rice',
+      price: 5,
+    },
+    {
+      name: 'Cơm Thịt Nướng',
+      description: 'Grilled pork over rice',
+      price: 5,
+    },
+  ],
+  "ROLLS": [
+    {
+      name: 'Bún Gà Nướng',
+      description: 'Grilled chicken over vermicelli',
+      price: 5,
+    },
+    {
+      name: 'Bún Tôm Nướng',
+      description: 'Grilled shrimp over vermicelli',
+      price: 5,
+    },
+  ],
+  "SOUPS": [
+    {
+      name: 'Phở Bò Viên',
+      description: 'Beef meatball noodle soup',
+      price: 5,
+    },
+    {
+      name: 'Phở Tôm',
+      description: 'Shrimp noodle soup',
+      price: 5,
+    },
+  ],
+  "BEVERAGES": [
+    {
+      name: 'Avocado Tapioca',
+      description: '',
+      price: 5,
+    },
+    {
+      name: 'Banana Tapioca',
+      description: '',
+      price: 5,
+    },
+  ],
+};
 
-const soups = [
-  {
-    name: 'Phở Bò Viên',
-    description: 'Beef meatball noodle soup',
-    price: 5,
-  },
-  {
-    name: 'Phở Tôm',
-    description: 'Shrimp noodle soup',
-    price: 5,
-  },
-];
+const categoryIcons: Record<string, ReactJSXElement> = {
+  "APPETIZERS": <TapasIcon/>,
+  "RICE BOWLS": <RiceBowlIcon/>,
+  "ROLLS": <BakeryDiningIcon/>,
+  "SOUPS": <RamenDiningIcon/>,
+  "BEVERAGES": <EmojiFoodBeverageIcon/>,
+};
 
-const beverages = [
-  {
-    name: 'Avocado Tapioca',
-    price: 5,
-  },
-  {
-    name: 'Banana Tapioca',
-    price: 5,
-  },
-];
+const MenuItem: FC<MenuItemProps> = ({item}) => (
+  <Card sx={{margin: '.5rem 0 .5rem 0'}}>
+    <CardActionArea>
+      <CardContent>
+        <Typography variant="h5" component="div">
+          {item.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {item.description}
+        </Typography>
+        <Typography variant="body2" color={green['900']}>
+          ${item.price}
+        </Typography>
+      </CardContent>
+    </CardActionArea>
+  </Card>
+);
+
+const MenuCategory: FC<MenuCategoryProps> = ({category, items}) => (
+  <TabPanel value={category}>
+    <Stack>
+      {items.map((item, index) => (
+        <MenuItem item={item} key={index}/>
+      ))}
+      <MoreVertIcon
+        sx={{
+          margin: '1rem auto 0',
+          fontSize: '4rem',
+          color: grey['400'],
+        }}
+      />
+    </Stack>
+  </TabPanel>
+);
 
 const Home = () => {
   const [value, setValue] = React.useState("APPETIZERS");
@@ -182,150 +243,14 @@ const Home = () => {
           onChange={handleChange}
           sx={{margin: '0 auto', maxWidth: '66vw'}}
         >
-          <Tab value="APPETIZERS" icon={<TapasIcon/>} label="APPETIZERS"/>
-          <Tab value="RICE BOWLS" icon={<RiceBowlIcon/>} label="RICE BOWLS"/>
-          <Tab value="ROLLS" icon={<BakeryDiningIcon/>} label="ROLLS"/>
-          <Tab value="SOUPS" icon={<RamenDiningIcon/>} label="SOUPS"/>
-          <Tab value="BEVERAGES" icon={<EmojiFoodBeverageIcon/>} label="BEVERAGES"/>
+          {Object.keys(menuItems).map((category) => (
+            <Tab key={category} value={category} icon={categoryIcons[category]} label={category}/>
+          ))}
         </Tabs>
         <Box sx={{margin: '0 auto 0 auto', maxWidth: '66vw'}}>
-          <TabPanel value="APPETIZERS">
-            <Stack>
-              {appetizers.map((appetizer, index) => (
-                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
-                  <CardActionArea>
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {appetizer.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {appetizer.description}
-                      </Typography>
-                      <Typography variant="body2" color={green['900']}>
-                        ${appetizer.price}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              ))}
-              <MoreVertIcon
-                sx={{
-                  margin: '1rem auto 0',
-                  fontSize: '4rem',
-                  color: grey['400'],
-                }}
-              />
-            </Stack>
-          </TabPanel>
-          <TabPanel value="RICE BOWLS">
-            <Stack>
-              {riceBowls.map((riceBowl, index) => (
-                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
-                  <CardActionArea>
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {riceBowl.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {riceBowl.description}
-                      </Typography>
-                      <Typography variant="body2" color={green['900']}>
-                        ${riceBowl.price}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              ))}
-              <MoreVertIcon
-                sx={{
-                  margin: '1rem auto 0',
-                  fontSize: '4rem',
-                  color: grey['400'],
-                }}
-              />
-            </Stack>
-          </TabPanel>
-          <TabPanel value="ROLLS">
-            <Stack>
-              {rolls.map((roll, index) => (
-                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
-                  <CardActionArea>
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {roll.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {roll.description}
-                      </Typography>
-                      <Typography variant="body2" color={green['900']}>
-                        ${roll.price}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              ))}
-              <MoreVertIcon
-                sx={{
-                  margin: '1rem auto 0',
-                  fontSize: '4rem',
-                  color: grey['400'],
-                }}
-              />
-            </Stack>
-          </TabPanel>
-          <TabPanel value="SOUPS">
-            <Stack>
-              {soups.map((soup, index) => (
-                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
-                  <CardActionArea>
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {soup.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {soup.description}
-                      </Typography>
-                      <Typography variant="body2" color={green['900']}>
-                        ${soup.price}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              ))}
-              <MoreVertIcon
-                sx={{
-                  margin: '1rem auto 0',
-                  fontSize: '4rem',
-                  color: grey['400'],
-                }}
-              />
-            </Stack>
-          </TabPanel>
-          <TabPanel value="BEVERAGES">
-            <Stack>
-              {beverages.map((beverage, index) => (
-                <Card sx={{margin: '.5rem 0 .5rem 0'}} key={index}>
-                  <CardActionArea>
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {beverage.name}
-                      </Typography>
-                      <Typography variant="body2" color={green['900']}>
-                        ${beverage.price}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              ))}
-              <MoreVertIcon
-                sx={{
-                  margin: '1rem auto 0',
-                  fontSize: '4rem',
-                  color: grey['400'],
-                }}
-              />
-            </Stack>
-          </TabPanel>
+          {Object.keys(menuItems).map((category) => (
+            <MenuCategory key={category} category={category} items={menuItems[category]}/>
+          ))}
         </Box>
       </TabContext>
       <div style={{
