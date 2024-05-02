@@ -10,6 +10,10 @@ public class PackagedGoodDtoValidator : AbstractValidator<PackagedGoodDto>
         RuleFor(x => x.Name)
             .MaximumLength((int)Max.BaseString);
 
+        RuleFor(x => x.Category)
+            .MaximumLength((int)Max.BaseString)
+            .Must(x => PackagedGoodEnums.Categories.Contains(x));
+
         RuleFor(x => x.Description)
             .MaximumLength((int)Max.BaseString);
 

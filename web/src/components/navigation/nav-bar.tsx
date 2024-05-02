@@ -9,11 +9,13 @@ import {
   StyledToolbar
 } from "../../styles/components/navigation/nav-bar";
 import AuthModal from "../authentication/auth-modal";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {useUserStore} from "../../../store";
 import {useLogout} from "../../hooks/authentication/auth-service";
+import {useNavigate} from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   const user = useUserStore(state => state.user);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -45,8 +47,15 @@ const NavBar = () => {
   const handleLogout = () => {
     mutate();
     setAnchorEl(null);
-  }
+  };
 
+  const handleOnClick = useCallback(() => {
+    navigate("/order");
+  }, [navigate]);
+
+  const handleHomeOnClick = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
 
   return (
     <NavBarBox>
@@ -54,8 +63,61 @@ const NavBar = () => {
       <NavBarAppBar position="static">
         <StyledToolbar>
           <StyledBoxLeft>
+            <Button
+              sx={{
+                color: '#A93923',
+                backgroundColor: '#FFF9FA',
+                transition: 'all 250ms ease-in-out',
+                boxShadow: 'none',
+                fontWeight: 'bold',
+                margin: '0 0.5rem',
+                '&:hover': {
+
+                  color: '#A93923',
+                  backgroundColor: '#FFF9FA',
+                  filter: 'brightness(0.8)',
+                  boxShadow: 'none',
+                }
+              }}
+              onClick={handleOnClick}
+              variant="contained"
+            >
+              ORDER
+            </Button>
+            <a
+              href="https://www.dpbakery.com/wp-content/uploads/2022/03/Dong-Phuong-2021-Menu.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                sx={{
+                  color: '#FFF9FA',
+                  backgroundColor: '#A93923',
+                  transition: 'all 250ms ease-in-out',
+                  boxShadow: 'none',
+                  fontWeight: 'bold',
+                  margin: '0 0.5rem',
+                  '&:hover': {
+                    color: '#FFF9FA',
+                    backgroundColor: '#A93923',
+                    filter: 'brightness(0.8)',
+                    boxShadow: 'none',
+                  }
+                }}
+                variant="contained"
+              >
+                See Full Menu
+              </Button>
+            </a>
           </StyledBoxLeft>
-          <StyledH1>
+          <StyledH1
+            onClick={handleHomeOnClick}
+            sx={{
+              '&:hover': {
+                cursor: 'pointer',
+              }
+            }}
+          >
             Dong Phuong Restaurant
           </StyledH1>
           <StyledBoxRight>

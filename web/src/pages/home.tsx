@@ -14,12 +14,12 @@ import ImageFour from "/img/4.jpg";
 import ImageFive from "/img/5.jpg";
 import ImageSix from "/img/6.jpg";
 import ImageSeven from "/img/7.jpg";
-
-import React, {FC} from "react";
 import {blue, green, grey, red} from "@mui/material/colors";
 import {TabContext, TabPanel} from "@mui/lab";
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 import {styled} from "@mui/material/styles";
+import {FC, SyntheticEvent, useCallback, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const StyledTypography = styled(Typography)(({theme}) => ({
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -47,12 +47,12 @@ const StyledButton = styled(Button)(({theme}) => ({
   marginLeft: theme.spacing(2)
 }));
 
-const StyledTabs = styled(Tabs)({
+export const StyledTabs = styled(Tabs)({
   margin: '0 auto',
   maxWidth: '66vw'
 });
 
-const StyledBox = styled(Box)({
+export const StyledBox = styled(Box)({
   margin: '0 auto 0 auto',
   maxWidth: '66vw'
 });
@@ -155,7 +155,7 @@ const menuItems: Record<string, Array<{ name: string; description: string; price
   ],
 };
 
-const categoryIcons: Record<string, ReactJSXElement> = {
+export const categoryIcons: Record<string, ReactJSXElement> = {
   "APPETIZERS": <TapasIcon/>,
   "RICE BOWLS": <RiceBowlIcon/>,
   "ROLLS": <BakeryDiningIcon/>,
@@ -163,7 +163,7 @@ const categoryIcons: Record<string, ReactJSXElement> = {
   "BEVERAGES": <EmojiFoodBeverageIcon/>,
 };
 
-const MenuItem: FC<MenuItemProps> = ({item}) => (
+export const MenuItem: FC<MenuItemProps> = ({item}) => (
   <StyledCard>
     <CardActionArea>
       <CardContent>
@@ -193,11 +193,17 @@ const MenuCategory: FC<MenuCategoryProps> = ({category, items}) => (
 );
 
 const Home = () => {
-  const [value, setValue] = React.useState("APPETIZERS");
+  const navigate = useNavigate();
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+  const [value, setValue] = useState("APPETIZERS");
+
+  const handleChange = useCallback((_event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
-  };
+  }, [setValue]);
+
+  const handleOnClick = useCallback(() => {
+    navigate("/order");
+  }, [navigate]);
 
   return (
     <Box>
@@ -281,10 +287,16 @@ const Home = () => {
         </StyledBox>
       </TabContext>
       <StyledDiv>
-        <StyledButton variant="contained">
-          See Full Menu
-        </StyledButton>
-        <StyledButton variant="contained">
+        <a
+          href="https://www.dpbakery.com/wp-content/uploads/2022/03/Dong-Phuong-2021-Menu.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <StyledButton variant="contained">
+            See Full Menu
+          </StyledButton>
+        </a>
+        <StyledButton onClick={handleOnClick} variant="contained">
           Place an Online Order
         </StyledButton>
       </StyledDiv>

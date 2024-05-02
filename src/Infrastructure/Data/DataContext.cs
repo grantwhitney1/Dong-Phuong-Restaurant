@@ -15,9 +15,9 @@ namespace DongPhuong.Infrastructure.Data
         {
         }
 
-        public DbSet<Drink> Drinks { get; set; }   
-        public DbSet<PreparedGood> PreparedGoods { get; set; } // Add this line
-        public DbSet<PackagedGood> PackagedGoods { get; set; } // Add this line
+        public DbSet<Drink> Drinks { get; set; }
+        public DbSet<PreparedGood> PreparedGoods { get; set; } 
+        public DbSet<PackagedGood> PackagedGoods { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

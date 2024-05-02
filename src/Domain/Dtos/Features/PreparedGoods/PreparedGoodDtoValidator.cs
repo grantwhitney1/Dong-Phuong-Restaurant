@@ -15,5 +15,8 @@ public class PreparedGoodDtoValidator : AbstractValidator<PreparedGoodDto>
 
         RuleFor(x => x.Price)
             .GreaterThan(0);
+
+        RuleFor(x => x.Category)
+            .Must(x => PreparedGoodEnums.Categories.Contains(x));
     }
 }

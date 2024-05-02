@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using DongPhuong.Application.Handlers.Features.Drinks;
 using DongPhuong.Application.Handlers.Features.PackagedGoods;
 using DongPhuong.Application.Handlers.Features.PreparedGoods;
@@ -18,17 +20,26 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Environment.IsDevelopment()
-    ? builder.Configuration.GetConnectionString("LocalDbConnectionString")
-    : Environment.GetEnvironmentVariable("SQLAZURECONNSTR_DbConnectionString");
-
-builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer(connectionString));
+if (builder.Environment.IsDevelopment())
+{
+    var localDbConnectionString = builder.Configuration.GetConnectionString("LocalDbConnectionString");
+    builder.Services.AddDbContext<DataContext>(options =>
+        options.UseSqlServer(localDbConnectionString));
+}
+else if (builder.Environment.IsProduction())
+{
+    var vaultUrl = builder.Configuration["VaultUrl"];
+    var client = new SecretClient(new Uri(vaultUrl!), new DefaultAzureCredential());
+    var cloudDbConnectionString = client.GetSecret("DbConnectionString");
+    builder.Services.AddDbContext<DataContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString(cloudDbConnectionString.Value.Value)));
+}
 
 builder.Services.AddAutoMapper(typeof(IEntity));
 builder.Services.AddLogging();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 builder.Services.AddScoped<IDrinksRepository, DrinksRepository>();
 builder.Services.AddScoped<IPackagedGoodsRepository, PackagedGoodsRepository>();
 builder.Services.AddScoped<IPreparedGoodsRepository, PreparedGoodsRepository>();
@@ -40,13 +51,6 @@ builder.Services.AddScoped<IPreparedGoodsCommandHandler, PreparedGoodsCommandHan
 builder.Services.AddScoped<IDrinksQueryHandler, DrinksQueryHandler>();
 builder.Services.AddScoped<IPackagedGoodsQueryHandler, PackagedGoodsQueryHandler>();
 builder.Services.AddScoped<IPreparedGoodsQueryHandler, PreparedGoodsQueryHandler>();
-
-builder.Services.AddCookiePolicy(o =>
-{
-    o.MinimumSameSitePolicy = SameSiteMode.None;
-    o.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None;
-    o.Secure = CookieSecurePolicy.Always;
-});
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
@@ -75,30 +79,29 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseCookiePolicy();
-app.UseAuthorization();
 app.UseCors(o =>
 {
-    o.AllowCredentials();
     o.AllowAnyHeader();
     o.AllowAnyMethod();
-    o.WithOrigins([
-        "http://localhost:3000", "https://localhost:3000", "https://polite-pebble-03902a710.4.azurestaticapps.net"
-    ]);
+    o.WithOrigins("https://localhost:3000");
+    o.AllowCredentials();
 });
+
+app.UseAuthorization();
 app.MapIdentityApi<IdentityUser>();
 app.MapControllers();
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager) =>
-{
-    try
     {
-        await signInManager.SignOutAsync();
-        return Results.Ok();
-    }
-    catch
-    {
-        return Results.Unauthorized();
-    }
-});
+        try
+        {
+            await signInManager.SignOutAsync();
+            return Results.Ok();
+        }
+        catch
+        {
+            return Results.Unauthorized();
+        }
+    })
+    .RequireAuthorization();
 
 app.Run();
