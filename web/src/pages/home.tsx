@@ -14,12 +14,11 @@ import ImageFour from "/img/4.jpg";
 import ImageFive from "/img/5.jpg";
 import ImageSix from "/img/6.jpg";
 import ImageSeven from "/img/7.jpg";
-
-import React, {FC} from "react";
 import {blue, green, grey, red} from "@mui/material/colors";
 import {TabContext, TabPanel} from "@mui/lab";
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 import {styled} from "@mui/material/styles";
+import {FC, SyntheticEvent, useState} from "react";
 
 const StyledTypography = styled(Typography)(({theme}) => ({
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -193,9 +192,9 @@ const MenuCategory: FC<MenuCategoryProps> = ({category, items}) => (
 );
 
 const Home = () => {
-  const [value, setValue] = React.useState("APPETIZERS");
+  const [value, setValue] = useState("APPETIZERS");
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
